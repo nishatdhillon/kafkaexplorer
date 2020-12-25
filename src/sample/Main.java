@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("kafkaexplorer.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("kafkaExplorer.fxml"));
         primaryStage.setTitle("Kafka Explorer");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
