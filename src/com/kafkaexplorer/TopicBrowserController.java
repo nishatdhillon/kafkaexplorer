@@ -1,4 +1,4 @@
-package sample;
+package com.kafkaexplorer;
 
 import javafx.fxml.Initializable;
 

@@ -1,4 +1,4 @@
-package sample;
+package com.kafkaexplorer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
