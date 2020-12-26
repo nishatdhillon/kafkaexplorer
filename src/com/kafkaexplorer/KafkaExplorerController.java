@@ -8,9 +8,13 @@ import com.sun.source.tree.Tree;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,13 +59,20 @@ private AnchorPane mainContent;
             e.printStackTrace();
         }
 
+    }
 
+    public void onMouseClicked(MouseEvent mouseEvent) {
 
-
-
+        //Open the topicBrowser screen
         try {
-            //AnchorPane mainRoot = new FXMLLoader(getClass().getResource("clusterConfig.fxml")).load();
-            //mainContent.getChildren().setAll(mainRoot);
+            // Get selected Node
+            Node node = mouseEvent.getPickResult().getIntersectedNode();
+
+            if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
+                String name = (String) ((TreeItem)kafkaTree.getSelectionModel().getSelectedItem()).getValue();
+                System.out.println("Node click: " + name);
+            }
+
 
             AnchorPane mainRoot = new FXMLLoader(getClass().getResource("topicBrowser.fxml")).load();
             mainContent.getChildren().setAll(mainRoot);
@@ -69,7 +80,6 @@ private AnchorPane mainContent;
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 }
