@@ -39,12 +39,13 @@
             <ChoiceBox fx:id="securityType" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="sasl.jaas.config" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label layoutX="79.0" layoutY="79.0" text="sasl.mechanism" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField fx:id="saslMechanism" GridPane.columnIndex="4" GridPane.rowIndex="4" />
             <TextArea prefHeight="200.0" prefWidth="200.0" text="sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required&#10; username='{{ CLUSTER_API_KEY }}'  &#10; password='{{ CLUSTER_API_SECRET }}';" GridPane.columnIndex="4" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" text="Update" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
             </Button>
             <Button mnemonicParsing="false" text="Connect" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
          <TextField fx:id="name" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         <Label text="name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         </children>
     </GridPane>
 

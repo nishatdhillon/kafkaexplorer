@@ -1,8 +1,15 @@
 package com.kafkaexplorer.model;
 
 public class Cluster {
-
     public Cluster() {}
+
+    public Cluster(Cluster cluster) {
+        this.name = cluster.name;
+        this.hostname = cluster.hostname;
+        this.protocol = cluster.protocol;
+        this.mechanism = cluster.mechanism;
+        this.jaasConfig = cluster.jaasConfig;
+    }
     private String name;
     private String hostname;
     private String protocol;

@@ -30,6 +30,8 @@ private TreeView<String> kafkaTree;
 @FXML
 private AnchorPane mainContent;
 
+private Cluster[] clusters;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -42,15 +44,17 @@ private AnchorPane mainContent;
 
         // Mapping the cluster Array from the YAML file to the Cluster class
         try {
-            Clusters clusters = om.readValue(file, com.kafkaexplorer.model.Clusters.class);
+            clusters = om.readValue(file, com.kafkaexplorer.model.Cluster[].class);
 
             TreeItem<String> root = new TreeItem<>("Kafka Clusters");
 
-            clusters.getClusters().forEach((cluster) -> {
+            for (int i = 0; i < clusters.length; i++)
+            {
                 //build kafka cluster tree
-                TreeItem clusterItem = new TreeItem(cluster.getName());
-                root.getChildren().add(clusterItem);
-            });
+                      TreeItem clusterItem = new TreeItem(clusters[i].getName());
+                      root.getChildren().add(clusterItem);
+            }
+
 
         kafkaTree.setRoot(root);
         root.setExpanded(true);
@@ -69,17 +73,34 @@ private AnchorPane mainContent;
             Node node = mouseEvent.getPickResult().getIntersectedNode();
 
             if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                String clusterName = (String) ((TreeItem)kafkaTree.getSelectionModel().getSelectedItem()).getValue();
+                String clusterName = (String) ((TreeItem) kafkaTree.getSelectionModel().getSelectedItem()).getValue();
 
                 FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("clusterConfig.fxml"));
                 AnchorPane mainRoot = clusterConfigLoader.load();
 
                 ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
-                clusterConfigController.setClusterName(clusterName);
-                clusterConfigController.populateScreen();
 
-                mainContent.getChildren().setAll(mainRoot);
+                //find selected cluster from Clusters Array
+                Cluster selectedCluster = null;
 
+                for (int i = 0; i < clusters.length; i++)
+                {
+                    if (clusters[i].getName() == clusterName)
+                    {
+                        selectedCluster = new Cluster(clusters[i]);
+                    }
+                }
+
+                if (selectedCluster != null) {
+                    clusterConfigController.populateScreen(selectedCluster);
+
+                    mainContent.getChildren().setAll(mainRoot);
+                }
+                else
+                {
+                   //todo
+                    mainContent.getChildren().clear();
+                }
             }
 
         } catch (IOException e) {

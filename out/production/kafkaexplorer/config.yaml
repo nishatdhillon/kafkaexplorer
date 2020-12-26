@@ -1,13 +1,12 @@
 ---
-clusters:
 -  name: Cluster1
-   hostname: 192.168.1.128
+   hostname: "https://mycluster01.com:9092"
    protocol: SASL_SSL
    mechanism: PLAIN
    jaasConfig: "sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
 
 -  name: Cluster2
-   hostname: 192.168.1.128
+   hostname: "https://mycluster02.com:9092"
    protocol: SASL_SSL
    mechanism: PLAIN
    jaasConfig: "sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"

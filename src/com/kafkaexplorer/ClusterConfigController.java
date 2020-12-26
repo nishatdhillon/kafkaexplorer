@@ -1,8 +1,10 @@
 package com.kafkaexplorer;
 
+import com.kafkaexplorer.model.Cluster;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -14,30 +16,48 @@ import java.util.ResourceBundle;
 
 public class ClusterConfigController implements Initializable {
 
-    public TextField bootstrap;
+    @FXML
     public TextField name;
 
-    private String clusterName;
-
-    public String getClusterName() {
-        return clusterName;
+    public TextField getName() {
+        return name;
     }
 
-    public void setClusterName(String clusterName) {
-        this.name.setText(clusterName);
+    public void setName(TextField name) {
+        this.name = name;
     }
+
+    public TextField getBootstrap() {
+        return bootstrap;
+    }
+
+    public void setBootstrap(TextField bootstrap) {
+        this.bootstrap = bootstrap;
+    }
+
+    public TextField getSaslMechanism() {
+        return saslMechanism;
+    }
+
+    public void setSaslMechanism(TextField saslMechanism) {
+        this.saslMechanism = saslMechanism;
+    }
+
+    @FXML
+    public TextField bootstrap;
+
+    @FXML
+    public TextField saslMechanism;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
     }
-
-
-    public void populateScreen() {
-
-
-
+    public void populateScreen(Cluster cluster) {
+        bootstrap.setText(cluster.getHostname());
+        name.setText(cluster.getName());
+        saslMechanism.setText(cluster.getMechanism());
     }
 
 }
