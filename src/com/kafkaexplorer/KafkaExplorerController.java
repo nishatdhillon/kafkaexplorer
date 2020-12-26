@@ -69,13 +69,18 @@ private AnchorPane mainContent;
             Node node = mouseEvent.getPickResult().getIntersectedNode();
 
             if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                String name = (String) ((TreeItem)kafkaTree.getSelectionModel().getSelectedItem()).getValue();
-                System.out.println("Node click: " + name);
+                String clusterName = (String) ((TreeItem)kafkaTree.getSelectionModel().getSelectedItem()).getValue();
+
+                FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("clusterConfig.fxml"));
+                AnchorPane mainRoot = clusterConfigLoader.load();
+
+                ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
+                clusterConfigController.setClusterName(clusterName);
+                clusterConfigController.populateScreen();
+
+                mainContent.getChildren().setAll(mainRoot);
+
             }
-
-
-            AnchorPane mainRoot = new FXMLLoader(getClass().getResource("topicBrowser.fxml")).load();
-            mainContent.getChildren().setAll(mainRoot);
 
         } catch (IOException e) {
             e.printStackTrace();
