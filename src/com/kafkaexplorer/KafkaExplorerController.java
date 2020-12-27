@@ -14,6 +14,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 import java.io.File;
@@ -76,7 +77,7 @@ private Cluster[] clusters;
                 String clusterName = (String) ((TreeItem) kafkaTree.getSelectionModel().getSelectedItem()).getValue();
 
                 FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("clusterConfig.fxml"));
-                AnchorPane mainRoot = clusterConfigLoader.load();
+                GridPane mainRoot = clusterConfigLoader.load();
 
                 ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
 
