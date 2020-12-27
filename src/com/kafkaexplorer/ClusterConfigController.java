@@ -18,7 +18,7 @@ public class ClusterConfigController implements Initializable {
 
     @FXML
     public ChoiceBox securityType;
-    public TextArea jaasConf;
+    public TextField jaasConf;
 
     public TextField getName() {
         return name;
@@ -58,7 +58,6 @@ public class ClusterConfigController implements Initializable {
         securityType.getItems().add("SASL_PLAINTEXT");
         securityType.getItems().add("SASL_SSL");
         securityType.setValue("PLAINTEXT");
-
     }
 
     public void populateScreen(Cluster cluster) {

@@ -7,6 +7,6 @@
 
 -  name: Cluster2
    hostname: "https://mycluster02.com:9092"
-   protocol: SASL_SSL
+   protocol: SSL
    mechanism: PLAIN
    jaasConfig: "sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
