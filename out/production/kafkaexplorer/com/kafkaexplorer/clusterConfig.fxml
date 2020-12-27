@@ -40,7 +40,7 @@
             <Label text="sasl.jaas.config" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label layoutX="79.0" layoutY="79.0" text="sasl.mechanism" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <TextField fx:id="saslMechanism" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" text="sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required&#10; username='{{ CLUSTER_API_KEY }}'  &#10; password='{{ CLUSTER_API_SECRET }}';" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <TextArea fx:id="jaasConf" prefHeight="200.0" prefWidth="200.0" text="sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required&#10; username='{{ CLUSTER_API_KEY }}'  &#10; password='{{ CLUSTER_API_SECRET }}';" GridPane.columnIndex="4" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" text="Update" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
             </Button>
             <Button mnemonicParsing="false" text="Connect" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="15" />

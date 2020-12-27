@@ -4,10 +4,7 @@ import com.kafkaexplorer.model.Cluster;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -18,6 +15,10 @@ public class ClusterConfigController implements Initializable {
 
     @FXML
     public TextField name;
+
+    @FXML
+    public ChoiceBox securityType;
+    public TextArea jaasConf;
 
     public TextField getName() {
         return name;
@@ -51,13 +52,21 @@ public class ClusterConfigController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    //init security.protocol dropdown list with PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL
+        securityType.getItems().add("PLAINTEXT");
+        securityType.getItems().add("SSL");
+        securityType.getItems().add("SASL_PLAINTEXT");
+        securityType.getItems().add("SASL_SSL");
+        securityType.setValue("PLAINTEXT");
 
     }
+
     public void populateScreen(Cluster cluster) {
         bootstrap.setText(cluster.getHostname());
         name.setText(cluster.getName());
         saslMechanism.setText(cluster.getMechanism());
+        securityType.setValue(cluster.getProtocol());
+        jaasConf.setText(cluster.getJaasConfig());
     }
 
 }
