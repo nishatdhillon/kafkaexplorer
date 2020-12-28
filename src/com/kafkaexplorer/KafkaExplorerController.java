@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -73,35 +74,55 @@ private Cluster[] clusters;
             // Get selected Node
             Node node = mouseEvent.getPickResult().getIntersectedNode();
 
+            //Ensure that user clicked on a TreeCell
             if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                String clusterName = (String) ((TreeItem) kafkaTree.getSelectionModel().getSelectedItem()).getValue();
+                TreeItem selectedItem= (TreeItem)kafkaTree.getSelectionModel().getSelectedItem();
 
-                FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("clusterConfig.fxml"));
-                GridPane mainRoot = clusterConfigLoader.load();
-
-                ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
-
-                //find selected cluster from Clusters Array
-                Cluster selectedCluster = null;
-
-                for (int i = 0; i < clusters.length; i++)
+                //selectedItem is a cluster, display cluster config
+                if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters")
                 {
-                    if (clusters[i].getName() == clusterName)
+                    FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("clusterConfig.fxml"));
+                    GridPane mainRoot = clusterConfigLoader.load();
+
+                    ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
+
+                    //find selected cluster from Clusters Array
+                    Cluster selectedCluster = null;
+
+                    for (int i = 0; i < clusters.length; i++)
                     {
-                        selectedCluster = new Cluster(clusters[i]);
+                        if (clusters[i].getName() == selectedItem.getValue())
+                        {
+                            selectedCluster = new Cluster(clusters[i]);
+                        }
                     }
-                }
 
-                if (selectedCluster != null) {
-                    clusterConfigController.populateScreen(selectedCluster, kafkaTree);
+                    if (selectedCluster != null) {
+                        clusterConfigController.populateScreen(selectedCluster, kafkaTree);
 
-                    mainContent.getChildren().setAll(mainRoot);
-                }
-                else
+                        mainContent.getChildren().setAll(mainRoot);
+                    }
+                    else
+                    {
+                        //todo
+                        mainContent.getChildren().clear();
+                    }
+
+                } //If selectedItem is a topic, display topic browser screen
+                else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics")
                 {
-                   //todo
-                    mainContent.getChildren().clear();
+                    System.out.println("display topic screen");
+
+
                 }
+
+
+
+
+
+
+
+
             }
 
         } catch (IOException e) {

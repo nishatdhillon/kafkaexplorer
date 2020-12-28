@@ -119,20 +119,25 @@ public class ClusterConfigController implements Initializable {
                 //get topic list from kafka
                 KafkaLib kafkaConnector = new KafkaLib();
 
+                //Create a SubTreeItem maned "topics"
+
+                child.getChildren().add(new TreeItem("topics"));
+                TreeItem topicsChildren = (TreeItem)child.getChildren().get(0);
+
                 Map<String, List<PartitionInfo>> topics = kafkaConnector.listTopics( cluster);
-
-
+                
                 Iterator <Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
-
+                
                 while (iterator.hasNext()) {
                     Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
                     System.out.println(entry.getKey());
 
                     TreeItem topic = new TreeItem(entry.getKey());
-                    child.getChildren().add(topic);
+                    topicsChildren.getChildren().add(topic);
                 }
 
                 child.setExpanded(true);
+                topicsChildren.setExpanded(true);
             }
             else
             {
