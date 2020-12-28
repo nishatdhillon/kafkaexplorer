@@ -1,5 +1,6 @@
 package com.kafkaexplorer;
 
+import com.kafkaexplorer.kafkaconnector.KafkaLib;
 import com.kafkaexplorer.model.Cluster;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,9 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.apache.kafka.common.PartitionInfo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ClusterConfigController implements Initializable {
@@ -46,6 +51,8 @@ public class ClusterConfigController implements Initializable {
         this.saslMechanism = saslMechanism;
     }
 
+    private Cluster cluster;
+
     @FXML
     public TextField bootstrap;
 
@@ -65,6 +72,7 @@ public class ClusterConfigController implements Initializable {
     }
 
     public void populateScreen(Cluster cluster, TreeView<String> clusterTreeView) {
+        this.cluster = cluster;
         bootstrap.setText(cluster.getHostname());
         name.setText(cluster.getName());
         saslMechanism.setText(cluster.getMechanism());
@@ -75,6 +83,9 @@ public class ClusterConfigController implements Initializable {
 
     public void connectToKafka(MouseEvent mouseEvent) throws IOException {
        //connect to kafka cluster and list all topics
+        KafkaLib kafkaConnector = new KafkaLib();
+        kafkaConnector.connect(cluster);
+
        //get main controller and locate the TreeView
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("kafkaExplorer.fxml"));
         Parent treeView = (Parent) mainLoader.load();
@@ -89,24 +100,32 @@ public class ClusterConfigController implements Initializable {
 
         //kafkaTree
         for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
-            System.out.println(child.getValue());
+
             if ( child.getValue().equals(clusterName)){
                 //remove any existing topics
                 child.getChildren().clear();
 
                 //get topic list from kafka
-                //todo
-                System.out.println("list topics of " + clusterName);
-                TreeItem topic1 = new TreeItem("topic1");
-                child.getChildren().add(topic1);
+                KafkaLib kafkaConnector = new KafkaLib();
 
-                TreeItem topic2 = new TreeItem("topic2");
-                child.getChildren().add(topic2);
+                Map<String, List<PartitionInfo>> topics = kafkaConnector.listTopics( cluster);
 
-                TreeItem topic3 = new TreeItem("topic3");
-                child.getChildren().add(topic3);
+
+                Iterator <Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
+
+                while (iterator.hasNext()) {
+                    Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
+                    System.out.println(entry.getKey());
+
+                    TreeItem topic = new TreeItem(entry.getKey());
+                    child.getChildren().add(topic);
+                }
 
                 child.setExpanded(true);
+            }
+            else
+            {
+                child.setExpanded(false);
             }
 
         }
