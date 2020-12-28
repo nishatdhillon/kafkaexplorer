@@ -92,7 +92,6 @@ public class ClusterConfigController implements Initializable {
             System.out.println(child.getValue());
             if ( child.getValue().equals(clusterName)){
                 //remove any existing topics
-                child.getChildren().removeAll();
                 child.getChildren().clear();
 
                 //get topic list from kafka
@@ -106,6 +105,8 @@ public class ClusterConfigController implements Initializable {
 
                 TreeItem topic3 = new TreeItem("topic3");
                 child.getChildren().add(topic3);
+
+                child.setExpanded(true);
             }
 
         }
