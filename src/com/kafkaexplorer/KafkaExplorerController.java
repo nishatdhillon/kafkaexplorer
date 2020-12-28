@@ -83,7 +83,6 @@ private Cluster[] clusters;
                 {
                     FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("clusterConfig.fxml"));
                     GridPane mainRoot = clusterConfigLoader.load();
-
                     ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
 
                     //find selected cluster from Clusters Array
@@ -111,8 +110,12 @@ private Cluster[] clusters;
                 } //If selectedItem is a topic, display topic browser screen
                 else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics")
                 {
-                    System.out.println("display topic screen");
+                    FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("topicBrowser.fxml"));
+                    GridPane mainRoot = topicBrowserLoader.load();
 
+                    TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
+                    topicBrowserController.populateScreen(selectedItem.getValue().toString(), kafkaTree);
+                    mainContent.getChildren().setAll(mainRoot);
 
                 }
 

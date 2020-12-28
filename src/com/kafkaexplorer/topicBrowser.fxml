@@ -3,9 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
-
-    <GridPane minHeight="-Infinity" minWidth="600.0" prefHeight="476.0" prefWidth="368.0">
+<GridPane minHeight="-Infinity" minWidth="600.0" prefHeight="476.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="18.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="9.0" prefWidth="9.0" />
@@ -13,6 +11,7 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="13.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="429.0" minWidth="10.0" prefWidth="429.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="0.0" prefWidth="32.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -32,12 +31,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <Label prefHeight="17.0" prefWidth="99.0" text="topic browser" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="99.0" text="topic name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" text="Update" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
-            </Button>
-            <Button mnemonicParsing="false" text="Connect" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+      <TextField fx:id="topic" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
         </children>
     </GridPane>
-
-</AnchorPane>
