@@ -12,5 +12,6 @@
     <orderEntry type="library" name="lib (2)" level="project" />
     <orderEntry type="library" name="kafka-clients-2.7.0" level="project" />
     <orderEntry type="library" name="slf4j-api-1.7.30" level="project" />
+    <orderEntry type="library" name="slf4j-simple-1.7.30" level="project" />
   </component>
 </module>

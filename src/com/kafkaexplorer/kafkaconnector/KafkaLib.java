@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class KafkaLib {
 
-    public String connect(Cluster cluster){
+    public String connect(Cluster cluster) throws Exception{
 
         Properties props = new Properties();
         props.put("bootstrap.servers", cluster.getHostname());

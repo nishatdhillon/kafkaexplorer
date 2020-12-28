@@ -84,14 +84,25 @@ public class ClusterConfigController implements Initializable {
     public void connectToKafka(MouseEvent mouseEvent) throws IOException {
        //connect to kafka cluster and list all topics
         KafkaLib kafkaConnector = new KafkaLib();
-        kafkaConnector.connect(cluster);
+        try {
+            kafkaConnector.connect(cluster);
 
-       //get main controller and locate the TreeView
+
+        //get main controller and locate the TreeView
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("kafkaExplorer.fxml"));
         Parent treeView = (Parent) mainLoader.load();
         KafkaExplorerController mainController = mainLoader.getController();
 
         displayTopicList(name.getText());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //show an alert Dialog
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+
+        }
 
     }
 
