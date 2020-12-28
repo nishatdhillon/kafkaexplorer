@@ -93,7 +93,7 @@ private Cluster[] clusters;
                 }
 
                 if (selectedCluster != null) {
-                    clusterConfigController.populateScreen(selectedCluster);
+                    clusterConfigController.populateScreen(selectedCluster, kafkaTree);
 
                     mainContent.getChildren().setAll(mainRoot);
                 }
@@ -109,4 +109,6 @@ private Cluster[] clusters;
         }
 
     }
+
+
 }

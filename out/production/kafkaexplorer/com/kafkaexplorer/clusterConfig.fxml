@@ -38,7 +38,7 @@
             <TextField fx:id="jaasConf" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" text="Update" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
             </Button>
-            <Button mnemonicParsing="false" text="Connect" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
          <TextField fx:id="name" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          <Label text="name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <HBox prefHeight="100.0" prefWidth="200.0" />
