@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane.*?>
 
 <VBox maxHeight="2048.0" maxWidth="1068.0" minHeight="900.0" minWidth="1280.0" prefHeight="500.0" prefWidth="1068.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.KafkaExplorerController">
    <children>
