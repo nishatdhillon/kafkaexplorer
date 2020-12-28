@@ -17,8 +17,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="86.0" minHeight="0.0" prefHeight="9.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="37.0" minHeight="8.0" prefHeight="11.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="29.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -34,5 +34,11 @@
             <Label prefHeight="17.0" prefWidth="99.0" text="topic name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <TextField fx:id="topic" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <TableView prefHeight="134.0" prefWidth="407.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
         </children>
     </GridPane>
