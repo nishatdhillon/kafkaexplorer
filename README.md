@@ -4,9 +4,6 @@
 | --- | --- |
 | develop  | ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop)
 
-
----
-
 # kafkaexplorer
 An easy, straight to the point, graphical tool to explore Kafka topics and produce messages.
 Working on Windows, MacOs and Linux.
