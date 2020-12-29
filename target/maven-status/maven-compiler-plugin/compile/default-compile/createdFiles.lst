@@ -1,7 +1,7 @@
+com\kafkaexplorer\kafkaconnector\KafkaLib.class
 com\kafkaexplorer\model\Cluster.class
+com\kafkaexplorer\TopicBrowserController.class
+com\kafkaexplorer\Main.class
 com\kafkaexplorer\model\Clusters.class
 com\kafkaexplorer\KafkaExplorerController.class
 com\kafkaexplorer\ClusterConfigController.class
-com\kafkaexplorer\kafkaconnector\KafkaLib.class
-com\kafkaexplorer\TopicBrowserController.class
-com\kafkaexplorer\Main.class
