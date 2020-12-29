@@ -3,7 +3,7 @@
 | Branch  | Build Status  |
 | --- | --- |
 | develop  | ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop)
-|
+
 
 ---
 
