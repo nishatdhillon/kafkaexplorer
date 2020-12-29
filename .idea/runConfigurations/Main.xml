@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Main" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.kafkaexplorer.Main" />
+    <option name="MAIN_CLASS_NAME" value="main.java.kafkaexplorer.Main" />
     <module name="kafkaexplorer" />
     <option name="VM_PARAMETERS" value="--module-path C:\Users\steph\lib\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml" />
     <RunnerSettings RunnerId="Run" />

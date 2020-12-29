@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import org.apache.kafka.common.PartitionInfo;
 
 import java.io.IOException;
@@ -89,7 +88,7 @@ public class ClusterConfigController implements Initializable {
 
 
         //get main controller and locate the TreeView
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("kafkaExplorer.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("../../../resources/kafkaExplorer.fxml"));
         Parent treeView = (Parent) mainLoader.load();
         KafkaExplorerController mainController = mainLoader.getController();
 

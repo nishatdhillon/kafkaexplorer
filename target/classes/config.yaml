@@ -1,0 +1,12 @@
+---
+-  name: Cluster1
+   hostname: "pkc-419q3.us-east4.gcp.confluent.cloud:9092"
+   protocol: SASL_SSL
+   mechanism: PLAIN
+   jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule   required username='O7XVZNMHXKIYVC3M' password='0C3g5Amlh6dQES8MZ/xm/0C8cTfzuUg0Ycek54ghuHSf4xgP0NUQsTiAsHF4k2O3';"
+
+-  name: Cluster2
+   hostname: "pkc-419q3.us-east4.gcp.confluent.cloud:9092"
+   protocol: SSL
+   mechanism: PLAIN
+   jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"

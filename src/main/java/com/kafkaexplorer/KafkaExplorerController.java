@@ -3,8 +3,6 @@ package com.kafkaexplorer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.kafkaexplorer.model.Cluster;
-import com.kafkaexplorer.model.Clusters;
-import com.sun.source.tree.Tree;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-import java.awt.desktop.SystemSleepEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -81,7 +78,7 @@ private Cluster[] clusters;
                 //selectedItem is a cluster, display cluster config
                 if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters")
                 {
-                    FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("clusterConfig.fxml"));
+                    FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("../../../resources/clusterConfig.fxml"));
                     GridPane mainRoot = clusterConfigLoader.load();
                     ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
 
@@ -110,7 +107,7 @@ private Cluster[] clusters;
                 } //If selectedItem is a topic, display topic browser screen
                 else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics")
                 {
-                    FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("topicBrowser.fxml"));
+                    FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("../../../resources/topicBrowser.fxml"));
                     GridPane mainRoot = topicBrowserLoader.load();
 
                     TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
