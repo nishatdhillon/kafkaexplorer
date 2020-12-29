@@ -88,7 +88,7 @@ public class ClusterConfigController implements Initializable {
 
 
         //get main controller and locate the TreeView
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("../../../resources/kafkaExplorer.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/kafkaExplorer.fxml"));
         Parent treeView = (Parent) mainLoader.load();
         KafkaExplorerController mainController = mainLoader.getController();
 
