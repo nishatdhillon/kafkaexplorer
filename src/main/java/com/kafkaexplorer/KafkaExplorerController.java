@@ -78,7 +78,7 @@ private Cluster[] clusters;
                 //selectedItem is a cluster, display cluster config
                 if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters")
                 {
-                    FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("../../../resources/clusterConfig.fxml"));
+                    FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("/clusterConfig.fxml"));
                     GridPane mainRoot = clusterConfigLoader.load();
                     ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
 
@@ -107,7 +107,7 @@ private Cluster[] clusters;
                 } //If selectedItem is a topic, display topic browser screen
                 else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics")
                 {
-                    FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("../../../resources/topicBrowser.fxml"));
+                    FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("/topicBrowser.fxml"));
                     GridPane mainRoot = topicBrowserLoader.load();
 
                     TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
