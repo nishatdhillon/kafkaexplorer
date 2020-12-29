@@ -7,6 +7,12 @@ Working on Windows, MacOs and Linux.
 ![Alt text](img/kt_01.png "Title")
 
 
+# How to build and run
+
+Simply execute:
+```
+mvn clean javafx:run
+```
 ### Help
 How to create a new JavaFX project in IntelliJ IDEA (https://www.jetbrains.com/help/idea/javafx.html)
 
