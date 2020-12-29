@@ -1,5 +1,7 @@
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B132J1L)
 
+![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Java-CI-with-Maven/badge.svg)
+
 # kafkaexplorer
 An easy, straight to the point, graphical tool to explore Kafka topics and produce messages.
 Working on Windows, MacOs and Linux.
