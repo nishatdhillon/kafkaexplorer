@@ -30,8 +30,18 @@ A config file with all the connection information to your kafka clusters must ex
 
 A sample config.yaml is provided [here](/config/config.yaml)
 
+# How to run from binaries
 
-# How to build and run
+Download the file **kafkaexplorer.jar** from the last release:
+https://github.com/stephaneuh/kafkaexplorer/releases/latest
+
+Simply execute:
+
+```
+java -jar kafkaexplorer-1.0-SNAPSHOT.jar
+```
+
+# How to build and run from sources
 
 Simply execute:
 ```
