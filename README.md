@@ -1,10 +1,9 @@
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B132J1L)
 
-![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop)
 
 
 
-# Kafkaexplorer <img src="img/jfxlogopad1.png" width="60" height="60" align="right">
+# Kafkaexplorer ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop) <img src="img/jfxlogopad1.png" width="60" height="60" align="right">
 
 An easy, straight to the point, **graphical tool** to explore Kafka topics and produce messages.
 Working on **Windows, MacOs and Linux**.
