@@ -6,14 +6,14 @@
 
 # kafkaexplorer
 An easy, straight to the point, graphical tool to explore Kafka topics and produce messages.
-Working on Windows, MacOs and Linux.
+Working on **Windows, MacOs and Linux**.
 
 ![Alt text](img/kt_01.png "Title")
 
 # Requirements
 1. JavaFX
 
-This application is a based on JavaFX 11, so it requires the JavaFX SDK to be installed. Download the version 11 for Windows/MacOs/Linux here:
+This application is a based on **JavaFX 11**, so it requires the JavaFX SDK to be installed. Download the version 11 for Windows/MacOs/Linux here:
 https://gluonhq.com/products/javafx/
 
 Be sure that the JavaFx binaries are in your PATH.
