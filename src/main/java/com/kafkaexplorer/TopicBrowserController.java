@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import org.apache.kafka.common.PartitionInfo;
 
@@ -24,12 +21,15 @@ public class TopicBrowserController implements Initializable {
     @FXML
     public TextField topic;
     public TableView partitionTable;
+    public ChoiceBox browsingType;
     private TreeView<String> kafkaTreeRef;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        browsingType.getItems().addAll("from-beginning","latest");
+        browsingType.setValue("from-beginning");
     }
 
 
