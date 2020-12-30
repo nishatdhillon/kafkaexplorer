@@ -31,7 +31,7 @@ A config file with all the connection information to your kafka clusters must ex
 
 | OS  | location  |
 | --- | --- |
-|Windows|%HOMEDRIVE%%HOMEPATH%/kafkaexplorer/config.yaml| 
+|Windows|%HOMEDRIVE%%HOMEPATH%\kafkaexplorer\config.yaml _(like C:\Users\MyUser\kafkaexplorer\config.yaml)_| 
 |MacOs|~/kafkaexplorer/config.yaml| 
 |Linux|~/kafkaexplorer/config.yaml| 
 
