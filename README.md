@@ -38,7 +38,7 @@ https://github.com/stephaneuh/kafkaexplorer/releases/latest
 Simply execute:
 
 ```
-java -jar kafkaexplorer-1.0-SNAPSHOT.jar
+java -jar kafkaexplorer-[RELEASE_NAME].jar
 ```
 
 # How to build and run from sources
