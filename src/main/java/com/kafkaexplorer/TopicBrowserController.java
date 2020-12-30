@@ -54,9 +54,13 @@ public class TopicBrowserController implements Initializable {
         TableColumn<Map, Object> replicasColumn = new TableColumn<>("Replicas");
         replicasColumn.setCellValueFactory(new MapValueFactory<>("Replicas"));
 
+        TableColumn<Map, Object> inSynReplicasColumn = new TableColumn<>("InSynReplicas");
+        inSynReplicasColumn.setCellValueFactory(new MapValueFactory<>("InSynReplicas"));
+
         partitionTable.getColumns().add(partitionColumn);
         partitionTable.getColumns().add(leaderColumn);
         partitionTable.getColumns().add(replicasColumn);
+        partitionTable.getColumns().add(inSynReplicasColumn);
 
         ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
 
@@ -64,15 +68,28 @@ public class TopicBrowserController implements Initializable {
             Map<String, Object> item1 = new HashMap<>();
             item1.put("Partition", partitionInfo.get(i).partition());
             item1.put("Leader" , partitionInfo.get(i).leader());
-            item1.put("Replicas" , partitionInfo.get(i).replicas());
+            //Replicas List
+
+            String replicaList = "[";
+            for (int j = 0; j < partitionInfo.get(i).replicas().length; j++ ) {
+
+                replicaList += partitionInfo.get(i).replicas()[j].id() + ",";
+            }
+            replicaList += "]";
+            item1.put("Replicas" , replicaList);
+
+            String inSyncReplicaList = "[";
+            for (int j = 0; j < partitionInfo.get(i).replicas().length; j++ ) {
+
+                inSyncReplicaList += partitionInfo.get(i).inSyncReplicas()[j].id() + ",";
+            }
+            inSyncReplicaList += "]";
+            item1.put("InSynReplicas" , inSyncReplicaList);
+
             items.add(item1);
         }
 
         partitionTable.getItems().addAll(items);
-
-
-
-
 
         System.out.println(partitionInfo);
     }
