@@ -9,6 +9,19 @@ Working on **Windows, MacOs and Linux**.
 
 ![Alt text](img/kt_01.png "Title")
 
+Features:
+- List Kafka topics
+- Browse topics from the beginning (see offset, key, message content, partition)
+- See partitions information for a topic (leader, replicas, inSynReplica)
+- Produce String messages into topics
+
+Coming soon Features:
+- Support of Json and Avro message formats for consuming/producing messages
+- Display consumer groups information (with last offset)
+- Export topic messages to files
+- Import messages from files to topics
+- Access some Cluster/Topic metrics
+
 ## Requirements (config.yaml)
 
 A config file with all the connection information to your kafka clusters must exist here:
