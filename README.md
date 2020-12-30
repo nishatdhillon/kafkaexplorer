@@ -4,9 +4,9 @@
 
 
 
-# Kafkaexplorer <img src="img/jfxlogopad1.png" width="50" height="50" align="right">
+# Kafkaexplorer <img src="img/jfxlogopad1.png" width="60" height="60" align="right">
 
-An easy, straight to the point, graphical tool to explore Kafka topics and produce messages.
+An easy, straight to the point, **graphical tool** to explore Kafka topics and produce messages.
 Working on **Windows, MacOs and Linux**.
 
 ![Alt text](img/kt_01.png "Main") ![Alt text](img/browser.PNG "Browser")
