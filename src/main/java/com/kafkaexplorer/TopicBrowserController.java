@@ -4,10 +4,12 @@ import com.kafkaexplorer.kafkaconnector.KafkaLib;
 import com.kafkaexplorer.model.Cluster;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
+import javafx.scene.input.MouseEvent;
 import org.apache.kafka.common.PartitionInfo;
 
 import java.net.URL;
@@ -22,25 +24,42 @@ public class TopicBrowserController implements Initializable {
     public TextField topic;
     public TableView partitionTable;
     public ChoiceBox browsingType;
+    public TableView messagesTable;
+    public TextField produceMsg;
     private TreeView<String> kafkaTreeRef;
+    private Cluster cluster;
+
+    final KafkaLib kafkaConnector = new KafkaLib();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        browsingType.getItems().addAll("from-beginning","latest");
+        browsingType.getItems().addAll("from-beginning"); //add "latest" later
         browsingType.setValue("from-beginning");
+
+        //init message browser table
+        TableColumn<Map, Object> offsetColumn = new TableColumn<>("Offset");
+        offsetColumn.setCellValueFactory(new MapValueFactory<>("Offset"));
+
+        TableColumn<Map, Object> messageColumn = new TableColumn<>("Message");
+        messageColumn.setCellValueFactory(new MapValueFactory<>("Message"));
+        messageColumn.setMinWidth(800);
+
+        messagesTable.getColumns().add(offsetColumn);
+        messagesTable.getColumns().add(messageColumn);
+
     }
 
 
     public void populateScreen(Cluster cluster, String topicName, TreeView<String> clusterTreeView) {
         this.topic.setText(topicName);
         this.kafkaTreeRef = clusterTreeView;
+        this.cluster = cluster;
 
         KafkaLib kafkaConnector = new KafkaLib();
         List<PartitionInfo> partitionInfo  = kafkaConnector.getTopicPartitionInfo(cluster,  topicName);
         displayPartitionInfo(partitionInfo);
-
     }
 
     private void displayPartitionInfo(List<PartitionInfo> partitionInfo) {
@@ -94,4 +113,52 @@ public class TopicBrowserController implements Initializable {
         System.out.println(partitionInfo);
     }
 
+    public void startBrowsing(MouseEvent mouseEvent) {
+
+        kafkaConnector.continueBrowsing = true;
+        //Create a thread for browsing topic, to not block the UI
+        Task<Integer> task = new Task<Integer>() {
+            @Override protected Integer call() throws Exception {
+                kafkaConnector.browseTopic(cluster,  topic.getText(), messagesTable);
+                return 0;
+            }
+
+            @Override protected void succeeded() {
+                super.succeeded();
+                System.out.println("Done!");
+            }
+
+            @Override protected void cancelled() {
+                super.cancelled();
+                System.out.println("Cancelled!");
+            }
+
+            @Override protected void failed() {
+                super.failed();
+                System.out.println("Failed!");
+            }
+        };
+
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
+    }
+
+        public void stopBrowsing(MouseEvent mouseEvent) {
+        //todo Cancel the browsing task/thread instead of using boolean
+            kafkaConnector.continueBrowsing = false;
+        }
+
+    public void produceMessage(MouseEvent mouseEvent) {
+
+        kafkaConnector.produceMessage(cluster,  topic.getText(), produceMsg.getText());
+
+
+    }
+
+    public void clearMsgTable(MouseEvent mouseEvent) {
+
+        messagesTable.getItems().clear();
+
+    }
 }

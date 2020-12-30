@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="kafkaexplorer" target="1.7" />
+      <module name="kafkaexplorer" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
