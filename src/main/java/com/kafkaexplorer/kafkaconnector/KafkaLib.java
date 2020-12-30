@@ -59,4 +59,31 @@ public class KafkaLib {
     }
 
 
+    public List<PartitionInfo> getTopicPartitionInfo(Cluster cluster, String topicName){
+
+        List<PartitionInfo> topicPartitions;
+
+        Properties props = new Properties();
+        props.put("bootstrap.servers", cluster.getHostname());
+        props.put("security.protocol", cluster.getProtocol());
+        props.put("sasl.jaas.config", cluster.getJaasConfig());
+        props.put("sasl.mechanism", cluster.getMechanism());
+
+        props.put("default.api.timeout.ms", 5000);
+        props.put("request.timeout.ms", 5000);
+        props.put("session.timeout.ms", 5000);
+
+        props.put("group.id", "test-consumer-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
+        topicPartitions = consumer.partitionsFor(topicName);
+        consumer.close();
+
+        return topicPartitions;
+    }
+
+
+
 }

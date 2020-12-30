@@ -111,7 +111,11 @@ private Cluster[] clusters;
                     GridPane mainRoot = topicBrowserLoader.load();
 
                     TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
-                    topicBrowserController.populateScreen(selectedItem.getValue().toString(), kafkaTree);
+
+                    //Build cluster object from cluster name
+                    Cluster cluster = new Utils().getClusterByName(selectedItem.getParent().getParent().getValue().toString());
+
+                    topicBrowserController.populateScreen(cluster, selectedItem.getValue().toString(), kafkaTree);
                     mainContent.getChildren().setAll(mainRoot);
 
                 }

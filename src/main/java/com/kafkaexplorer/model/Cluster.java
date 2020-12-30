@@ -51,4 +51,12 @@ public class Cluster {
     public void setHostname(String hostname) {
         this.hostname = hostname;
     }
+
+    public void println() {
+        System.out.println(this.name);
+        System.out.println(this.hostname);
+        System.out.println(this.protocol);
+        System.out.println(this.mechanism);
+        System.out.println(this.jaasConfig);
+    }
 }
