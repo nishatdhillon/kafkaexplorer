@@ -2,9 +2,9 @@
 
 ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop)
 
-<img src="img/jfxlogopad1.png" width="50" height="50">
 
-# Kafkaexplorer 
+
+# Kafkaexplorer <img src="img/jfxlogopad1.png" width="50" height="50" align="right">
 
 An easy, straight to the point, graphical tool to explore Kafka topics and produce messages.
 Working on **Windows, MacOs and Linux**.
