@@ -14,9 +14,11 @@ Features:
 - Browse topics from the beginning (see offset, key, message content, partition)
 - See partitions information for a topic (leader, replicas, inSynReplica)
 - Produce String messages into topics
+- Support protocol: SASL_SSL and mechanism: PLAIN
 
 Coming soon Features:
-- Support of Json and Avro message formats for consuming/producing messages
+- Support more security protocols like SSL (keystore authentication)
+- Support Json and Avro message formats for consuming/producing messages
 - Display consumer groups information (with last offset)
 - Export topic messages to files
 - Import messages from files to topics
