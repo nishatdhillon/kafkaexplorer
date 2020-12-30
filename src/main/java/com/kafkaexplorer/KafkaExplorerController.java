@@ -34,9 +34,9 @@ private Cluster[] clusters;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //Load config.yaml file from the /resources folder
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        File file = new File(classLoader.getResource("config.yaml").getFile());
+        //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
+        String path = System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml";
+        File file = new File(path);
 
         // Instantiating a new ObjectMapper as a YAMLFactory
         ObjectMapper om = new ObjectMapper(new YAMLFactory());

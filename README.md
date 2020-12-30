@@ -11,9 +11,24 @@ Working on Windows, MacOs and Linux.
 ![Alt text](img/kt_01.png "Title")
 
 # Requirements
-This application is a based on JavaFX 11, so it requires the JavaFX SDK to be installed. Download the version 11 for Windows/MacOs/Linux here:
+1. JavaFX
 
+This application is a based on JavaFX 11, so it requires the JavaFX SDK to be installed. Download the version 11 for Windows/MacOs/Linux here:
 https://gluonhq.com/products/javafx/
+
+Be sure that the JavaFx binaries are in your PATH.
+
+2. config.yaml
+
+A config file with all the connection information to your kafka clusters must exist here:
+
+| OS  | location  |
+| --- | --- |
+|Windows|%HOMEDRIVE%%HOMEPATH%/kafkaexplorer/config.yaml| 
+|MacOs|~/kafkaexplorer/config.yaml| 
+|Linux|~/kafkaexplorer/config.yaml| 
+
+A sample config.yaml is provided [here](/config/config.yaml)
 
 
 # How to build and run
