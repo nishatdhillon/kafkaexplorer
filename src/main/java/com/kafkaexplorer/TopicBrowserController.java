@@ -26,6 +26,8 @@ public class TopicBrowserController implements Initializable {
     public ChoiceBox browsingType;
     public TableView messagesTable;
     public TextField produceMsg;
+    public Button startButton;
+    public Button stopButton;
     private TreeView<String> kafkaTreeRef;
     private Cluster cluster;
 
@@ -57,9 +59,12 @@ public class TopicBrowserController implements Initializable {
         this.kafkaTreeRef = clusterTreeView;
         this.cluster = cluster;
 
+        stopButton.setDisable(true);
+
         KafkaLib kafkaConnector = new KafkaLib();
         List<PartitionInfo> partitionInfo  = kafkaConnector.getTopicPartitionInfo(cluster,  topicName);
         displayPartitionInfo(partitionInfo);
+
     }
 
     private void displayPartitionInfo(List<PartitionInfo> partitionInfo) {
@@ -114,6 +119,9 @@ public class TopicBrowserController implements Initializable {
     }
 
     public void startBrowsing(MouseEvent mouseEvent) {
+        messagesTable.getItems().clear();
+        startButton.setDisable(true);
+        stopButton.setDisable(false);
 
         kafkaConnector.continueBrowsing = true;
         //Create a thread for browsing topic, to not block the UI
@@ -147,6 +155,8 @@ public class TopicBrowserController implements Initializable {
         public void stopBrowsing(MouseEvent mouseEvent) {
         //todo Cancel the browsing task/thread instead of using boolean
             kafkaConnector.continueBrowsing = false;
+            startButton.setDisable(false);
+            stopButton.setDisable(true);
         }
 
     public void produceMessage(MouseEvent mouseEvent) {
