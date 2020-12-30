@@ -7,7 +7,7 @@
 An easy, straight to the point, graphical tool to explore Kafka topics and produce messages.
 Working on **Windows, MacOs and Linux**.
 
-![Alt text](img/kt_01.png "Main") ![Alt text](img/browser.png "Browser")
+![Alt text](img/kt_01.png "Main") ![Alt text](img/browser.PNG "Browser")
 
 Features:
 - List Kafka topics
