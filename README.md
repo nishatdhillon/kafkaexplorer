@@ -25,6 +25,8 @@ Coming soon Features:
 - Import messages from files to topics
 - Access some Cluster/Topic metrics
 
+Have questions? [Q&A section](https://github.com/stephaneuh/kafkaexplorer/discussions/categories/q-a).
+
 ## Requirements (config.yaml)
 
 1. OpenJDK 15+
