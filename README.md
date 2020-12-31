@@ -6,7 +6,7 @@
 # Kafkaexplorer ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop) <img src="img/jfxlogopad1.png" width="60" height="60" align="right">
 
 An easy, straight to the point, **graphical tool** to explore Kafka topics and produce messages.
-Working on **Windows, MacOs and Linux**.
+Working on **Windows and MacOs**.
 
 ![Alt text](img/kt_01.png "Main") ![Alt text](img/browser.PNG "Browser")
 
@@ -36,8 +36,7 @@ Have questions? [Q&A section](https://github.com/stephaneuh/kafkaexplorer/discus
 | OS  | location  |
 | --- | --- |
 |Windows|%HOMEDRIVE%%HOMEPATH%\kafkaexplorer\config.yaml <br>(like C:\Users\MyUser\kafkaexplorer\config.yaml)| 
-|MacOs|~/kafkaexplorer/config.yaml| 
-|Linux|~/kafkaexplorer/config.yaml| 
+|MacOs|~/kafkaexplorer/config.yaml|
 
 A sample config.yaml is provided [here](/config/config.yaml)
 
