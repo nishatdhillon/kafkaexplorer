@@ -27,7 +27,9 @@ Coming soon Features:
 
 ## Requirements (config.yaml)
 
-A config file with all the connection information to your kafka clusters must exist here:
+1. OpenJDK 15+
+
+2. A config file with all the connection information to your kafka clusters must exist here:
 
 | OS  | location  |
 | --- | --- |
