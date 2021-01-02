@@ -2,12 +2,15 @@ package com.kafkaexplorer.kafkaconnector;
 
 import com.kafkaexplorer.model.Cluster;
 import javafx.scene.control.TableView;
+import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.config.ConfigResource;
 
 import java.util.*;
 
@@ -170,5 +173,34 @@ public class KafkaLib {
 
         producer.flush();
         producer.close();
+    }
+
+    public KafkaFuture<Config> getTopicInfo(Cluster cluster, String topicName) {
+    //Need to build an AdminClient (requires more privileges that a Kafka Consumer)
+        List<PartitionInfo> topicPartitions;
+
+        Properties props = new Properties();
+        props.put("bootstrap.servers", cluster.getHostname());
+        props.put("security.protocol", cluster.getProtocol());
+        props.put("sasl.jaas.config", cluster.getJaasConfig());
+        props.put("sasl.mechanism", cluster.getMechanism());
+
+        props.put("default.api.timeout.ms", 5000);
+        props.put("request.timeout.ms", 5000);
+        props.put("session.timeout.ms", 5000);
+
+        props.put("group.id", "test-consumer-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+
+
+        AdminClient adminClient = KafkaAdminClient.create(props);
+
+            ConfigResource resource = new ConfigResource(ConfigResource.Type.TOPIC, topicName.toString());
+
+            //KafkaFuture<TopicDescription> descriptionFuture = adminClient.describeTopics(Collections.singleton(topicName.toString())).values().get(topicName.toString());
+            KafkaFuture<Config> configFuture = adminClient.describeConfigs(Collections.singleton(resource)).values().get(resource);
+
+        return configFuture;
     }
 }

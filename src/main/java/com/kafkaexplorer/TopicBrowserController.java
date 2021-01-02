@@ -10,13 +10,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.input.MouseEvent;
+import org.apache.kafka.clients.admin.Config;
+import org.apache.kafka.clients.admin.ConfigEntry;
+import org.apache.kafka.clients.admin.DescribeTopicsResult;
+import org.apache.kafka.clients.admin.TopicDescription;
+import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.config.TopicConfig;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 public class TopicBrowserController implements Initializable {
 
@@ -28,6 +35,7 @@ public class TopicBrowserController implements Initializable {
     public TextField produceMsg;
     public Button startButton;
     public Button stopButton;
+    public TableView topicConfigTable;
     private TreeView<String> kafkaTreeRef;
     private Cluster cluster;
 
@@ -51,6 +59,17 @@ public class TopicBrowserController implements Initializable {
         messagesTable.getColumns().add(offsetColumn);
         messagesTable.getColumns().add(messageColumn);
 
+
+        //init topic config table
+        TableColumn<Map, Object> topicConfigKey = new TableColumn<>("Config");
+        topicConfigKey.setCellValueFactory(new MapValueFactory<>("Config"));
+
+        TableColumn<Map, Object> topicConfigValue = new TableColumn<>("Value");
+        topicConfigValue.setCellValueFactory(new MapValueFactory<>("Value"));
+
+        topicConfigTable.getColumns().add(topicConfigKey);
+        topicConfigTable.getColumns().add(topicConfigValue);
+        
     }
 
 
@@ -65,12 +84,56 @@ public class TopicBrowserController implements Initializable {
         List<PartitionInfo> partitionInfo  = kafkaConnector.getTopicPartitionInfo(cluster,  topicName);
         displayPartitionInfo(partitionInfo);
 
+        KafkaFuture<Config> configFuture = kafkaConnector.getTopicInfo(cluster, topicName);
+        displayTopicInfo(configFuture);
+
+
+    }
+
+    private void displayTopicInfo(KafkaFuture<Config> configFuture) {
+
+        try {
+
+            ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
+            Config config = configFuture.get();
+
+            ConfigEntry entry1 = config.get(TopicConfig.RETENTION_MS_CONFIG);
+            Map<String, Object> item1 = new HashMap<>();
+            item1.put("Config", TopicConfig.RETENTION_MS_CONFIG);
+            item1.put("Value", (double) (Double.parseDouble(entry1.value()) / (1000*60*60*24)) +"d, " + entry1.value() + "ms");
+
+            ConfigEntry entry2 = config.get(TopicConfig.RETENTION_BYTES_CONFIG);
+            Map<String, Object> item2 = new HashMap<>();
+            item2.put("Config", TopicConfig.RETENTION_BYTES_CONFIG);
+            item2.put("Value", entry2.value());
+
+
+            ConfigEntry entry3 = config.get(TopicConfig.MAX_MESSAGE_BYTES_CONFIG);
+            Map<String, Object> item3 = new HashMap<>();
+            item3.put("Config", TopicConfig.MAX_MESSAGE_BYTES_CONFIG);
+            item3.put("Value", entry2.value());
+
+
+
+            items.add(item1);
+            items.add(item2);
+            items.add(item3);
+
+            topicConfigTable.getItems().addAll(items);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void displayPartitionInfo(List<PartitionInfo> partitionInfo) {
-
-        TableColumn<Map, Object> partitionColumn = new TableColumn<>("Partition");
-        partitionColumn.setCellValueFactory(new MapValueFactory<>("Partition"));
+        
+        TableColumn<Map, Object> partitionColumn = new TableColumn<>("Id");
+        partitionColumn.setCellValueFactory(new MapValueFactory<>("Id"));
+        partitionColumn.setMaxWidth(25);
 
         TableColumn<Map, Object> leaderColumn = new TableColumn<>("Leader");
         leaderColumn.setCellValueFactory(new MapValueFactory<>("Leader"));
@@ -78,8 +141,8 @@ public class TopicBrowserController implements Initializable {
         TableColumn<Map, Object> replicasColumn = new TableColumn<>("Replicas");
         replicasColumn.setCellValueFactory(new MapValueFactory<>("Replicas"));
 
-        TableColumn<Map, Object> inSynReplicasColumn = new TableColumn<>("InSynReplicas");
-        inSynReplicasColumn.setCellValueFactory(new MapValueFactory<>("InSynReplicas"));
+        TableColumn<Map, Object> inSynReplicasColumn = new TableColumn<>("ISR");
+        inSynReplicasColumn.setCellValueFactory(new MapValueFactory<>("ISR"));
 
         partitionTable.getColumns().add(partitionColumn);
         partitionTable.getColumns().add(leaderColumn);
@@ -90,7 +153,7 @@ public class TopicBrowserController implements Initializable {
 
         for (int i = 0; i < partitionInfo.size(); i++ ) {
             Map<String, Object> item1 = new HashMap<>();
-            item1.put("Partition", partitionInfo.get(i).partition());
+            item1.put("Id", partitionInfo.get(i).partition());
             item1.put("Leader" , partitionInfo.get(i).leader());
             //Replicas List
 
@@ -108,7 +171,7 @@ public class TopicBrowserController implements Initializable {
                 inSyncReplicaList += partitionInfo.get(i).inSyncReplicas()[j].id() + ",";
             }
             inSyncReplicaList += "]";
-            item1.put("InSynReplicas" , inSyncReplicaList);
+            item1.put("ISR" , inSyncReplicaList);
 
             items.add(item1);
         }

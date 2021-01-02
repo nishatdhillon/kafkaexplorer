@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane minHeight="900.0" minWidth="900.0" prefHeight="900.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.ClusterConfigController">
+<GridPane minHeight="900.0" minWidth="1000.0" prefHeight="900.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.ClusterConfigController">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="13.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="8.0" prefWidth="8.0" />
