@@ -19,6 +19,7 @@ import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.config.TopicConfig;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class TopicBrowserController implements Initializable {
     private Cluster cluster;
 
     final KafkaLib kafkaConnector = new KafkaLib();
-
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,21 +98,24 @@ public class TopicBrowserController implements Initializable {
             ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
             Config config = configFuture.get();
 
+
             ConfigEntry entry1 = config.get(TopicConfig.RETENTION_MS_CONFIG);
             Map<String, Object> item1 = new HashMap<>();
+
+
             item1.put("Config", TopicConfig.RETENTION_MS_CONFIG);
-            item1.put("Value", (double) (Double.parseDouble(entry1.value()) / (1000*60*60*24)) +"d, " + entry1.value() + "ms");
+            item1.put("Value", entry1.value() + "ms (" + df2.format(Double.parseDouble(entry1.value()) / (1000*60*60*24)) +"d)");
 
             ConfigEntry entry2 = config.get(TopicConfig.RETENTION_BYTES_CONFIG);
             Map<String, Object> item2 = new HashMap<>();
             item2.put("Config", TopicConfig.RETENTION_BYTES_CONFIG);
-            item2.put("Value", entry2.value());
+            item2.put("Value", ((entry2.value().equals("-1")) ? "-1 (not set)" : entry2.value()));
 
 
             ConfigEntry entry3 = config.get(TopicConfig.MAX_MESSAGE_BYTES_CONFIG);
             Map<String, Object> item3 = new HashMap<>();
             item3.put("Config", TopicConfig.MAX_MESSAGE_BYTES_CONFIG);
-            item3.put("Value", entry2.value());
+            item3.put("Value",  ((entry3.value().equals("-1")) ? "-1 (not set)" : entry3.value() + "b (" + df2.format(Double.parseDouble(entry3.value()) / (1024*1024)) + "Mb)"));
 
 
 
