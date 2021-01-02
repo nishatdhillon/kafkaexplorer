@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import org.apache.kafka.common.PartitionInfo;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -25,6 +26,7 @@ public class ClusterConfigController implements Initializable {
     @FXML
     public TextField securityType;
     public TextField jaasConf;
+    public TextField configYamlPath;
 
     public TextField getName() {
         return name;
@@ -67,6 +69,7 @@ public class ClusterConfigController implements Initializable {
 
     public void populateScreen(Cluster cluster, TreeView<String> clusterTreeView) {
         this.cluster = cluster;
+        configYamlPath.setText(System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml");
         bootstrap.setText(cluster.getHostname());
         name.setText(cluster.getName());
         saslMechanism.setText(cluster.getMechanism());

@@ -46,12 +46,15 @@ private Cluster[] clusters;
             Alert a = new Alert(Alert.AlertType.ERROR);
             String errorMessage = "";
 
+            //Todo manage multiple error messages
             errorList.entrySet().forEach(entry->{
                 a.setHeaderText(entry.getKey());
                 a.setContentText(entry.getValue());
             });
 
             a.showAndWait();
+
+            //Exit the application
             Platform.exit();
             System.exit(0);
         }

@@ -9,12 +9,13 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="8.0" prefWidth="8.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="0.0" prefWidth="15.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="647.0" minWidth="10.0" prefWidth="213.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="0.0" prefWidth="468.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="647.0" minWidth="10.0" prefWidth="268.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="0.0" prefWidth="424.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="0.0" prefWidth="77.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="27.0" />
         </columnConstraints>
         <rowConstraints>
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -28,20 +29,22 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <Label prefHeight="17.0" prefWidth="99.0" text="bootstrap.servers" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField id="bootstrap" fx:id="bootstrap" editable="false" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Label text="security.protocol" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label text="sasl.jaas.config" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Label layoutX="79.0" layoutY="79.0" text="sasl.mechanism" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField fx:id="saslMechanism" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField fx:id="jaasConf" editable="false" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
-         <TextField fx:id="name" editable="false" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-         <Label text="name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <HBox prefHeight="100.0" prefWidth="200.0" />
-      <Label text="Format: sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='{{ CLUSTER_API_KEY }}' password='{{ CLUSTER_API_SECRET }}';" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
-      <Label text="Format: PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-      <TextField fx:id="securityType" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label prefHeight="17.0" prefWidth="99.0" text="bootstrap.servers" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField id="bootstrap" fx:id="bootstrap" editable="false" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label text="security.protocol" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label text="sasl.jaas.config" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Label layoutX="79.0" layoutY="79.0" text="sasl.mechanism" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="saslMechanism" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <TextField fx:id="jaasConf" editable="false" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+         <TextField fx:id="name" editable="false" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+         <Label text="Cluster name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />
+      <Label text="Format: sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='{{ CLUSTER_API_KEY }}' password='{{ CLUSTER_API_SECRET }}';" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
+      <Label text="Format: PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+      <TextField fx:id="securityType" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <Label layoutX="55.0" layoutY="77.0" text="Config file location" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <TextField fx:id="configYamlPath" editable="false" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
 
 
         </children>
