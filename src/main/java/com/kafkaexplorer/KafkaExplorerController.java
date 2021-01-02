@@ -3,10 +3,12 @@ package com.kafkaexplorer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.kafkaexplorer.model.Cluster;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -18,6 +20,8 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -34,6 +38,23 @@ private Cluster[] clusters;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        //Validate config.yaml file
+        HashMap<String, String> errorList= new Utils().validateYamlConfig();
+
+        if (errorList.size() > 0) {
+            //show an alert Dialog
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            String errorMessage = "";
+
+            errorList.entrySet().forEach(entry->{
+                a.setHeaderText(entry.getKey());
+                a.setContentText(entry.getValue());
+            });
+
+            a.showAndWait();
+            Platform.exit();
+            System.exit(0);
+        }
         //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
         String path = System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml";
         File file = new File(path);

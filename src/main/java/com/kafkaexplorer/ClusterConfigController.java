@@ -23,7 +23,7 @@ public class ClusterConfigController implements Initializable {
     public TextField name;
 
     @FXML
-    public ChoiceBox securityType;
+    public TextField securityType;
     public TextField jaasConf;
 
     public TextField getName() {
@@ -62,12 +62,7 @@ public class ClusterConfigController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    //init security.protocol dropdown list with PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL
-        securityType.getItems().add("PLAINTEXT");
-        securityType.getItems().add("SSL");
-        securityType.getItems().add("SASL_PLAINTEXT");
-        securityType.getItems().add("SASL_SSL");
-        securityType.setValue("PLAINTEXT");
+
     }
 
     public void populateScreen(Cluster cluster, TreeView<String> clusterTreeView) {
@@ -75,7 +70,7 @@ public class ClusterConfigController implements Initializable {
         bootstrap.setText(cluster.getHostname());
         name.setText(cluster.getName());
         saslMechanism.setText(cluster.getMechanism());
-        securityType.setValue(cluster.getProtocol());
+        securityType.setText(cluster.getProtocol());
         jaasConf.setText(cluster.getJaasConfig());
         kafkaTreeRef = clusterTreeView;
     }

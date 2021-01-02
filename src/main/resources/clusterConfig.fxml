@@ -29,21 +29,19 @@
         </rowConstraints>
         <children>
             <Label prefHeight="17.0" prefWidth="99.0" text="bootstrap.servers" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField id="bootstrap" fx:id="bootstrap" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextField id="bootstrap" fx:id="bootstrap" editable="false" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Label text="security.protocol" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="securityType" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="sasl.jaas.config" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label layoutX="79.0" layoutY="79.0" text="sasl.mechanism" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField fx:id="saslMechanism" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField fx:id="jaasConf" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" text="Update" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
-            </Button>
+            <TextField fx:id="saslMechanism" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField fx:id="jaasConf" editable="false" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
-         <TextField fx:id="name" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         <TextField fx:id="name" editable="false" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          <Label text="name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <HBox prefHeight="100.0" prefWidth="200.0" />
       <Label text="Format: sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='{{ CLUSTER_API_KEY }}' password='{{ CLUSTER_API_SECRET }}';" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
       <Label text="Format: PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+      <TextField fx:id="securityType" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
 
 
         </children>
