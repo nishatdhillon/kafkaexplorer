@@ -1,16 +1,18 @@
 
 <p align="center">
-<img src="img/ke-logo-font-15.png">
+<img src="img/ke-logo-font-15.png" >
 <br />
-<a href='https://ko-fi.com/B0B132J1L' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<a href='https://ko-fi.com/B0B132J1L' target='_blank'><img style='border:0px;height:25px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<img style='border:0px;height:25px;' src='https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop' border='0' alt='Buy Me a Coffee at ko-fi.com' />
 </p>
 
-# Kafkaexplorer (community-edition) ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop) 
+
+# Kafkaexplorer (community-edition) 
 
 An free, easy, straight to the point, **graphical tool** to explore Kafka topics and produce messages.
 Working on **Windows** and **MacOs**.
 <br />
-Based on <img src="img/jfxlogopad1.png" width="60" height="60" valign="middle"> 
+Based on <img src="img/jfxlogopad1.png" width="60" height="60" valign="bottom">.
 
 ## Screenshots 
 
