@@ -5,14 +5,19 @@
 <a href='https://ko-fi.com/B0B132J1L' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 </p>
 
-# Kafkaexplorer ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop) <img src="img/jfxlogopad1.png" width="60" height="60" align="right">
+# Kafkaexplorer (community-edition) ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop) 
 
-An easy, straight to the point, **graphical tool** to explore Kafka topics and produce messages.
-Working on **Windows and MacOs**.
+An free, easy, straight to the point, **graphical tool** to explore Kafka topics and produce messages.
+Working on **Windows** and **MacOs**.
+<br />
+Based on <img src="img/jfxlogopad1.png" width="60" height="60" valign="middle"> 
+
+## Screenshots 
 
 ![Alt text](img/kt_01.png "Main") ![Alt text](img/browser.PNG "Browser")
 
-Features:
+## Features
+
 - List Kafka topics
 - Browse topics from the beginning (see offset, key, message content, partition)
 - See partitions information for a topic (leader, replicas, inSynReplica)
