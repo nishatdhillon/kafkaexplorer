@@ -10,9 +10,7 @@
 # Kafkaexplorer (community-edition) 
 
 An free, easy, straight to the point, **graphical tool** to explore Kafka topics and produce messages.
-Working on **Windows** and **MacOs**.
-<br />
-Based on <img src="img/jfxlogopad1.png" width="60" height="60" valign="bottom">.
+Working on **Windows** and **MacOs**. Based on [JavaFx](https://en.wikipedia.org/wiki/JavaFX).
 
 ## Screenshots 
 
