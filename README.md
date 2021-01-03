@@ -2,8 +2,8 @@
 <p align="center">
 <img src="img/ke-logo-font-15.png" >
 <br />
-<a href='https://ko-fi.com/B0B132J1L' target='_blank'><img height="25px" style='border:0px;height:25px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-<img style='border:0px;height:25px;' src='https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+<a href='https://ko-fi.com/B0B132J1L' target='_blank'><img height="28px" style='border:0px;height:28px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<img style='border:0px;height:28px;' src='https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop' border='0' alt='Buy Me a Coffee at ko-fi.com' />
 </p>
 
 
