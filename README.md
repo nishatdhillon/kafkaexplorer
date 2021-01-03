@@ -1,6 +1,9 @@
+
+<p align="center">
+<img src="img/ke-logo-font-15.png">
+</p>
+
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B132J1L)
-
-
 
 
 # Kafkaexplorer ![example workflow name](https://github.com/stephaneuh/kafkaexplorer/workflows/Maven%20Build/badge.svg?branch=develop) <img src="img/jfxlogopad1.png" width="60" height="60" align="right">
