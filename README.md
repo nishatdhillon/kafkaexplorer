@@ -36,7 +36,7 @@ Have questions? [Q&A section](https://github.com/stephaneuh/kafkaexplorer/discus
 
 ## Requirements (config.yaml)
 
-1. OpenJDK 15+
+1. OpenJDK 11 or later.
 
 2. A config file with all the connection information to your kafka clusters must exist here:
 
