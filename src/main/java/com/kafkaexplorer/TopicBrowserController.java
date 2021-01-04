@@ -93,9 +93,10 @@ public class TopicBrowserController implements Initializable {
 
     private void displayTopicInfo(KafkaFuture<Config> configFuture) {
 
+        ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
+
         try {
 
-            ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
             Config config = configFuture.get();
 
 
@@ -117,19 +118,23 @@ public class TopicBrowserController implements Initializable {
             item3.put("Config", TopicConfig.MAX_MESSAGE_BYTES_CONFIG);
             item3.put("Value",  ((entry3.value().equals("-1")) ? "-1 (not set)" : entry3.value() + "b (" + df2.format(Double.parseDouble(entry3.value()) / (1024*1024)) + "Mb)"));
 
-
-
             items.add(item1);
             items.add(item2);
             items.add(item3);
 
-            topicConfigTable.getItems().addAll(items);
+        } catch (Exception e) {
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+            Map<String, Object> item4 = new HashMap<>();
+            item4.put("Config", "Not Authorized!");
+
+            Map<String, Object> item5 = new HashMap<>();
+            item5.put("Config","DESCRIBE_CONFIGS ACL required on this TOPIC");
+
+            items.add(item4);
+            items.add(item5);
         }
+
+        topicConfigTable.getItems().addAll(items);
 
     }
 
@@ -181,8 +186,6 @@ public class TopicBrowserController implements Initializable {
         }
 
         partitionTable.getItems().addAll(items);
-
-        System.out.println(partitionInfo);
     }
 
     public void startBrowsing(MouseEvent mouseEvent) {
@@ -200,17 +203,20 @@ public class TopicBrowserController implements Initializable {
 
             @Override protected void succeeded() {
                 super.succeeded();
-                System.out.println("Done!");
             }
 
             @Override protected void cancelled() {
                 super.cancelled();
-                System.out.println("Cancelled!");
             }
 
             @Override protected void failed() {
                 super.failed();
-                System.out.println("Failed!");
+
+                //show an alert Dialog
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setHeaderText("Can't browse! You need to set the CONSUMER GROUP and TOPIC READ ACLs.");
+                a.setContentText(this.getException().getMessage());
+                a.show();
             }
         };
 

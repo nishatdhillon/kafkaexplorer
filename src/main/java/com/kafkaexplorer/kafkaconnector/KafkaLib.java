@@ -1,6 +1,7 @@
 package com.kafkaexplorer.kafkaconnector;
 
 import com.kafkaexplorer.model.Cluster;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -13,6 +14,8 @@ import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.config.ConfigResource;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 public class KafkaLib {
 
@@ -124,9 +127,8 @@ public class KafkaLib {
 
         try {
             while (continueBrowsing) {
-                System.out.println("Start Browsing topic");
                 ConsumerRecords<String, String> records = consumer.poll(5000);
-                for (ConsumerRecord<String, String> record : records){
+                for (ConsumerRecord<String, String> record : records) {
                     Map<String, Object> item1 = new HashMap<>();
                     item1.put("Offset", record.offset());
                     item1.put("Message", record.value());
@@ -134,13 +136,16 @@ public class KafkaLib {
                 }
 
             }
-        } finally {
+        }
+        finally {
             consumer.close();
         }
 
     }
 
     public void produceMessage(Cluster cluster, String topicName, String record) {
+
+        final CompletableFuture<Exception> errorResult = new CompletableFuture();
 
         Properties props = new Properties();
         props.put("bootstrap.servers", cluster.getHostname());
@@ -160,16 +165,30 @@ public class KafkaLib {
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
 
-        producer.send(new ProducerRecord<String, String>(topicName, "", record), new Callback() {
+        Callback callback = new Callback() {
             @Override
             public void onCompletion(RecordMetadata m, Exception e) {
                 if (e != null) {
-                    e.printStackTrace();
+                    errorResult.completeExceptionally(e);
+
                 } else {
                     System.out.printf("Produced record to topic %s partition [%d] @ offset %d%n", m.topic(), m.partition(), m.offset());
                 }
             }
-        });
+        };
+
+        producer.send(new ProducerRecord<String, String>(topicName, "", record), callback);
+
+        //Handle an exception from the callback
+        try {
+            errorResult.join();
+        } catch (CompletionException e) {
+            //show an alert Dialog
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setHeaderText("Can't produce! You need to set the TOPIC WRITE ACLs.");
+            a.setContentText(e.getMessage());
+            a.show();
+        }
 
         producer.flush();
         producer.close();
