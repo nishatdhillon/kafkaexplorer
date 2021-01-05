@@ -59,4 +59,9 @@ public class Cluster {
         System.out.println(this.mechanism);
         System.out.println(this.jaasConfig);
     }
+
+    public String getJaasConfigWithoutPassword() {
+
+       return jaasConfig.substring(0, jaasConfig.indexOf("password=")) + "password='***masked***';";
+    }
 }

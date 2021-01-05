@@ -74,7 +74,7 @@ public class ClusterConfigController implements Initializable {
         name.setText(cluster.getName());
         saslMechanism.setText(cluster.getMechanism());
         securityType.setText(cluster.getProtocol());
-        jaasConf.setText(cluster.getJaasConfig());
+        jaasConf.setText(cluster.getJaasConfigWithoutPassword());
         kafkaTreeRef = clusterTreeView;
     }
 

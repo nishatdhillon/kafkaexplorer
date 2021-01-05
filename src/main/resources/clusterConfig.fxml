@@ -22,14 +22,13 @@
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="152.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="194.0" minHeight="0.0" prefHeight="27.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="152.0" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="194.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="552.0" minHeight="10.0" prefHeight="546.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <Label prefHeight="17.0" prefWidth="99.0" text="bootstrap.servers" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField id="bootstrap" fx:id="bootstrap" editable="false" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="security.protocol" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Label text="sasl.jaas.config" GridPane.columnIndex="2" GridPane.rowIndex="6" />
@@ -45,7 +44,10 @@
       <TextField fx:id="securityType" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
       <Label layoutX="55.0" layoutY="77.0" text="Config file location" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <TextField fx:id="configYamlPath" editable="false" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-      <Label prefHeight="38.0" prefWidth="619.0" text="Help:&#10;If you you are connected but don't see any topics. You need to &quot;ALLOW&quot; the &quot;DESCRIBE&quot; ACL on the &quot;TOPICS&quot;." GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+      <Label prefHeight="38.0" prefWidth="619.0" text="Help:&#10;If you are connected but don't see any topics. You need to &quot;ALLOW&quot; the &quot;DESCRIBE&quot; ACL on the required &quot;TOPICS&quot;." GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+      <Label layoutX="49.0" layoutY="197.0" text="consumer group" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <TextField editable="false" text="kafkaexplorer-consumer-group" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+      <Label layoutX="49.0" layoutY="137.0" text="bootstrap.servers" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
 
         </children>
