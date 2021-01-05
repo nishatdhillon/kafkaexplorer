@@ -50,14 +50,22 @@ public class TopicBrowserController implements Initializable {
         browsingType.setValue("from-beginning");
 
         //init message browser table
+        TableColumn<Map, Object> partitionColumn = new TableColumn<>("Partition");
+        partitionColumn.setCellValueFactory(new MapValueFactory<>("Partition"));
+
         TableColumn<Map, Object> offsetColumn = new TableColumn<>("Offset");
         offsetColumn.setCellValueFactory(new MapValueFactory<>("Offset"));
+
+        TableColumn<Map, Object> createdColumn = new TableColumn<>("Created");
+        createdColumn.setCellValueFactory(new MapValueFactory<>("Created"));
 
         TableColumn<Map, Object> messageColumn = new TableColumn<>("Message");
         messageColumn.setCellValueFactory(new MapValueFactory<>("Message"));
         messageColumn.setMinWidth(800);
 
+        messagesTable.getColumns().add(partitionColumn);
         messagesTable.getColumns().add(offsetColumn);
+        messagesTable.getColumns().add(createdColumn);
         messagesTable.getColumns().add(messageColumn);
 
 

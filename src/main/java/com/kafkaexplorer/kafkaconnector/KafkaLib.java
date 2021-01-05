@@ -12,7 +12,12 @@ import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.config.ConfigResource;
+import org.apache.kafka.common.header.Header;
+import org.apache.kafka.common.header.Headers;
+import org.apache.kafka.common.header.internals.RecordHeaders;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -131,7 +136,18 @@ public class KafkaLib {
                 for (ConsumerRecord<String, String> record : records) {
                     Map<String, Object> item1 = new HashMap<>();
                     item1.put("Offset", record.offset());
-                    item1.put("Message", record.value());
+                    item1.put("Partition", record.partition());
+
+                    //for (Header header : record.headers()) {
+                     //    String attributeName = header.key();
+                     //    String attributeValue = header.value().toString();
+                    //}
+                    Date date = new Date(record.timestamp());
+                    Format format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    item1.put("Created", format.format(date).toString());
+
+                    item1.put("Message", record.value() );
+
                     messagesTable.getItems().add(item1);
                 }
 
@@ -140,6 +156,7 @@ public class KafkaLib {
         finally {
             consumer.close();
         }
+
 
     }
 
