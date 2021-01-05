@@ -162,7 +162,7 @@ public class KafkaLib {
 
     public void produceMessage(Cluster cluster, String topicName, String record) {
 
-        final CompletableFuture<Exception> errorResult = new CompletableFuture();
+       // final CompletableFuture<Exception> errorResult = new CompletableFuture();
 
         Properties props = new Properties();
         props.put("bootstrap.servers", cluster.getHostname());
@@ -182,33 +182,24 @@ public class KafkaLib {
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
 
-        Callback callback = new Callback() {
-            @Override
-            public void onCompletion(RecordMetadata m, Exception e) {
-                if (e != null) {
-                    errorResult.completeExceptionally(e);
 
-                } else {
-                    System.out.printf("Produced record to topic %s partition [%d] @ offset %d%n", m.topic(), m.partition(), m.offset());
-                }
-            }
-        };
-
-        producer.send(new ProducerRecord<String, String>(topicName, "", record), callback);
 
         //Handle an exception from the callback
-        try {
-            errorResult.join();
-        } catch (CompletionException e) {
+     try {
+         producer.send(new ProducerRecord<String, String>(topicName, "", record));
+
+     } catch (CompletionException e) {
+         //todo validate behaviour
             //show an alert Dialog
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText("Can't produce! You need to set the TOPIC WRITE ACLs.");
             a.setContentText(e.getMessage());
-            a.show();
+           a.show();
         }
 
         producer.flush();
         producer.close();
+
     }
 
     public KafkaFuture<Config> getTopicInfo(Cluster cluster, String topicName) {
