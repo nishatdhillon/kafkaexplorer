@@ -1,5 +1,6 @@
 package com.kafkaexplorer.kafkaconnector;
 
+import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
@@ -15,6 +16,7 @@ import org.apache.kafka.common.config.ConfigResource;
 import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.header.internals.RecordHeaders;
+import org.slf4j.Logger;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -125,7 +127,7 @@ public class KafkaLib {
 
         consumer.poll(0);  // without this, the assignment will be empty.
         consumer.assignment().forEach(t -> {
-            System.out.printf("Set %s to offset 0%n", t.toString());
+            MyLogger.logDebug("Set " + t.toString() + " to offset 0");
             consumer.seek(t, 0);
         });
 

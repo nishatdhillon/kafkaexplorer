@@ -1,12 +1,16 @@
 package com.kafkaexplorer;
 
 import com.kafkaexplorer.kafkaconnector.KafkaLib;
+import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import org.apache.kafka.common.PartitionInfo;
 
@@ -127,7 +131,7 @@ public class ClusterConfigController implements Initializable {
                 
                 while (iterator.hasNext()) {
                     Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
-                    System.out.println(entry.getKey());
+                    MyLogger.logDebug(entry.getKey());
 
                     TreeItem topic = new TreeItem(entry.getKey());
                     topicsChildren.getChildren().add(topic);
@@ -135,6 +139,12 @@ public class ClusterConfigController implements Initializable {
 
                 child.setExpanded(true);
                 topicsChildren.setExpanded(true);
+
+                //change cluster icon from grey to green
+                Node rootIcon =  new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-green.png")));
+                //TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(),rootIcon);
+
+                child.setGraphic(rootIcon);
             }
             else
             {

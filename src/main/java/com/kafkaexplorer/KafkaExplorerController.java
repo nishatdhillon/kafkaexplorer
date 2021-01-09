@@ -2,6 +2,7 @@ package com.kafkaexplorer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -74,13 +77,17 @@ private Cluster[] clusters;
             for (int i = 0; i < clusters.length; i++)
             {
                 //build kafka cluster tree
-                      TreeItem clusterItem = new TreeItem(clusters[i].getName());
-                      root.getChildren().add(clusterItem);
+                Node rootIcon =  new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-grey.png")));
+                TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(),rootIcon);
+
+                root.getChildren().add(clusterItem);
             }
 
 
         kafkaTree.setRoot(root);
         root.setExpanded(true);
+
+        MyLogger.logDebug("KafkaExplorerController initialized! ");
 
         } catch (IOException e) {
             e.printStackTrace();

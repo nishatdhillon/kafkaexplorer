@@ -1,5 +1,7 @@
 package com.kafkaexplorer.model;
 
+import com.kafkaexplorer.logger.MyLogger;
+
 public class Cluster {
     public Cluster() {}
 
@@ -53,11 +55,11 @@ public class Cluster {
     }
 
     public void println() {
-        System.out.println(this.name);
-        System.out.println(this.hostname);
-        System.out.println(this.protocol);
-        System.out.println(this.mechanism);
-        System.out.println(this.jaasConfig);
+        MyLogger.logDebug(this.name);
+        MyLogger.logDebug(this.hostname);
+        MyLogger.logDebug(this.protocol);
+        MyLogger.logDebug(this.mechanism);
+        MyLogger.logDebug(this.jaasConfig);
     }
 
     public String getJaasConfigWithoutPassword() {
