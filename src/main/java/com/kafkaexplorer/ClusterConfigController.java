@@ -3,24 +3,29 @@ package com.kafkaexplorer;
 import com.kafkaexplorer.kafkaconnector.KafkaLib;
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import org.apache.kafka.common.PartitionInfo;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ClusterConfigController implements Initializable {
 
@@ -31,6 +36,8 @@ public class ClusterConfigController implements Initializable {
     public TextField securityType;
     public TextField jaasConf;
     public TextField configYamlPath;
+    public StackPane stack;
+    public ProgressBar progBar1;
 
     public TextField getName() {
         return name;
@@ -69,6 +76,7 @@ public class ClusterConfigController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        progBar1.setVisible(false);
     }
 
     public void populateScreen(Cluster cluster, TreeView<String> clusterTreeView) {
@@ -84,75 +92,84 @@ public class ClusterConfigController implements Initializable {
 
     public void connectToKafka(MouseEvent mouseEvent) throws IOException {
        //connect to kafka cluster and list all topics
-        KafkaLib kafkaConnector = new KafkaLib();
-        try {
-            kafkaConnector.connect(cluster);
+        progBar1.setVisible(true);
+        Task task = new Task<Void>() {
+            @Override public Void call() throws Exception {
+                            KafkaLib kafkaConnector = new KafkaLib();
+                            progBar1.setDisable(false);
+
+                            updateProgress(20, 100);
+                            kafkaConnector.connect(cluster);
+
+                            //kafkaTree
+                            for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
+
+                                if ( child.getValue().equals(name.getText())){
+
+                                    updateProgress(40, 100);
+
+                                    //remove any existing topics
+                                    child.getChildren().clear();
+
+                                    //Create a SubTreeItem maned "topics"
+
+                                    child.getChildren().add(new TreeItem("topics"));
+                                    TreeItem topicsChildren = (TreeItem)child.getChildren().get(0);
+
+                                    //get topic list
+                                    Map<String, List<PartitionInfo>> topics = kafkaConnector.listTopics( cluster);
+
+                                    updateProgress(60, 100);
+
+                                    Iterator <Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
+
+                                    while (iterator.hasNext()) {
 
 
-        //get main controller and locate the TreeView
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/kafkaExplorer.fxml"));
-        Parent treeView = (Parent) mainLoader.load();
-        KafkaExplorerController mainController = mainLoader.getController();
+                                        Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
+                                        MyLogger.logDebug(entry.getKey());
 
-        displayTopicList(name.getText());
+                                        TreeItem topic = new TreeItem(entry.getKey());
+                                        topicsChildren.getChildren().add(topic);
+                                    }
+                                    updateProgress(80, 100);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+                                    child.setExpanded(true);
+                                    topicsChildren.setExpanded(true);
+
+                                    //change cluster icon from grey to green
+                                    Node rootIcon =  new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-green.png")));
+                                    //TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(),rootIcon);
+
+                                    //child.setGraphic(rootIcon);
+                                }
+                                else
+                                {
+                                    child.setExpanded(false);
+                                }
+
+                            }
+                            updateProgress(100, 100);
+                return null;
+            }
+        };
+
+        task.setOnFailed(evt -> {
+            MyLogger.logDebug("The task failed with the following exception: " + task.getException().getMessage());
             //show an alert Dialog
             Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText(e.getMessage());
+            a.setContentText(task.getException().getMessage());
             a.show();
+            progBar1.setVisible(false);
 
-        }
+        });
+
+
+        progBar1.progressProperty().bind(task.progressProperty());
+
+        new Thread(task).start();
 
     }
 
-
-    private void displayTopicList(String clusterName) {
-
-        //kafkaTree
-        for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
-
-            if ( child.getValue().equals(clusterName)){
-                //remove any existing topics
-                child.getChildren().clear();
-
-                //get topic list from kafka
-                KafkaLib kafkaConnector = new KafkaLib();
-
-                //Create a SubTreeItem maned "topics"
-
-                child.getChildren().add(new TreeItem("topics"));
-                TreeItem topicsChildren = (TreeItem)child.getChildren().get(0);
-
-                Map<String, List<PartitionInfo>> topics = kafkaConnector.listTopics( cluster);
-                
-                Iterator <Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
-                
-                while (iterator.hasNext()) {
-                    Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
-                    MyLogger.logDebug(entry.getKey());
-
-                    TreeItem topic = new TreeItem(entry.getKey());
-                    topicsChildren.getChildren().add(topic);
-                }
-
-                child.setExpanded(true);
-                topicsChildren.setExpanded(true);
-
-                //change cluster icon from grey to green
-                Node rootIcon =  new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-green.png")));
-                //TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(),rootIcon);
-
-                child.setGraphic(rootIcon);
-            }
-            else
-            {
-                child.setExpanded(false);
-            }
-
-        }
-        //kafkaTree.getRoot().getChildren().removeAll();
-    }
 
 }

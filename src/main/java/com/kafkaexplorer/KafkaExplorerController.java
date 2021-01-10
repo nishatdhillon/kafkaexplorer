@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 import java.io.File;
@@ -110,7 +111,7 @@ private Cluster[] clusters;
                 if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters")
                 {
                     FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("/clusterConfig.fxml"));
-                    GridPane mainRoot = clusterConfigLoader.load();
+                    StackPane mainRoot = clusterConfigLoader.load();
                     ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
 
                     //find selected cluster from Clusters Array
