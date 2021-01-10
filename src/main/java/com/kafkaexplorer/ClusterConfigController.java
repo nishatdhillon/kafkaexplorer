@@ -38,6 +38,12 @@ public class ClusterConfigController implements Initializable {
     public TextField configYamlPath;
     public StackPane stack;
     public ProgressBar progBar1;
+    @FXML
+    public TextField bootstrap;
+    @FXML
+    public TextField saslMechanism;
+    private Cluster cluster;
+    private TreeView<String> kafkaTreeRef;
 
     public TextField getName() {
         return name;
@@ -63,16 +69,6 @@ public class ClusterConfigController implements Initializable {
         this.saslMechanism = saslMechanism;
     }
 
-    private Cluster cluster;
-
-    @FXML
-    public TextField bootstrap;
-
-    @FXML
-    public TextField saslMechanism;
-
-    private TreeView<String> kafkaTreeRef;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -91,65 +87,58 @@ public class ClusterConfigController implements Initializable {
     }
 
     public void connectToKafka(MouseEvent mouseEvent) throws IOException {
-       //connect to kafka cluster and list all topics
+        //connect to kafka cluster and list all topics
         progBar1.setVisible(true);
         Task task = new Task<Void>() {
-            @Override public Void call() throws Exception {
-                            KafkaLib kafkaConnector = new KafkaLib();
-                            progBar1.setDisable(false);
+            @Override
+            public Void call() throws Exception {
+                KafkaLib kafkaConnector = new KafkaLib();
+                progBar1.setDisable(false);
 
-                            updateProgress(20, 100);
-                            kafkaConnector.connect(cluster);
+                updateProgress(20, 100);
+                kafkaConnector.connect(cluster);
 
-                            //kafkaTree
-                            for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
+                //kafkaTree
+                for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
 
-                                if ( child.getValue().equals(name.getText())){
+                    if (child.getValue().equals(name.getText())) {
 
-                                    updateProgress(40, 100);
+                        updateProgress(40, 100);
 
-                                    //remove any existing topics
-                                    child.getChildren().clear();
+                        //remove any existing topics
+                        child.getChildren().clear();
 
-                                    //Create a SubTreeItem maned "topics"
+                        //Create a SubTreeItem maned "topics"
 
-                                    child.getChildren().add(new TreeItem("topics"));
-                                    TreeItem topicsChildren = (TreeItem)child.getChildren().get(0);
+                        child.getChildren().add(new TreeItem("topics"));
+                        TreeItem topicsChildren = (TreeItem) child.getChildren().get(0);
 
-                                    //get topic list
-                                    Map<String, List<PartitionInfo>> topics = kafkaConnector.listTopics( cluster);
+                        //get topic list
+                        Map<String, List<PartitionInfo>> topics = kafkaConnector.listTopics(cluster);
 
-                                    updateProgress(60, 100);
+                        updateProgress(60, 100);
 
-                                    Iterator <Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
+                        Iterator<Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
 
-                                    while (iterator.hasNext()) {
+                        while (iterator.hasNext()) {
 
 
-                                        Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
-                                        MyLogger.logDebug(entry.getKey());
+                            Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
+                            MyLogger.logDebug(entry.getKey());
 
-                                        TreeItem topic = new TreeItem(entry.getKey());
-                                        topicsChildren.getChildren().add(topic);
-                                    }
-                                    updateProgress(80, 100);
+                            TreeItem topic = new TreeItem(entry.getKey());
+                            topicsChildren.getChildren().add(topic);
+                        }
+                        updateProgress(80, 100);
 
-                                    child.setExpanded(true);
-                                    topicsChildren.setExpanded(true);
+                        child.setExpanded(true);
+                        topicsChildren.setExpanded(true);
+                    } else {
+                        child.setExpanded(false);
+                    }
 
-                                    //change cluster icon from grey to green
-                                    Node rootIcon =  new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-green.png")));
-                                    //TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(),rootIcon);
-
-                                    //child.setGraphic(rootIcon);
-                                }
-                                else
-                                {
-                                    child.setExpanded(false);
-                                }
-
-                            }
-                            updateProgress(100, 100);
+                }
+                updateProgress(100, 100);
                 return null;
             }
         };
@@ -162,12 +151,37 @@ public class ClusterConfigController implements Initializable {
             a.show();
             progBar1.setVisible(false);
 
+            //change cluster icon to grey
+            setClusterIconToGreen(name.getText(), false);
+
         });
 
+        task.setOnSucceeded(evt -> {
+            //change cluster icon to green
+            setClusterIconToGreen(name.getText(), true);
+
+        });
 
         progBar1.progressProperty().bind(task.progressProperty());
 
         new Thread(task).start();
+
+    }
+
+    private void setClusterIconToGreen(String clusterName, boolean isGreen) {
+
+        Node clusterIconGreen = new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-green.png")));
+        Node clusterIconGrey = new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-grey.png")));
+
+        for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
+
+            if (child.getValue().equals(clusterName)) {
+                if (isGreen)
+                    child.setGraphic(clusterIconGreen);
+                else
+                    child.setGraphic(clusterIconGrey);
+            }
+        }
 
     }
 

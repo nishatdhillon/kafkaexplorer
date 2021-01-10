@@ -31,19 +31,19 @@ import java.util.ResourceBundle;
 
 public class KafkaExplorerController implements Initializable {
 
-@FXML
-private TreeView<String> kafkaTree;
+    @FXML
+    private TreeView<String> kafkaTree;
 
-@FXML
-private AnchorPane mainContent;
+    @FXML
+    private AnchorPane mainContent;
 
-private Cluster[] clusters;
+    private Cluster[] clusters;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Validate config.yaml file
-        HashMap<String, String> errorList= new Utils().validateYamlConfig();
+        HashMap<String, String> errorList = new Utils().validateYamlConfig();
 
         if (errorList.size() > 0) {
             //show an alert Dialog
@@ -51,7 +51,7 @@ private Cluster[] clusters;
             String errorMessage = "";
 
             //Todo manage multiple error messages
-            errorList.entrySet().forEach(entry->{
+            errorList.entrySet().forEach(entry -> {
                 a.setHeaderText(entry.getKey());
                 a.setContentText(entry.getValue());
             });
@@ -75,20 +75,19 @@ private Cluster[] clusters;
 
             TreeItem<String> root = new TreeItem<>("Kafka Clusters");
 
-            for (int i = 0; i < clusters.length; i++)
-            {
+            for (int i = 0; i < clusters.length; i++) {
                 //build kafka cluster tree
-                Node rootIcon =  new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-grey.png")));
-                TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(),rootIcon);
+                Node rootIcon = new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-grey.png")));
+                TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(), rootIcon);
 
                 root.getChildren().add(clusterItem);
             }
 
 
-        kafkaTree.setRoot(root);
-        root.setExpanded(true);
+            kafkaTree.setRoot(root);
+            root.setExpanded(true);
 
-        MyLogger.logDebug("KafkaExplorerController initialized! ");
+            MyLogger.logDebug("KafkaExplorerController initialized! ");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,11 +104,10 @@ private Cluster[] clusters;
 
             //Ensure that user clicked on a TreeCell
             if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
-                TreeItem selectedItem= (TreeItem)kafkaTree.getSelectionModel().getSelectedItem();
+                TreeItem selectedItem = (TreeItem) kafkaTree.getSelectionModel().getSelectedItem();
 
                 //selectedItem is a cluster, display cluster config
-                if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters")
-                {
+                if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters") {
                     FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("/clusterConfig.fxml"));
                     StackPane mainRoot = clusterConfigLoader.load();
                     ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
@@ -117,10 +115,8 @@ private Cluster[] clusters;
                     //find selected cluster from Clusters Array
                     Cluster selectedCluster = null;
 
-                    for (int i = 0; i < clusters.length; i++)
-                    {
-                        if (clusters[i].getName() == selectedItem.getValue())
-                        {
+                    for (int i = 0; i < clusters.length; i++) {
+                        if (clusters[i].getName() == selectedItem.getValue()) {
                             selectedCluster = new Cluster(clusters[i]);
                         }
                     }
@@ -129,16 +125,13 @@ private Cluster[] clusters;
                         clusterConfigController.populateScreen(selectedCluster, kafkaTree);
 
                         mainContent.getChildren().setAll(mainRoot);
-                    }
-                    else
-                    {
+                    } else {
                         //todo
                         mainContent.getChildren().clear();
                     }
 
                 } //If selectedItem is a topic, display topic browser screen
-                else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics")
-                {
+                else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics") {
                     FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("/topicBrowser.fxml"));
                     GridPane mainRoot = topicBrowserLoader.load();
 
@@ -151,12 +144,6 @@ private Cluster[] clusters;
                     mainContent.getChildren().setAll(mainRoot);
 
                 }
-
-
-
-
-
-
 
 
             }

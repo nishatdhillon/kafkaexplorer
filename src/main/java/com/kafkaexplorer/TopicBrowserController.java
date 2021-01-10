@@ -78,7 +78,7 @@ public class TopicBrowserController implements Initializable {
 
         topicConfigTable.getColumns().add(topicConfigKey);
         topicConfigTable.getColumns().add(topicConfigValue);
-        
+
     }
 
 
@@ -90,7 +90,7 @@ public class TopicBrowserController implements Initializable {
         stopButton.setDisable(true);
 
         KafkaLib kafkaConnector = new KafkaLib();
-        List<PartitionInfo> partitionInfo  = kafkaConnector.getTopicPartitionInfo(cluster,  topicName);
+        List<PartitionInfo> partitionInfo = kafkaConnector.getTopicPartitionInfo(cluster, topicName);
         displayPartitionInfo(partitionInfo);
 
         KafkaFuture<Config> configFuture = kafkaConnector.getTopicInfo(cluster, topicName);
@@ -113,7 +113,7 @@ public class TopicBrowserController implements Initializable {
 
 
             item1.put("Config", TopicConfig.RETENTION_MS_CONFIG);
-            item1.put("Value", entry1.value() + "ms (" + df2.format(Double.parseDouble(entry1.value()) / (1000*60*60*24)) +"d)");
+            item1.put("Value", entry1.value() + "ms (" + df2.format(Double.parseDouble(entry1.value()) / (1000 * 60 * 60 * 24)) + "d)");
 
             ConfigEntry entry2 = config.get(TopicConfig.RETENTION_BYTES_CONFIG);
             Map<String, Object> item2 = new HashMap<>();
@@ -124,7 +124,7 @@ public class TopicBrowserController implements Initializable {
             ConfigEntry entry3 = config.get(TopicConfig.MAX_MESSAGE_BYTES_CONFIG);
             Map<String, Object> item3 = new HashMap<>();
             item3.put("Config", TopicConfig.MAX_MESSAGE_BYTES_CONFIG);
-            item3.put("Value",  ((entry3.value().equals("-1")) ? "-1 (not set)" : entry3.value() + "b (" + df2.format(Double.parseDouble(entry3.value()) / (1024*1024)) + "Mb)"));
+            item3.put("Value", ((entry3.value().equals("-1")) ? "-1 (not set)" : entry3.value() + "b (" + df2.format(Double.parseDouble(entry3.value()) / (1024 * 1024)) + "Mb)"));
 
             items.add(item1);
             items.add(item2);
@@ -136,7 +136,7 @@ public class TopicBrowserController implements Initializable {
             item4.put("Config", "Not Authorized!");
 
             Map<String, Object> item5 = new HashMap<>();
-            item5.put("Config","DESCRIBE_CONFIGS ACL required on this TOPIC");
+            item5.put("Config", "DESCRIBE_CONFIGS ACL required on this TOPIC");
 
             items.add(item4);
             items.add(item5);
@@ -147,7 +147,7 @@ public class TopicBrowserController implements Initializable {
     }
 
     private void displayPartitionInfo(List<PartitionInfo> partitionInfo) {
-        
+
         TableColumn<Map, Object> partitionColumn = new TableColumn<>("Id");
         partitionColumn.setCellValueFactory(new MapValueFactory<>("Id"));
         partitionColumn.setMaxWidth(25);
@@ -168,27 +168,27 @@ public class TopicBrowserController implements Initializable {
 
         ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
 
-        for (int i = 0; i < partitionInfo.size(); i++ ) {
+        for (int i = 0; i < partitionInfo.size(); i++) {
             Map<String, Object> item1 = new HashMap<>();
             item1.put("Id", partitionInfo.get(i).partition());
-            item1.put("Leader" , partitionInfo.get(i).leader());
+            item1.put("Leader", partitionInfo.get(i).leader());
             //Replicas List
 
             String replicaList = "[";
-            for (int j = 0; j < partitionInfo.get(i).replicas().length; j++ ) {
+            for (int j = 0; j < partitionInfo.get(i).replicas().length; j++) {
 
                 replicaList += partitionInfo.get(i).replicas()[j].id() + ",";
             }
             replicaList += "]";
-            item1.put("Replicas" , replicaList);
+            item1.put("Replicas", replicaList);
 
             String inSyncReplicaList = "[";
-            for (int j = 0; j < partitionInfo.get(i).replicas().length; j++ ) {
+            for (int j = 0; j < partitionInfo.get(i).replicas().length; j++) {
 
                 inSyncReplicaList += partitionInfo.get(i).inSyncReplicas()[j].id() + ",";
             }
             inSyncReplicaList += "]";
-            item1.put("ISR" , inSyncReplicaList);
+            item1.put("ISR", inSyncReplicaList);
 
             items.add(item1);
         }
@@ -204,20 +204,24 @@ public class TopicBrowserController implements Initializable {
         kafkaConnector.continueBrowsing = true;
         //Create a thread for browsing topic, to not block the UI
         Task<Integer> task = new Task<Integer>() {
-            @Override protected Integer call() throws Exception {
-                kafkaConnector.browseTopic(cluster,  topic.getText(), messagesTable);
+            @Override
+            protected Integer call() throws Exception {
+                kafkaConnector.browseTopic(cluster, topic.getText(), messagesTable);
                 return 0;
             }
 
-            @Override protected void succeeded() {
+            @Override
+            protected void succeeded() {
                 super.succeeded();
             }
 
-            @Override protected void cancelled() {
+            @Override
+            protected void cancelled() {
                 super.cancelled();
             }
 
-            @Override protected void failed() {
+            @Override
+            protected void failed() {
                 super.failed();
 
                 //show an alert Dialog
@@ -233,16 +237,16 @@ public class TopicBrowserController implements Initializable {
         th.start();
     }
 
-        public void stopBrowsing(MouseEvent mouseEvent) {
+    public void stopBrowsing(MouseEvent mouseEvent) {
         //todo Cancel the browsing task/thread instead of using boolean
-            kafkaConnector.continueBrowsing = false;
-            startButton.setDisable(false);
-            stopButton.setDisable(true);
-        }
+        kafkaConnector.continueBrowsing = false;
+        startButton.setDisable(false);
+        stopButton.setDisable(true);
+    }
 
     public void produceMessage(MouseEvent mouseEvent) {
 
-        kafkaConnector.produceMessage(cluster,  topic.getText(), produceMsg.getText());
+        kafkaConnector.produceMessage(cluster, topic.getText(), produceMsg.getText());
 
 
     }

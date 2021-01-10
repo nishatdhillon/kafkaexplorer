@@ -15,7 +15,7 @@ public class Utils {
     public Utils() {
     }
 
-    HashMap<String, String> validateYamlConfig(){
+    HashMap<String, String> validateYamlConfig() {
 
         HashMap<String, String> errorList = new HashMap<String, String>();
 
@@ -34,11 +34,11 @@ public class Utils {
             for (int i = 0; i < clusters.length; i++) {
                 //for each cluster found, validate each fields
                 //Todo do some basic validation on each field content
-               clusters[i].getName();
-               clusters[i].getHostname();
-               clusters[i].getProtocol();
-               clusters[i].getMechanism();
-               clusters[i].getJaasConfig();
+                clusters[i].getName();
+                clusters[i].getHostname();
+                clusters[i].getProtocol();
+                clusters[i].getMechanism();
+                clusters[i].getJaasConfig();
             }
 
         } catch (IOException e) {
@@ -66,14 +66,14 @@ public class Utils {
 
             clusters = om.readValue(file, Cluster[].class);
 
-                for (int i = 0; i < clusters.length; i++) {
-                    if (clusters[i].getName().equals(clusterName))
-                        cluster = clusters[i];
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            for (int i = 0; i < clusters.length; i++) {
+                if (clusters[i].getName().equals(clusterName))
+                    cluster = clusters[i];
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Debug
         cluster.println();
