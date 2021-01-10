@@ -4,9 +4,11 @@
    protocol: SASL_SSL    #Only supported option for now
    mechanism: PLAIN      #Only supported option for now
    jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule   required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
+   consumerGroup: "kafkaexplorer-consumer-group"  #Consumer group used by KafkaExplorer to consume the topics
 
 -  name: Cluster2
    hostname: "192.168.12.68:9092"
    protocol: SASL_SSL    #Only supported option for now
    mechanism: PLAIN      #Only supported option for now
    jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
+   consumerGroup: "kafkaexplorer-consumer-group" #Consumer group used by KafkaExplorer to consume the topics

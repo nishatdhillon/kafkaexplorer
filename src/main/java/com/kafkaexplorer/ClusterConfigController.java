@@ -42,6 +42,7 @@ public class ClusterConfigController implements Initializable {
     public TextField bootstrap;
     @FXML
     public TextField saslMechanism;
+    public TextField consumerGroup;
     private Cluster cluster;
     private TreeView<String> kafkaTreeRef;
 
@@ -83,6 +84,7 @@ public class ClusterConfigController implements Initializable {
         saslMechanism.setText(cluster.getMechanism());
         securityType.setText(cluster.getProtocol());
         jaasConf.setText(cluster.getJaasConfigWithoutPassword());
+        consumerGroup.setText(cluster.getConsumerGroup());
         kafkaTreeRef = clusterTreeView;
     }
 

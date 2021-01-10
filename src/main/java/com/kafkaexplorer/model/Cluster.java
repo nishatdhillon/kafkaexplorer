@@ -3,6 +3,15 @@ package com.kafkaexplorer.model;
 import com.kafkaexplorer.logger.MyLogger;
 
 public class Cluster {
+
+    private String name;
+    private String hostname;
+    private String protocol;
+    private String mechanism;
+    private String jaasConfig;
+    private String consumerGroup;
+
+
     public Cluster() {}
 
     public Cluster(Cluster cluster) {
@@ -11,12 +20,20 @@ public class Cluster {
         this.protocol = cluster.protocol;
         this.mechanism = cluster.mechanism;
         this.jaasConfig = cluster.jaasConfig;
+        this.consumerGroup = cluster.consumerGroup;
     }
-    private String name;
-    private String hostname;
-    private String protocol;
-    private String mechanism;
-    private String jaasConfig;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getConsumerGroup() {
+        return consumerGroup;
+    }
+
+    public void setConsumerGroup(String consumerGroup) {
+        this.consumerGroup = consumerGroup;
+    }
 
     public String getName() {
         return name;

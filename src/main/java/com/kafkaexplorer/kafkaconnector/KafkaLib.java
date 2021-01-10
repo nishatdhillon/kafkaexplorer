@@ -40,7 +40,7 @@ public class KafkaLib {
         props.put("request.timeout.ms", 5000);
         props.put("session.timeout.ms", 5000);
 
-        props.put("group.id", "test-consumer-group");
+        props.put("group.id", cluster.getConsumerGroup());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
@@ -64,7 +64,7 @@ public class KafkaLib {
         props.put("request.timeout.ms", 5000);
         props.put("session.timeout.ms", 5000);
 
-        props.put("group.id", "test-consumer-group");
+        props.put("group.id", cluster.getConsumerGroup());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
@@ -90,7 +90,7 @@ public class KafkaLib {
         props.put("request.timeout.ms", 5000);
         props.put("session.timeout.ms", 5000);
 
-        props.put("group.id", "test-consumer-group");
+        props.put("group.id", cluster.getConsumerGroup());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
@@ -114,7 +114,7 @@ public class KafkaLib {
         props.put("request.timeout.ms", 5000);
         //props.put("session.timeout.ms", 5000);
 
-        props.put("group.id", "kafkaexplorer-consumer-group");
+        props.put("group.id", cluster.getConsumerGroup());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
@@ -177,7 +177,7 @@ public class KafkaLib {
         props.put("request.timeout.ms", 5000);
         //props.put("session.timeout.ms", 5000);
 
-        props.put("group.id", "test-consumer-group");
+        props.put("group.id", cluster.getConsumerGroup());
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
@@ -219,7 +219,7 @@ public class KafkaLib {
         props.put("request.timeout.ms", 5000);
         props.put("session.timeout.ms", 5000);
 
-        props.put("group.id", "test-consumer-group");
+        props.put("group.id", cluster.getConsumerGroup());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
