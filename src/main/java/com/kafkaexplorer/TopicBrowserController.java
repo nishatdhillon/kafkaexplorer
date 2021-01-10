@@ -58,6 +58,7 @@ public class TopicBrowserController implements Initializable {
 
         TableColumn<Map, Object> createdColumn = new TableColumn<>("Created");
         createdColumn.setCellValueFactory(new MapValueFactory<>("Created"));
+        createdColumn.setSortType(TableColumn.SortType.DESCENDING);
 
         TableColumn<Map, Object> messageColumn = new TableColumn<>("Message");
         messageColumn.setCellValueFactory(new MapValueFactory<>("Message"));
@@ -68,6 +69,7 @@ public class TopicBrowserController implements Initializable {
         messagesTable.getColumns().add(createdColumn);
         messagesTable.getColumns().add(messageColumn);
 
+        messagesTable.getSortOrder().add(createdColumn);
 
         //init topic config table
         TableColumn<Map, Object> topicConfigKey = new TableColumn<>("Config");

@@ -151,6 +151,7 @@ public class KafkaLib {
                     item1.put("Message", record.value() );
 
                     messagesTable.getItems().add(item1);
+                    messagesTable.sort();
                 }
 
             }
