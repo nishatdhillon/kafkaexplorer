@@ -109,7 +109,7 @@ public class KafkaExplorerController implements Initializable {
                 //selectedItem is a cluster, display cluster config
                 if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters") {
                     FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("/clusterConfig.fxml"));
-                    StackPane mainRoot = clusterConfigLoader.load();
+                    GridPane mainRoot = clusterConfigLoader.load();
                     ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
 
                     //find selected cluster from Clusters Array
