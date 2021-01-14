@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -36,7 +33,7 @@ public class KafkaExplorerController implements Initializable {
     private TreeView<String> kafkaTree;
 
     @FXML
-    private VBox mainContent;
+    private SplitPane mainContent;
 
     private Cluster[] clusters;
 
@@ -125,10 +122,15 @@ public class KafkaExplorerController implements Initializable {
                     if (selectedCluster != null) {
                         clusterConfigController.populateScreen(selectedCluster, kafkaTree);
 
-                        mainContent.getChildren().setAll(mainRoot);
+                       // mainContent.getChildren().setAll(mainRoot);
+                        if (mainContent.getItems().size() > 1)
+                             mainContent.getItems().remove(1);
+
+                        mainContent.getItems().add(mainRoot);
+
                     } else {
                         //todo
-                        mainContent.getChildren().clear();
+                      //  mainContent.getChildren().clear();
                     }
 
                 } //If selectedItem is a topic, display topic browser screen
@@ -142,7 +144,13 @@ public class KafkaExplorerController implements Initializable {
                     Cluster cluster = new Utils().getClusterByName(selectedItem.getParent().getParent().getValue().toString());
 
                     topicBrowserController.populateScreen(cluster, selectedItem.getValue().toString(), kafkaTree);
-                    mainContent.getChildren().setAll(mainRoot);
+                    //mainContent.getChildren().setAll(mainRoot);
+
+                    if (mainContent.getItems().size() > 1)
+                        mainContent.getItems().remove(1);
+
+                    mainContent.getItems().add(mainRoot);
+
 
                 }
 

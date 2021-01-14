@@ -4,8 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
+<VBox maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
    <children>
       <GridPane VBox.vgrow="NEVER">
               <columnConstraints>
@@ -59,10 +58,10 @@
                </GridPane.margin>
             </Button>
             <Label text="Config" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <TableView fx:id="topicConfigTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.rowSpan="3">
+            <TableView fx:id="topicConfigTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.rowSpan="3">
       </TableView>
               </children>
           </GridPane>
-      <TableView fx:id="messagesTable" editable="true" VBox.vgrow="ALWAYS" />
+      <TableView fx:id="messagesTable" editable="true" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
