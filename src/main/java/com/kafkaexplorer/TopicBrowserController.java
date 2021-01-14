@@ -50,15 +50,20 @@ public class TopicBrowserController implements Initializable {
         browsingType.setValue("from-beginning");
 
         //init message browser table
-        TableColumn<Map, Object> partitionColumn = new TableColumn<>("Partition");
+        TableColumn<Map, Object> partitionColumn = new TableColumn<>("Part.");
         partitionColumn.setCellValueFactory(new MapValueFactory<>("Partition"));
+        partitionColumn.setPrefWidth(40);
+        partitionColumn.setMinWidth(40);
 
         TableColumn<Map, Object> offsetColumn = new TableColumn<>("Offset");
         offsetColumn.setCellValueFactory(new MapValueFactory<>("Offset"));
+        offsetColumn.setPrefWidth(40);
+        offsetColumn.setMinWidth(40);
 
         TableColumn<Map, Object> createdColumn = new TableColumn<>("Created");
         createdColumn.setCellValueFactory(new MapValueFactory<>("Created"));
         createdColumn.setSortType(TableColumn.SortType.DESCENDING);
+        createdColumn.setMinWidth(125);
 
         TableColumn<Map, Object> messageColumn = new TableColumn<>("Message");
         messageColumn.setCellValueFactory(new MapValueFactory<>("Message"));
@@ -82,7 +87,6 @@ public class TopicBrowserController implements Initializable {
         topicConfigTable.getColumns().add(topicConfigValue);
 
     }
-
 
     public void populateScreen(Cluster cluster, String topicName, TreeView<String> clusterTreeView) {
         this.topic.setText(topicName);
