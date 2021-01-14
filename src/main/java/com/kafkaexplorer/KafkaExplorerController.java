@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.File;
@@ -35,7 +36,7 @@ public class KafkaExplorerController implements Initializable {
     private TreeView<String> kafkaTree;
 
     @FXML
-    private AnchorPane mainContent;
+    private VBox mainContent;
 
     private Cluster[] clusters;
 
@@ -133,7 +134,7 @@ public class KafkaExplorerController implements Initializable {
                 } //If selectedItem is a topic, display topic browser screen
                 else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics") {
                     FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("/topicBrowser.fxml"));
-                    GridPane mainRoot = topicBrowserLoader.load();
+                    VBox mainRoot = topicBrowserLoader.load();
 
                     TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
 

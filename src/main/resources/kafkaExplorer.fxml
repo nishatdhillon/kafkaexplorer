@@ -3,17 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-
-            <SplitPane dividerPositions="0.29797979797979796" maxHeight="2048.0" minHeight="900.0" minWidth="1280.0" prefHeight="160.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.KafkaExplorerController">
+<SplitPane dividerPositions="0.29797979797979796" minHeight="900.0" minWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.KafkaExplorerController">
               <items>
 
-                        <TreeView fx:id="kafkaTree" minWidth="200.0" onMouseClicked="#onMouseClicked" />
+                        <TreeView fx:id="kafkaTree" onMouseClicked="#onMouseClicked" />
+      <VBox fx:id="mainContent" />
 
-                <AnchorPane fx:id="mainContent" minWidth="1080.0">
-                     <children>
-
-                           </children>
-      </AnchorPane>
               </items>
             </SplitPane>
