@@ -112,6 +112,7 @@ public class KafkaLib {
 
         props.put("default.api.timeout.ms", 5000);
         props.put("request.timeout.ms", 5000);
+        props.put("auto.commit.interval.ms", "1000");
         //props.put("session.timeout.ms", 5000);
 
         props.put("group.id", cluster.getConsumerGroup());
@@ -126,10 +127,10 @@ public class KafkaLib {
         consumer.subscribe(Arrays.asList(topicName));
 
         consumer.poll(0);  // without this, the assignment will be empty.
-        consumer.assignment().forEach(t -> {
-            MyLogger.logDebug("Set " + t.toString() + " to offset 0");
-            consumer.seek(t, 0);
-        });
+        //consumer.assignment().forEach(t -> {
+        //    MyLogger.logDebug("Set " + t.toString() + " to offset 0");
+            consumer.seekToBeginning( consumer.assignment());
+        //});
 
 
         try {
@@ -193,6 +194,9 @@ public class KafkaLib {
 
      } catch (CompletionException e) {
          //todo validate behaviour
+
+         MyLogger.logDebug("Can't produce" + e.getMessage());
+
             //show an alert Dialog
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText("Can't produce! You need to set the TOPIC WRITE ACLs.");
