@@ -53,8 +53,8 @@ Download the latest release version:
 
 | OS  | location  |
 | --- | --- |
-|Windows|[kafkaexplorer-1.1.exe](/releases/kafkaexplorer-1.1.exe)| 
-|MacOs|(in progress)|
+|Windows| 1) Dowload and execute: [kafkaexplorer-1.1.exe](/releases/kafkaexplorer-1.1.exe)| 
+|MacOs|1) Download: [kafkaexplorer-1.1-macos.jar](/releases/kafkaexplorer-1.1-osx.jar) <br>2) Execute: **java -jar kafkaexplorer-1.1-osx.jar**|
 
 ## How to build and run from sources
 
