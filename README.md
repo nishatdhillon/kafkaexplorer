@@ -49,16 +49,12 @@ A sample config.yaml is provided [here](/config/config.yaml)
 
 ## How to run from binaries
 
-Download the latest release of **kafkaexplorer.jar** for Windows or MacOs:
-https://github.com/stephaneuh/kafkaexplorer/tree/develop/releases
+Download the latest release version:
 
-And Simply execute:
-
-```
-java -jar kafkaexplorer-[RELEASE_VERSION]-windows.jar
-//or
-java -jar kafkaexplorer-[RELEASE_VERSION]-macos.jar
-```
+| OS  | location  |
+| --- | --- |
+|Windows|[kafkaexplorer-1.1.exe](/releases/kafkaexplorer-1.1.exe)| 
+|MacOs|(in progress)|
 
 ## How to build and run from sources
 
