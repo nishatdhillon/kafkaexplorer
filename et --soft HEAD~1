@@ -1,0 +1,806 @@
+[33mcommit c50c9b0e16c26ed95eaf1f736fec2da647a473f1[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m)[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Fri Jan 15 22:24:44 2021 -0500
+
+    generate windows .exe
+
+[33mcommit c96bfda33373540f6a08cbf84e0a17facdb4f5a9[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Fri Jan 15 22:14:49 2021 -0500
+
+    initial commit
+
+[33mcommit a11007983756d890f8dbb657662a90b63db178bb[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Fri Jan 15 22:08:37 2021 -0500
+
+    initial commit
+
+[33mcommit c95e76845b62bb204ae2ad357084f6e46186a844[m[33m ([m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Fri Jan 15 18:15:13 2021 -0500
+
+    build mac app file
+
+[33mcommit b4214ab01ad6fad9794727d2bc85eb2865b53520[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Thu Jan 14 14:58:10 2021 -0500
+
+    fix graphics
+
+[33mcommit 4735e790f1c88dedf95623d5aee22163053fac65[m
+Merge: 5d0d789 2df42f7
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Thu Jan 14 14:55:50 2021 -0500
+
+    þMerge branch 'develop' of github.com:stephaneuh/kafkaexplorer into develop
+
+[33mcommit 5d0d789c33ec8f773f517c14b9fe9e800b4bb6b8[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Thu Jan 14 14:55:32 2021 -0500
+
+    fix graphics
+
+[33mcommit 2df42f75a0e488370919d4988cdd35822963623d[m
+Author: stephaneuh <stephane.ris@bnc.ca>
+Date:   Thu Jan 14 09:16:55 2021 -0500
+
+    macos release
+
+[33mcommit c0b2bccc0e1567822adee53d4ed13db95c1f868b[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Thu Jan 14 09:06:56 2021 -0500
+
+    fix consumer seektobegining error
+
+[33mcommit b7cac9ede51a31018d93aa6ca60a08d9be92f695[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Thu Jan 14 09:06:10 2021 -0500
+
+    fix consumer seektobegining error
+
+[33mcommit cbd422c023cd949d3eacf0c28bd48d2d2475ad16[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Wed Jan 13 20:46:09 2021 -0500
+
+    UI corrections
+
+[33mcommit 881cd85bbd2a65cad522dc2eac340f813509f29c[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Wed Jan 13 20:16:33 2021 -0500
+
+    UI corrections
+
+[33mcommit 521ef123e3dd9eaa5b3a9e7285ff72df5835fd9b[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Wed Jan 13 20:15:58 2021 -0500
+
+    UI corrections
+
+[33mcommit baf755abf013080108b8e89e4442b2bdd1abf57e[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Wed Jan 13 18:22:40 2021 -0500
+
+    UI corrections
+
+[33mcommit da82ec6debf8debbfa966b9e72bc2532e09b0961[m
+Author: stephaneuh <stephane.ris@bnc.ca>
+Date:   Sun Jan 10 17:45:45 2021 -0500
+
+    macos build
+
+[33mcommit 9978acc66101a77962948e69d675255b08cd62fc[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Sun Jan 10 17:37:55 2021 -0500
+
+    new consumerGroup properties in the config.yaml
+
+[33mcommit 9d1b3bb2ed56877a6aa9a2934ac2b66fee23f5cc[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Sun Jan 10 12:56:23 2021 -0500
+
+    adding task for cluster connection (doesn't block the ui anymore)
+
+[33mcommit caa2f53b4922e57e5a3150bb4b8ec41079dd96a8[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Sun Jan 10 12:55:04 2021 -0500
+
+    adding task for cluster connection (doesn't block the ui anymore)
+
+[33mcommit c25e1d569fd1e0fe2837780f36599c39bfd6b2ab[m
+Author: stephaneuh <stephane.ris@icloud.com>
+Date:   Sun Jan 10 12:45:11 2021 -0500
+
+    adding task for cluster connection (doesn't block the ui anymore)
+
+[33mcommit d75435b772407ecdb6c5265bf880732a4a5c8211[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 10 11:39:02 2021 -0500
+
+    adding task for cluster connection (doesn't block the ui anymore)
+
+[33mcommit 635442d521c9350ed797c6292fcf127537ce1bfb[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Jan 9 16:44:06 2021 -0500
+
+    adding log4j config
+
+[33mcommit 6948f4486e2124f83478c1c3e88cec89b2567274[m
+Merge: 04fa16c 6c3cad2
+Author: stephaneuh <45180445+stephaneuh@users.noreply.github.com>
+Date:   Sat Jan 9 16:37:07 2021 -0500
+
+    Merge pull request #2 from stephaneuh/dependabot/maven/org.apache.logging.log4j-log4j-core-2.13.2
+    
+    Bump log4j-core from 2.7 to 2.13.2
+
+[33mcommit 04fa16c6eeb9d686505bf11f53f02d5b7ef3e2a0[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Jan 9 16:33:56 2021 -0500
+
+    adding log4j config
+
+[33mcommit 6c3cad2c1ec7d3ecff51de403b49e8db506e9667[m[33m ([m[1;31morigin/dependabot/maven/org.apache.logging.log4j-log4j-core-2.13.2[m[33m)[m
+Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Date:   Sat Jan 9 21:33:07 2021 +0000
+
+    Bump log4j-core from 2.7 to 2.13.2
+    
+    Bumps log4j-core from 2.7 to 2.13.2.
+    
+    Signed-off-by: dependabot[bot] <support@github.com>
+
+[33mcommit ae3bd1f760f64a33010e00eeeb5157ec4eb0f422[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Jan 9 16:32:36 2021 -0500
+
+    adding log4j config
+
+[33mcommit 19b713d3c0348dc244f01117fecdeeba1a7c482f[m
+Author: stephaneuh <stephane.ris@bnc.ca>
+Date:   Tue Jan 5 16:08:53 2021 -0500
+
+    Add macOs jar
+
+[33mcommit 2d6761c09e966933859eb15e3487b171aade5196[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Jan 4 21:08:55 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 512076c5330950fa5cb0f80002215b0165128af1[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Jan 4 20:57:39 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 5481894fb22b6ebd0b517a04e62a1d836160b9eb[m
+Merge: d276e33 05f5449
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Jan 4 20:21:11 2021 -0500
+
+    Merge branch 'develop' of github.com:stephaneuh/kafkaexplorer into develop
+
+[33mcommit d276e333d28884410c2262fef39566bcff481c58[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Jan 4 20:20:53 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 05f544989f7555f5a53fa2832c8ed1fa6fcde562[m
+Author: stephaneuh <stephane.ris@bnc.ca>
+Date:   Mon Jan 4 13:37:15 2021 -0500
+
+    Add macOs jar
+
+[33mcommit e452672baf08e7445a5618a0844cd922c9799aa9[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Jan 4 13:29:15 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 510a040e87bfdc9d2006b80539431f171070ad19[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Jan 4 13:28:14 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 3d011d0a64503e81b4caae9e09079aea349b5f65[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 17:36:48 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit c6ffb8255d39836f3759984108045c20e672f714[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 17:35:54 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 6feb74dee6f3824fdcd0e83f8f06193d63a16a6e[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 17:26:08 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit f3a76ddb874f6fa36d6b993cf2d862d2b8d42a1d[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 17:20:33 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 345936d3cb3c5e3d79c061f19b2fbdedab89f568[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 17:19:29 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 701d913d0bbe7949290789c130340bb1a9f980fb[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 17:18:40 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit d4a804e4130bf4379aa098d916a7e2834b25ac20[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 17:14:29 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit c4d84fc64692b561fc41c927c3936c5d631c3360[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 10:55:53 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 8aca4b742b6b2ef5bd9652b0e80b8b3ad39a2e83[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 10:50:54 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 86e33d69c70f0ea57bf01b7dc9a42e22bc17ec6a[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 10:47:33 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 8357c671c93a59fbb727d1c1c7e102be00e01436[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 10:45:40 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 349d7ac74effafba3f8b3552f21f61f3f1c24b55[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 10:30:29 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 12efd9fc08671858b7d9019751e4d7022203204f[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 10:30:01 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 009c2130bc5df744710f52fb0168f0422b28bafd[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Jan 3 10:27:40 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit 367bc567bbb08dfeda86145806ad86ffd438e3f8[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Jan 2 17:08:24 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit a8fa19e73d533f605af18068fd76fe178e2919c9[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Jan 2 16:57:39 2021 -0500
+
+    Adding error mgmt when loading config.yaml
+
+[33mcommit c795838ec57eba9b21ead109fe4ec308c71a1337[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Jan 2 14:06:36 2021 -0500
+
+    Adding features on topicbrowser page
+
+[33mcommit 1c0817017e3d41e233183bad9e39574cfbc49ee9[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Jan 2 13:55:28 2021 -0500
+
+    Adding features on topicbrowser page
+
+[33mcommit aee12e1f8b8cdfe466307f10824e6964ab7a91d4[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 31 15:30:30 2020 -0500
+
+    Adding windows10 jar
+
+[33mcommit 804901e1f2c111a7067b70e20a901bc02b2d81fb[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 31 15:24:01 2020 -0500
+
+    Adding windows10 jar
+
+[33mcommit 7fb69ad7b933554a2f6d0445a02cb2015916f97f[m
+Author: Stephane Ris <stephane.ris@bnc.ca>
+Date:   Thu Dec 31 15:15:37 2020 -0500
+
+    Add macOs jar
+
+[33mcommit 1c095c1f458e78c57afdc4a31370b218a8495109[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 31 13:33:57 2020 -0500
+
+    initial commit
+
+[33mcommit 724cbc03205e99c7266413edbba3e04103d4988b[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 31 11:38:05 2020 -0500
+
+    initial commit
+
+[33mcommit eb16a64e97e156c23804c3bd24ca5a0c9b6b3106[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 31 11:19:49 2020 -0500
+
+    initial commit
+
+[33mcommit 0197645cb694eedb0bbea0219a59c75808afc79d[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 19:00:08 2020 -0500
+
+    initial commit
+
+[33mcommit 391a48fbd9a309e44e2f56502c435c0a9c46deb5[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:59:36 2020 -0500
+
+    initial commit
+
+[33mcommit 6337a63863649423de886c161ccbc43da9ecacfe[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:56:18 2020 -0500
+
+    initial commit
+
+[33mcommit 0801715884df9c405a59407f0cdc7c9e36654b61[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:55:29 2020 -0500
+
+    initial commit
+
+[33mcommit 2249f56f230b899436bf2930897aa926ca4332d1[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:54:12 2020 -0500
+
+    initial commit
+
+[33mcommit 5260fe38572265102b9db45a7ed1d6b151ea1050[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:47:31 2020 -0500
+
+    initial commit
+
+[33mcommit cc6a4dc38ca8eeefe713a78d0724ecd81258687e[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:33:16 2020 -0500
+
+    initial commit
+
+[33mcommit 995a07e5d5aca22ca014a9747011c1e8990738a5[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:31:34 2020 -0500
+
+    initial commit
+
+[33mcommit ab6ece0c5b2fdc13cf92d1a5b9829a07eb672dcd[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:31:09 2020 -0500
+
+    initial commit
+
+[33mcommit c3fdba30b3f5b5941f1aa0b595841b0d156fa969[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:28:54 2020 -0500
+
+    initial commit
+
+[33mcommit 530cb0149d55a2065c741d7cd85b11d701d0ba81[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:27:17 2020 -0500
+
+    initial commit
+
+[33mcommit ad28fd9258dd80b6cbe87c75dae4eadd9427328d[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:22:59 2020 -0500
+
+    initial commit
+
+[33mcommit 371b6601f95856b7bbae665b7aa5978e2d3c5ce4[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:21:53 2020 -0500
+
+    initial commit
+
+[33mcommit e4ff5df2a438c266d2eef80f2f43d4c59b59dc6a[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 18:11:55 2020 -0500
+
+    initial commit
+
+[33mcommit f828640c0d5005512a7de605ee3ed0ef4fc56247[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 17:43:36 2020 -0500
+
+    initial commit
+
+[33mcommit f4a84cf9d227e81f76bd85adc399192e91ae34ff[m[33m ([m[1;33mtag: R1.1[m[33m)[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 17:38:47 2020 -0500
+
+    initial commit
+
+[33mcommit a35735ad8117746bb53837c6130cdec6c5a30a12[m[33m ([m[1;33mtag: 1.0[m[33m)[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 16:31:04 2020 -0500
+
+    initial commit
+
+[33mcommit e9bcf946b2cb111822819df67ae538e47af04305[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 15:53:17 2020 -0500
+
+    initial commit
+
+[33mcommit 0cc5fa05e47af7d5d37d18d2c2417ada10f4063f[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 15:49:48 2020 -0500
+
+    initial commit
+
+[33mcommit 4a3526a806cc3aeb3eea6aeda7fb41c8e3fcc3c9[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 15:43:39 2020 -0500
+
+    initial commit
+
+[33mcommit a0d8ee09d0ecc84cfcd0730640b5992c84e8c5dc[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 15:38:50 2020 -0500
+
+    initial commit
+
+[33mcommit 34037278f8e539dbe95e7fa421b8b9bd8f4a1d3f[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 15:17:56 2020 -0500
+
+    initial commit
+
+[33mcommit 4946576601d1394fdfb3b2bf21f9f415a13ee6f1[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 13:36:50 2020 -0500
+
+    initial commit
+
+[33mcommit 64b741038b93a27b1186607aa7e41e9cc013fcc1[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 11:15:01 2020 -0500
+
+    initial commit
+
+[33mcommit 8a19918efc3ae6c6c466f837807a749132e1dfc5[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Wed Dec 30 10:57:33 2020 -0500
+
+    initial commit
+
+[33mcommit 0261e02a621972d6b9dc701ae8a0e361b82368cd[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 20:58:53 2020 -0500
+
+    initial commit
+
+[33mcommit 514da6603d9eb9793c88ed11eb211fae0bd85ae0[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 20:36:35 2020 -0500
+
+    initial commit
+
+[33mcommit ed9f3cefbf3a3769367419ce2787696c45377391[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 17:49:36 2020 -0500
+
+    initial commit
+
+[33mcommit c655b6391a7026686f55090011cca6273ae55784[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 17:22:32 2020 -0500
+
+    initial commit
+
+[33mcommit 001d4ff4eef50761a4faafee4fe722c4c655f2fa[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 17:21:49 2020 -0500
+
+    initial commit
+
+[33mcommit 0694643519b1776027845733e75d0de8d51c2cb5[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 17:10:05 2020 -0500
+
+    initial commit
+
+[33mcommit 3dbfe16acc2db4f22f8e6434608d5bc60752e571[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 17:08:48 2020 -0500
+
+    initial commit
+
+[33mcommit cfef91299f14bbf46a8222bb166f94848af7329f[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 17:07:58 2020 -0500
+
+    initial commit
+
+[33mcommit be03271820672ada8abd72c4b46e8f2eebd8b6f0[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 17:05:39 2020 -0500
+
+    initial commit
+
+[33mcommit decf145e5e42d281e5e5c6952ad1c46aabfbeda6[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 16:58:11 2020 -0500
+
+    initial commit
+
+[33mcommit 7b26f3c1cbfdc3ada44b4c645c47c2b7ee3d14c9[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 16:57:04 2020 -0500
+
+    initial commit
+
+[33mcommit 760f05f6070f9d4f1ec3f794316213ab84fff5f7[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 16:51:12 2020 -0500
+
+    initial commit
+
+[33mcommit 7174857fa35a32939df28f40d87a55fada1465d4[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 12:53:51 2020 -0500
+
+    initial commit
+
+[33mcommit 91f5f4c16df447c97d4d91539e18843c70d3050b[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 12:50:50 2020 -0500
+
+    initial commit
+
+[33mcommit 2d9b353e9867dfa096b4fd04d885ef1a2721e053[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 12:46:32 2020 -0500
+
+    initial commit
+
+[33mcommit 6b7f31f6410d10e3f2e9e6a8cfc8fec530c5bf57[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 12:42:11 2020 -0500
+
+    initial commit
+
+[33mcommit 45bf5da833ebb29cf1fc7fb865fbf54c884c2df1[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 10:52:08 2020 -0500
+
+    initial commit
+
+[33mcommit b61a9fc4a68f48d32e718c43e9ccd0272d9c7ecf[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 10:50:06 2020 -0500
+
+    initial commit
+
+[33mcommit 70587af1ce3c6fa010858893e789dfd753a38e02[m[33m ([m[1;31morigin/release/R.01[m[33m, [m[1;32mrelease/R.01[m[33m)[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 10:41:32 2020 -0500
+
+    initial commit
+
+[33mcommit 844be11f33deed798c9f0b78e2f5ecf0fd7b29cc[m
+Author: stephaneuh <45180445+stephaneuh@users.noreply.github.com>
+Date:   Tue Dec 29 10:32:04 2020 -0500
+
+    Create maven-publish.yml
+
+[33mcommit 0f6a5ce24db6e4e8fa65affda0fdee32b8f78ca3[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Tue Dec 29 10:07:53 2020 -0500
+
+    initial commit
+
+[33mcommit 002487c3b68d95f53884acfd0c336cb1a1f5b6d3[m
+Author: stephaneuh <45180445+stephaneuh@users.noreply.github.com>
+Date:   Tue Dec 29 09:20:09 2020 -0500
+
+    Create maven.yml
+
+[33mcommit 93375d89b299471aadd33ceddea89bce11c9f01d[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 18:50:22 2020 -0500
+
+    initial commit
+
+[33mcommit d125df1d5efcc6032669108c72708a5bf79cd7fb[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 18:49:08 2020 -0500
+
+    initial commit
+
+[33mcommit aa97f0bd88291c3356f96cd87026008e0b67b379[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 16:42:33 2020 -0500
+
+    initial commit
+
+[33mcommit 42e05103c68012994593de36f5870c7c761bbebb[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 16:17:27 2020 -0500
+
+    initial commit
+
+[33mcommit 624159fe850cc56d6518583001adca5966dd7157[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 16:13:51 2020 -0500
+
+    initial commit
+
+[33mcommit e4f24f765135e64067bbbabecb67fdd3ba84cf09[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 16:07:19 2020 -0500
+
+    initial commit
+
+[33mcommit f55ac7f351f244d2cfca70737257e1ffda76a863[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 13:52:29 2020 -0500
+
+    initial commit
+
+[33mcommit 8da16006297da08548b69b055753c106aa374bd2[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 13:34:37 2020 -0500
+
+    initial commit
+
+[33mcommit c3d8299f9a9cc18b704acbecb175cf80560dcb5a[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Mon Dec 28 12:25:40 2020 -0500
+
+    initial commit
+
+[33mcommit 03e97a7053402ab38ded1fda11405a658a9b48ff[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 21:21:59 2020 -0500
+
+    initial commit
+
+[33mcommit 7596318c909f2bd8882b26fcf0396e43944ef03e[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 21:07:46 2020 -0500
+
+    initial commit
+
+[33mcommit 825f2a8d22f03e64bc125aa0263c849685a04d44[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 20:18:45 2020 -0500
+
+    initial commit
+
+[33mcommit d656e138d540f4535a573461fbc7f8644e2dd38f[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 20:11:02 2020 -0500
+
+    initial commit
+
+[33mcommit a63d58cba94088c9882c83637c2ee4b61914a378[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 17:29:57 2020 -0500
+
+    initial commit
+
+[33mcommit 986dab388bc1daa612f1c5274ce25c28dc676889[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 17:27:32 2020 -0500
+
+    initial commit
+
+[33mcommit 5cf2651aa6decc07ec5c1189d9231120cb758a22[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 17:21:04 2020 -0500
+
+    initial commit
+
+[33mcommit 3b6a9deafeafa24d1e74441034be022084e9d375[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 11:55:34 2020 -0500
+
+    initial commit
+
+[33mcommit 077424baf32a112c15452c8ed4d9e0c5a1d487b0[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sun Dec 27 11:39:15 2020 -0500
+
+    initial commit
+
+[33mcommit fc28496e4d74d1937f22fc942ef5d9a1e899ea24[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Dec 26 16:12:25 2020 -0500
+
+    initial commit
+
+[33mcommit d0f58b1e35ae28344a4444f1c2f7f2926f7b55bb[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Dec 26 16:11:12 2020 -0500
+
+    initial commit
+
+[33mcommit ded2aff26babadf0cc37ae4929313a210caebd0d[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Dec 26 16:04:37 2020 -0500
+
+    initial commit
+
+[33mcommit cd7389cf9262e04422fe3e3e09c498e90a8a4ddc[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Dec 26 11:34:19 2020 -0500
+
+    initial commit
+
+[33mcommit 0a0a217d8057e0d629d873606361ff8fa8f88a12[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Sat Dec 26 11:13:13 2020 -0500
+
+    initial commit
+
+[33mcommit c30de6659a95d12ead9bc9529d2c6caa71e0b679[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Fri Dec 25 17:29:27 2020 -0500
+
+    initial commit
+
+[33mcommit 646c9a560171f72f9c7f073eed4d30558c1883f0[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Fri Dec 25 13:19:54 2020 -0500
+
+    initial commit
+
+[33mcommit af633f4502bc8af0419939fa45ddfc67e08ea452[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 24 13:21:09 2020 -0500
+
+    initial commit
+
+[33mcommit 51f77fb558409a9656e8c70f0378c01a27d0cde6[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 24 12:40:54 2020 -0500
+
+    initial commit
+
+[33mcommit 32b8d794177154f814566fa8220ca9d58550d304[m
+Author: stephaneuh <steph@DESKTOP-15P9GKB.localdomain>
+Date:   Thu Dec 24 11:06:29 2020 -0500
+
+    initial commit
+
+[33mcommit f3c308ec6c8c288bead1a2f33311bd53a34b0ed3[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: stephaneuh <45180445+stephaneuh@users.noreply.github.com>
+Date:   Thu Dec 24 09:36:38 2020 -0500
+
+    Initial commit
