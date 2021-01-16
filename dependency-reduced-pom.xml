@@ -53,32 +53,42 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>sh.tak.appbundler</groupId>
-        <artifactId>appbundle-maven-plugin</artifactId>
-        <version>1.2.0</version>
+        <groupId>com.akathist.maven.plugins.launch4j</groupId>
+        <artifactId>launch4j-maven-plugin</artifactId>
         <executions>
           <execution>
+            <id>l4j-clui</id>
             <phase>package</phase>
             <goals>
-              <goal>bundle</goal>
+              <goal>launch4j</goal>
             </goals>
+            <configuration>
+              <headerType>gui</headerType>
+              <outfile>target/kafkaexplorer.exe</outfile>
+              <jar>target/kafkaexplorer-1.1-SNAPSHOT.jar</jar>
+              <errTitle>kafkaexplorer</errTitle>
+              <classPath>
+                <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                <addDependencies>true</addDependencies>
+                <preCp>anything</preCp>
+              </classPath>
+              <jre>
+                <path>../jdk-11</path>
+              </jre>
+              <versionInfo>
+                <fileVersion>1.2.3.4</fileVersion>
+                <txtFileVersion>txt file version?</txtFileVersion>
+                <fileDescription>kafkaexplorer</fileDescription>
+                <copyright>kafkaexplorer</copyright>
+                <productVersion>4.3.2.1</productVersion>
+                <txtProductVersion>txt product version</txtProductVersion>
+                <productName>kafkaexplorer</productName>
+                <internalName>kafkaexplorer</internalName>
+                <originalFilename>kafkaexplorer.exe</originalFilename>
+              </versionInfo>
+            </configuration>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-archiver</artifactId>
-            <version>RELEASE</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-tools</artifactId>
-            <version>2.0</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <mainClass>com.kafkaexplorer.Launcher</mainClass>
-        </configuration>
       </plugin>
     </plugins>
   </build>

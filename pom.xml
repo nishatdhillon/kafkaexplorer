@@ -13,6 +13,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.akathist.maven.plugins.launch4j</groupId>
+            <artifactId>launch4j-maven-plugin</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
@@ -62,12 +68,7 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.14.0</version>
         </dependency>
-        <dependency>
-            <groupId>sh.tak.appbundler</groupId>
-            <artifactId>appbundle-maven-plugin</artifactId>
-            <version>1.2.0</version>
-            <type>maven-plugin</type>
-        </dependency>
+
     </dependencies>
     <build>
 
@@ -102,70 +103,80 @@
 
 
 
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-shade-plugin</artifactId>
-                        <version>3.2.4</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>shade</goal>
-                                </goals>
-                                <configuration>
-                                    <transformers>
-                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                            <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                                        </transformer>
-                                    </transformers>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
+                         <plugin>
+                             <groupId>org.apache.maven.plugins</groupId>
+                             <artifactId>maven-shade-plugin</artifactId>
+                             <version>3.2.4</version>
+                             <executions>
+                                 <execution>
+                                     <phase>package</phase>
+                                     <goals>
+                                         <goal>shade</goal>
+                                     </goals>
+                                     <configuration>
+                                         <transformers>
+                                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                                 <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                                             </transformer>
+                                         </transformers>
+                                     </configuration>
+                                 </execution>
+                             </executions>
+                         </plugin>
 
-            <plugin>
-                <groupId>sh.tak.appbundler</groupId>
-                <artifactId>appbundle-maven-plugin</artifactId>
-                <version>1.2.0</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.plexus</groupId>
-                        <artifactId>plexus-archiver</artifactId>
-                        <version>RELEASE</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.apache.velocity</groupId>
-                        <artifactId>velocity-tools</artifactId>
-                        <version>2.0</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>bundle</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!--
-                      <plugin>
+                 <plugin>
+                     <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                     <artifactId>launch4j-maven-plugin</artifactId>
+                     <executions>
+                         <execution>
+                             <id>l4j-clui</id>
+                             <phase>package</phase>
+                             <goals><goal>launch4j</goal></goals>
+                             <configuration>
+                                 <headerType>gui</headerType>
+                                 <outfile>target/kafkaexplorer.exe</outfile>
+                                 <jar>target/kafkaexplorer-1.1-SNAPSHOT.jar</jar>
+                                 <errTitle>kafkaexplorer</errTitle>
+                                 <classPath>
+                                     <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                                     <addDependencies>true</addDependencies>
+                                     <preCp>anything</preCp>
+                                 </classPath>
 
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-        -->
+                                 <jre>
+                                    <path>../jdk-11</path>
+                                 </jre>
+                                 -->
+                                 <versionInfo>
+                                     <fileVersion>1.2.3.4</fileVersion>
+                                     <txtFileVersion>txt file version?</txtFileVersion>
+                                     <fileDescription>kafkaexplorer</fileDescription>
+                                     <copyright>kafkaexplorer</copyright>
+                                     <productVersion>4.3.2.1</productVersion>
+                                     <txtProductVersion>txt product version</txtProductVersion>
+                                     <productName>kafkaexplorer</productName>
+                                     <internalName>kafkaexplorer</internalName>
+                                     <originalFilename>kafkaexplorer.exe</originalFilename>
+                                 </versionInfo>
+                             </configuration>
+                         </execution>
+                     </executions>
+                 </plugin>
+                 <!--
+                           <plugin>
+
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-jar-plugin</artifactId>
+                     <version>3.2.0</version>
+                     <configuration>
+                         <archive>
+                             <manifest>
+                                 <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                             </manifest>
+                         </archive>
+                     </configuration>
+                 </plugin>
+             -->
         </plugins>
     </build>
 </project>
