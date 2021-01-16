@@ -155,7 +155,7 @@
                                  <jre>
                                     <path>../jdk-11</path>
                                  </jre>
-                                 -->
+
                                  <versionInfo>
                                      <fileVersion>1.2.3.4</fileVersion>
                                      <txtFileVersion>txt file version?</txtFileVersion>
