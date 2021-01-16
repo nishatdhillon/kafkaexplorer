@@ -4,7 +4,7 @@
   <groupId>com.kafkaexplorer</groupId>
   <artifactId>kafkaexplorer</artifactId>
   <name>demo</name>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <url>http://maven.apache.org</url>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
@@ -64,8 +64,8 @@
             </goals>
             <configuration>
               <headerType>gui</headerType>
-              <outfile>target/kafkaexplorer.exe</outfile>
-              <jar>target/kafkaexplorer-1.1-SNAPSHOT.jar</jar>
+              <outfile>releases/kafkaexplorer.exe</outfile>
+              <jar>target/kafkaexplorer-${version}.jar</jar>
               <errTitle>kafkaexplorer</errTitle>
               <classPath>
                 <mainClass>com.kafkaexplorer.Launcher</mainClass>

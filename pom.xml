@@ -4,7 +4,7 @@
     <groupId>com.kafkaexplorer</groupId>
     <artifactId>kafkaexplorer</artifactId>
     <packaging>jar</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <name>demo</name>
     <url>http://maven.apache.org</url>
 
@@ -81,6 +81,14 @@
                 </includes>
             </resource>
         </resources>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.6.1</version>
+            </extension>
+        </extensions>
+
 
         <plugins>
             <plugin>
@@ -119,6 +127,7 @@
                                                  <mainClass>com.kafkaexplorer.Launcher</mainClass>
                                              </transformer>
                                          </transformers>
+                                         <outputFile>releases/${project.artifactId}-${project.version}-${os.detected.name}.jar</outputFile>
                                      </configuration>
                                  </execution>
                              </executions>
@@ -134,9 +143,9 @@
                              <goals><goal>launch4j</goal></goals>
                              <configuration>
                                  <headerType>gui</headerType>
-                                 <outfile>target/kafkaexplorer.exe</outfile>
-                                 <jar>target/kafkaexplorer-1.1-SNAPSHOT.jar</jar>
-                                 <errTitle>kafkaexplorer</errTitle>
+                                 <outfile>releases/kafkaexplorer-${version}.exe</outfile>
+                                 <jar>releases/${project.artifactId}-${version}-${os.detected.name}.jar</jar>
+                                 <errTitle>${project.artifactId}</errTitle>
                                  <classPath>
                                      <mainClass>com.kafkaexplorer.Launcher</mainClass>
                                      <addDependencies>true</addDependencies>
