@@ -54,7 +54,7 @@ Download the latest release version:
 | OS  | location  |
 | --- | --- |
 |Windows| Download and execute: [kafkaexplorer-1.1.exe](/releases/kafkaexplorer-1.1.exe)| 
-|MacOs| Download and execute: [kafkaexplorer-1.1.app](/releases/kafkaexplorer-1.1.app)|
+|MacOs| Download and execute: [kafkaexplorer-1.1.dmg](/releases/kafkaexplorer-1.1.dmg)|
 
 ## How to build and run from sources
 
