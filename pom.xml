@@ -70,6 +70,10 @@
         </dependency>
 
     </dependencies>
+
+
+
+
     <build>
 
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -172,6 +176,8 @@
                          </execution>
                      </executions>
                  </plugin>
+
+
             <plugin>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
@@ -179,7 +185,7 @@
                 <executions>
                     <execution>
                         <!-- Run our version calculation script -->
-                        <id>Create MacOS app package</id>
+                        <id>Create-MacOS-app-package</id>
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
@@ -191,21 +197,48 @@
                     </execution>
                 </executions>
             </plugin>
-                 <!--
-                           <plugin>
-
-                     <groupId>org.apache.maven.plugins</groupId>
-                     <artifactId>maven-jar-plugin</artifactId>
-                     <version>3.2.0</version>
-                     <configuration>
-                         <archive>
-                             <manifest>
-                                 <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                             </manifest>
-                         </archive>
-                     </configuration>
-                 </plugin>
-             -->
         </plugins>
     </build>
+
+    <profiles>
+        <!-- Disable DMG creation when building on Windows -->
+        <profile>
+            <id>windows</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <executions>
+                            <execution>
+                                <!-- Run our version calculation script -->
+                                <id>Create-MacOS-app-package</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Disable .exe creation when building on Mac -->
+        <profile>
+        <id>mac</id>
+        <build>
+        <plugins>
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>l4j-clui</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        </build>
+        </profile>
+    </profiles>
 </project>

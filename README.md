@@ -49,16 +49,19 @@ A sample config.yaml is provided [here](/config/config.yaml)
 
 ## How to run from binaries
 
-Download the latest release version:
+Download and execute the latest version:
 
-| OS  | location  |
-| --- | --- |
-|Windows| Download and execute: [kafkaexplorer-1.1.exe](/releases/kafkaexplorer-1.1.exe)| 
-|MacOs| Download and execute: [kafkaexplorer-1.1.dmg](/releases/kafkaexplorer-1.1.dmg)|
+- Windows: [kafkaexplorer-1.1.exe](/releases/kafkaexplorer-1.1.exe)| 
+- MacOs: [kafkaexplorer-1.1.dmg](/releases/kafkaexplorer-1.1.dmg)|
 
 ## How to build and run from sources
 
 Simply execute:
+- Windows:
 ```
-mvn clean javafx:run
+mvn package javafx:run -P windows
+```
+- MacOs:
+```
+mvn package javafx:run -P mac
 ```
