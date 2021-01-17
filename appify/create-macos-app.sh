@@ -7,6 +7,7 @@ cp ../releases/kafkaexplorer-1.1-osx.jar kafkaexplorer-1.1.app/Contents/MacOS/re
 rm -rf kafkaexplorerDMG
 mkdir kafkaexplorerDMG
 mv kafkaexplorer-1.1.app kafkaexplorerDMG
+rm -rf /tmp/tmp.dmg
 hdiutil create /tmp/tmp.dmg -ov -volname "kafkaexplorer-1.1" -fs HFS+ -srcfolder "kafkaexplorerDMG"
 hdiutil convert /tmp/tmp.dmg -format UDZO -o kafkaexplorer-1.1.dmg
 rm -rf ../releases/kafkaexplorer-1.1.dmg
