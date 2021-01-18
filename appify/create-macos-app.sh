@@ -5,7 +5,7 @@ rm -rf kafkaexplorer-1.1.app
 mkdir kafkaexplorer-1.1.app/Contents/MacOS/releases
 mkdir kafkaexplorer-1.1.app/Ressources
 cp Info.plist kafkaexplorer-1.1.app/Contents
-cp ../img/ke-icon-blue-no-text.icns kafkaexplorer-1.1.app/Ressources/ke-icon-blue-no-text.ico
+cp ../img/ke-icon-blue.icns kafkaexplorer-1.1.app/Ressources/ke-icon-blue-no-text.ico
 cp ../releases/kafkaexplorer-1.1-osx.jar kafkaexplorer-1.1.app/Contents/MacOS/releases
 rm -rf kafkaexplorerDMG
 mkdir kafkaexplorerDMG
