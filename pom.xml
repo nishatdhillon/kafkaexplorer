@@ -160,7 +160,7 @@
                                     <path>%JAVA_HOME%</path>
                                      <minVersion>1.8.0</minVersion>
                                  </jre>
-
+                                 <icon>img/ke-icon-blue-no-text.ico</icon>
                                  <versionInfo>
                                      <fileVersion>1.2.3.4</fileVersion>
                                      <txtFileVersion>txt file version?</txtFileVersion>
