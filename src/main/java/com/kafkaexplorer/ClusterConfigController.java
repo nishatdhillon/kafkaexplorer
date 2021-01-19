@@ -20,6 +20,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import org.apache.kafka.common.PartitionInfo;
 
 import java.io.File;
@@ -146,10 +149,14 @@ public class ClusterConfigController implements Initializable {
         };
 
         task.setOnFailed(evt -> {
-            MyLogger.logDebug("The task failed with the following exception: " + task.getException().getMessage());
+
+            StringWriter errors = new StringWriter();
+            task.getException().printStackTrace(new PrintWriter(errors));
+
+            MyLogger.logDebug("The task failed with the following exception: " + errors.toString());
             //show an alert Dialog
             Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText(task.getException().getMessage());
+            a.setContentText(errors.toString());
             a.show();
             progBar1.setVisible(false);
 
