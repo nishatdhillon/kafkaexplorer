@@ -8,8 +8,16 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="openjdk-15" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:13.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.akathist.maven.plugins.launch4j:launch4j-maven-plugin:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: net.sf.launch4j:launch4j:core:3.12" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.7.0" level="project" />
@@ -53,13 +61,13 @@
     <orderEntry type="library" name="Maven: org.xerial.snappy:snappy-java:1.1.7.7" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:13.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:13.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:13.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:13.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:13.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:13.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:13.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:13.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:13.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.12.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.12.0" level="project" />
