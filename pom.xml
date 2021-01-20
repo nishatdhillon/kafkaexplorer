@@ -157,8 +157,11 @@
                                  </classPath>
 
                                  <jre>
+                                     <bundledJre64Bit>true</bundledJre64Bit>
                                     <path>%JAVA_HOME%</path>
                                      <minVersion>1.8.0</minVersion>
+                                     <initialHeapSize>1024</initialHeapSize>
+                                     <maxHeapSize>2048</maxHeapSize>
                                  </jre>
                                  <icon>img/ke-icon-blue-no-text.ico</icon>
                                  <versionInfo>

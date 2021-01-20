@@ -27,24 +27,48 @@ import java.util.concurrent.CompletionException;
 public class KafkaLib {
 
     public boolean continueBrowsing;
+    private Properties props;
+
+    public KafkaLib() {
+
+         this.props = new Properties();
+
+    }
+
+    private Properties getProps() {
+        return this.props;
+    }
+
+    private void setProps(Cluster cluster) {
+
+        //consumer config
+        this.props.put("bootstrap.servers", cluster.getHostname());
+        this.props.put("security.protocol", cluster.getProtocol());
+        this.props.put("sasl.jaas.config", cluster.getJaasConfig());
+        this.props.put("sasl.mechanism", cluster.getMechanism());
+
+        this.props.put("default.api.timeout.ms", 5000);
+        this.props.put("request.timeout.ms", 5000);
+        //this.props.put("session.timeout.ms", 5000);
+        this.props.put("auto.commit.interval.ms", "1000");
+
+        this.props.put("group.id", cluster.getConsumerGroup());
+        this.props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        this.props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+
+        //producer config
+        this.props.put(ProducerConfig.ACKS_CONFIG, "all");
+        this.props.put(ProducerConfig.ACKS_CONFIG, "all");
+        this.props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+        this.props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+
+    }
 
     public String connect(Cluster cluster) throws Exception{
 
-        Properties props = new Properties();
-        props.put("bootstrap.servers", cluster.getHostname());
-        props.put("security.protocol", cluster.getProtocol());
-        props.put("sasl.jaas.config", cluster.getJaasConfig());
-        props.put("sasl.mechanism", cluster.getMechanism());
+        this.setProps(cluster);
 
-        props.put("default.api.timeout.ms", 5000);
-        props.put("request.timeout.ms", 5000);
-        props.put("session.timeout.ms", 5000);
-
-        props.put("group.id", cluster.getConsumerGroup());
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>( this.getProps());
         consumer.close();
 
         return "OK";
@@ -54,21 +78,9 @@ public class KafkaLib {
 
         Map<String, List<PartitionInfo>> topics;
 
-        Properties props = new Properties();
-        props.put("bootstrap.servers", cluster.getHostname());
-        props.put("security.protocol", cluster.getProtocol());
-        props.put("sasl.jaas.config", cluster.getJaasConfig());
-        props.put("sasl.mechanism", cluster.getMechanism());
+        this.setProps(cluster);
 
-        props.put("default.api.timeout.ms", 5000);
-        props.put("request.timeout.ms", 5000);
-        props.put("session.timeout.ms", 5000);
-
-        props.put("group.id", cluster.getConsumerGroup());
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(this.getProps());
         topics = consumer.listTopics();
         consumer.close();
 
@@ -80,21 +92,9 @@ public class KafkaLib {
 
         List<PartitionInfo> topicPartitions;
 
-        Properties props = new Properties();
-        props.put("bootstrap.servers", cluster.getHostname());
-        props.put("security.protocol", cluster.getProtocol());
-        props.put("sasl.jaas.config", cluster.getJaasConfig());
-        props.put("sasl.mechanism", cluster.getMechanism());
+        this.setProps(cluster);
 
-        props.put("default.api.timeout.ms", 5000);
-        props.put("request.timeout.ms", 5000);
-        props.put("session.timeout.ms", 5000);
-
-        props.put("group.id", cluster.getConsumerGroup());
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(this.getProps());
         topicPartitions = consumer.partitionsFor(topicName);
         consumer.close();
 
@@ -104,26 +104,12 @@ public class KafkaLib {
 
     public void browseTopic(Cluster cluster, String topicName, TableView messagesTable) {
 
-        Properties props = new Properties();
-        props.put("bootstrap.servers", cluster.getHostname());
-        props.put("security.protocol", cluster.getProtocol());
-        props.put("sasl.jaas.config", cluster.getJaasConfig());
-        props.put("sasl.mechanism", cluster.getMechanism());
-
-        props.put("default.api.timeout.ms", 5000);
-        props.put("request.timeout.ms", 5000);
-        props.put("auto.commit.interval.ms", "1000");
-        //props.put("session.timeout.ms", 5000);
-
-        props.put("group.id", cluster.getConsumerGroup());
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        this.setProps(cluster);
 
         //props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         //props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); //or latest
 
-
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(this.getProps());
         consumer.subscribe(Arrays.asList(topicName));
 
         consumer.poll(0);  // without this, the assignment will be empty.
@@ -166,27 +152,9 @@ public class KafkaLib {
 
     public void produceMessage(Cluster cluster, String topicName, String record) {
 
-       // final CompletableFuture<Exception> errorResult = new CompletableFuture();
+        this.setProps(cluster);
 
-        Properties props = new Properties();
-        props.put("bootstrap.servers", cluster.getHostname());
-        props.put("security.protocol", cluster.getProtocol());
-        props.put("sasl.jaas.config", cluster.getJaasConfig());
-        props.put("sasl.mechanism", cluster.getMechanism());
-
-        props.put("default.api.timeout.ms", 5000);
-        props.put("request.timeout.ms", 5000);
-        //props.put("session.timeout.ms", 5000);
-
-        props.put("group.id", cluster.getConsumerGroup());
-        props.put(ProducerConfig.ACKS_CONFIG, "all");
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
-
-
-        Producer<String, String> producer = new KafkaProducer<String, String>(props);
-
-
+        Producer<String, String> producer = new KafkaProducer<String, String>( this.getProps());
 
         //Handle an exception from the callback
      try {
@@ -213,22 +181,9 @@ public class KafkaLib {
     //Need to build an AdminClient (requires more privileges that a Kafka Consumer)
         List<PartitionInfo> topicPartitions;
 
-        Properties props = new Properties();
-        props.put("bootstrap.servers", cluster.getHostname());
-        props.put("security.protocol", cluster.getProtocol());
-        props.put("sasl.jaas.config", cluster.getJaasConfig());
-        props.put("sasl.mechanism", cluster.getMechanism());
+        this.setProps(cluster);
 
-        props.put("default.api.timeout.ms", 5000);
-        props.put("request.timeout.ms", 5000);
-        props.put("session.timeout.ms", 5000);
-
-        props.put("group.id", cluster.getConsumerGroup());
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-
-
-        AdminClient adminClient = KafkaAdminClient.create(props);
+        AdminClient adminClient = KafkaAdminClient.create(this.getProps());
 
             ConfigResource resource = new ConfigResource(ConfigResource.Type.TOPIC, topicName.toString());
 
