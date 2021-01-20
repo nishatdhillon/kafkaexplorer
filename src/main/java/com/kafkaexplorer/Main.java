@@ -6,11 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import java.util.Locale;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Locale.setDefault(new Locale("en", "CA"));
         Parent root = FXMLLoader.load(getClass().getResource("/kafkaExplorer.fxml"));
         primaryStage.setTitle("Kafka Explorer (community-edition)");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/ke-logo-font-15.png")));
