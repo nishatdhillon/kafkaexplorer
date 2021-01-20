@@ -3,9 +3,9 @@ cd -- "$(dirname -- "$BASH_SOURCE")"
 rm -rf kafkaexplorer-1.1.app
 ./appify.sh run.command kafkaexplorer-1.1
 mkdir kafkaexplorer-1.1.app/Contents/MacOS/releases
-mkdir kafkaexplorer-1.1.app/Resources
+mkdir kafkaexplorer-1.1.app/Contents/Resources
 cp Info.plist kafkaexplorer-1.1.app/Contents
-cp ../img/ke-icon-blue.icns kafkaexplorer-1.1.app/Resources
+cp ../img/keiconblue.icns kafkaexplorer-1.1.app/Contents/Resources
 cp ../releases/kafkaexplorer-1.1-osx.jar kafkaexplorer-1.1.app/Contents/MacOS/releases
 rm -rf kafkaexplorerDMG
 mkdir kafkaexplorerDMG
