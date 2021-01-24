@@ -75,6 +75,26 @@
             <artifactId>java-util</artifactId>
             <version>1.62.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.fvarrui/javapackager -->
+        <dependency>
+            <groupId>io.github.fvarrui</groupId>
+            <artifactId>javapackager</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.coderplus.maven.plugins/copy-rename-maven-plugin -->
+        <dependency>
+            <groupId>com.coderplus.maven.plugins</groupId>
+            <artifactId>copy-rename-maven-plugin</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+
     </dependencies>
 
 
@@ -120,134 +140,127 @@
             </plugin>
 
 
+            <!--
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-shade-plugin</artifactId>
+                            <version>3.2.4</version>
+                            <executions>
+                                <execution>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>shade</goal>
+                                    </goals>
+                                    <configuration>
+                                        <transformers>
+                                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                                <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                                            </transformer>
+                                        </transformers>
+                                        <outputFile>releases/${project.artifactId}-${project.version}-${os.detected.name}.jar</outputFile>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+-->
+           <plugin>
+               <groupId>io.github.fvarrui</groupId>
+               <artifactId>javapackager</artifactId>
+               <version>1.5.0</version>
+               <executions>
+                   <execution>
+                       <phase>package</phase>
+                       <goals>
+                           <goal>package</goal>
+                       </goals>
+                       <configuration>
+                           <!-- mandatory -->
+                            <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                            <name>Kafkaexplorer</name>
+                            <!-- optional -->
+                            <bundleJre>false</bundleJre>
+                            <jrePath>C:\Program Files\java\jre1.8.0_281</jrePath>
+                            <generateInstaller>true</generateInstaller>
+                            <administratorRequired>false</administratorRequired>
+                            <platform>windows</platform>
+                            <createZipball>false</createZipball>
+                            <outputDirectory>target</outputDirectory>
+                            <winConfig>
 
-                         <plugin>
-                             <groupId>org.apache.maven.plugins</groupId>
-                             <artifactId>maven-shade-plugin</artifactId>
-                             <version>3.2.4</version>
-                             <executions>
-                                 <execution>
-                                     <phase>package</phase>
-                                     <goals>
-                                         <goal>shade</goal>
-                                     </goals>
-                                     <configuration>
-                                         <transformers>
-                                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                                 <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                                             </transformer>
-                                         </transformers>
-                                         <outputFile>releases/${project.artifactId}-${project.version}-${os.detected.name}.jar</outputFile>
-                                     </configuration>
-                                 </execution>
-                             </executions>
-                         </plugin>
+                                <!-- general properties -->
+                                <icoFile>img/ke_icon.ico</icoFile>
+                                <generateSetup>true</generateSetup>
+                                <generateMsi>false</generateMsi>
+                                <generateMsm>false</generateMsm>
+                                <!--
+                                <headerType>gui</headerType>
+                                <wrapJar>true|false</wrapJar>
+                                <companyName>${organizationName}</companyName>
+                                <fileVersion>1.0.0.0</fileVersion>
+                                <txtFileVersion>${version}</txtFileVersion>
+                                <productVersion>1.0.0.0</productVersion>
+                                <txtProductVersion>${version}</txtProductVersion>
+                                <fileDescription>${description}</fileDescription>
+                                <copyright>${organizationName}</copyright>
+                                <productName>${name}</productName>
+                                <internalName>${name}</internalName>
+                                <originalFilename>${name}.exe</originalFilename>
 
-                 <plugin>
-                     <groupId>com.akathist.maven.plugins.launch4j</groupId>
-                     <artifactId>launch4j-maven-plugin</artifactId>
-                     <executions>
-                         <execution>
-                             <id>l4j-clui</id>
-                             <phase>package</phase>
-                             <goals><goal>launch4j</goal></goals>
-                             <configuration>
-                                 <headerType>gui</headerType>
-                                 <outfile>releases/kafkaexplorer-${version}.exe</outfile>
-                                 <jar>releases/${project.artifactId}-${version}-${os.detected.name}.jar</jar>
-                                 <errTitle>${project.artifactId}</errTitle>
-                                 <classPath>
-                                     <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                                     <addDependencies>true</addDependencies>
-                                     <preCp>anything</preCp>
-                                 </classPath>
 
-                                 <jre>
-                                     <bundledJre64Bit>true</bundledJre64Bit>
-                                    <path>%JAVA_HOME%</path>
-                                     <minVersion>1.8.0</minVersion>
-                                     <initialHeapSize>1024</initialHeapSize>
-                                     <maxHeapSize>2048</maxHeapSize>
-                                 </jre>
-                                 <icon>img/ke-icon-blue-no-text.ico</icon>
-                                 <versionInfo>
-                                     <fileVersion>1.2.3.4</fileVersion>
-                                     <txtFileVersion>txt file version?</txtFileVersion>
-                                     <fileDescription>kafkaexplorer</fileDescription>
-                                     <copyright>kafkaexplorer</copyright>
-                                     <productVersion>4.3.2.1</productVersion>
-                                     <txtProductVersion>txt product version</txtProductVersion>
-                                     <productName>kafkaexplorer</productName>
-                                     <internalName>kafkaexplorer</internalName>
-                                     <originalFilename>kafkaexplorer.exe</originalFilename>
-                                 </versionInfo>
-                             </configuration>
-                         </execution>
-                     </executions>
-                 </plugin>
+                                <setupMode>installForAllUsers|installForCurrentUser|askTheUser</setupMode>
+                                <setupLanguages>
+                                    <english>compiler:Default.isl</english>
+                                    <spanish>compiler:Languages\Spanish.isl</english>
+                                    [...]
+                                </setupLanguages>
+                                <disableDirPage>true|false</disableDirPage>
+                                <disableProgramGroupPage>true|false</disableProgramGroupPage>
+                                <disableFinishedPage>true|false</disableFinishedPage>
+                                <createDesktopIconTask>true|false</createDesktopIconTask>
+
+                                <signing>
+                                    <keystore>path/to/keystore</keystore>
+                                    <storepass>password</storepass>
+                                    <alias>cert_alias</alias>
+                                    [...]
+                                </signing>
+    -->
+                            </winConfig>
+                        </configuration>
+
+                    </execution>
+                </executions>
+            </plugin>
 
 
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>1.0.1</version>
                 <executions>
                     <execution>
-                        <!-- Run our version calculation script -->
-                        <id>Create-MacOS-app-package</id>
+                        <id>copy-and-rename-file</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>rename</goal>
                         </goals>
                         <configuration>
-                            <executable>bash</executable>
-                            <commandlineArgs>${basedir}/appify/create-macos-app.sh</commandlineArgs>
+                            <fileSets>
+                                <fileSet>
+                                    <sourceFile>${project.build.directory}/${project.artifactId}_${project.version}.exe</sourceFile>
+                                    <destinationFile>releases/${project.artifactId}_${project.version}-installer.exe</destinationFile>
+                                </fileSet>
+                                <fileSet>
+                                    <sourceFile>${project.build.directory}/${project.artifactId}/${project.artifactId}.exe</sourceFile>
+                                    <destinationFile>releases/${project.artifactId}_${project.version}.exe</destinationFile>
+                                </fileSet>
+                            </fileSets>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+
         </plugins>
     </build>
-
-    <profiles>
-        <!-- Disable DMG creation when building on Windows -->
-        <profile>
-            <id>windows</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <executions>
-                            <execution>
-                                <!-- Run our version calculation script -->
-                                <id>Create-MacOS-app-package</id>
-                                <phase>none</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- Disable .exe creation when building on Mac -->
-        <profile>
-        <id>mac</id>
-        <build>
-        <plugins>
-            <plugin>
-                <groupId>com.akathist.maven.plugins.launch4j</groupId>
-                <artifactId>launch4j-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>l4j-clui</id>
-                        <phase>none</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        </build>
-        </profile>
-    </profiles>
 </project>
