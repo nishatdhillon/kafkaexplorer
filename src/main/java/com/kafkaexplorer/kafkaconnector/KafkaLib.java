@@ -4,6 +4,7 @@ import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TreeItem;
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -74,9 +75,10 @@ public class KafkaLib {
         return "OK";
     }
 
-    public Map<String, List<PartitionInfo>> listTopics(Cluster cluster){
+    public ArrayList<String> listTopics(Cluster cluster){
 
         Map<String, List<PartitionInfo>> topics;
+        ArrayList<String> onlyTopicsName = new ArrayList<String>();
 
         this.setProps(cluster);
 
@@ -84,7 +86,15 @@ public class KafkaLib {
         topics = consumer.listTopics();
         consumer.close();
 
-        return topics;
+        Iterator<Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
+            onlyTopicsName.add(entry.getKey());
+        }
+        Collections.sort(onlyTopicsName);
+
+        return onlyTopicsName;
     }
 
 

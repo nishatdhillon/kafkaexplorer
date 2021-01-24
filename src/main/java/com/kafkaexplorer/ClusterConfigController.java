@@ -119,20 +119,13 @@ public class ClusterConfigController implements Initializable {
                         TreeItem topicsChildren = (TreeItem) child.getChildren().get(0);
 
                         //get topic list
-                        Map<String, List<PartitionInfo>> topics = kafkaConnector.listTopics(cluster);
+                        ArrayList<String> topics = kafkaConnector.listTopics(cluster);
 
                         updateProgress(60, 100);
 
-                        Iterator<Map.Entry<String, List<PartitionInfo>>> iterator = topics.entrySet().iterator();
-
-                        while (iterator.hasNext()) {
-
-
-                            Map.Entry<String, List<PartitionInfo>> entry = iterator.next();
-                            MyLogger.logDebug(entry.getKey());
-
-                            TreeItem topic = new TreeItem(entry.getKey());
-                            topicsChildren.getChildren().add(topic);
+                        for (String topicName : topics) {
+                            TreeItem topicItem = new TreeItem(topicName);
+                            topicsChildren.getChildren().add(topicItem);
                         }
                         updateProgress(80, 100);
 
