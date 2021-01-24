@@ -178,7 +178,7 @@
                             <mainClass>com.kafkaexplorer.Launcher</mainClass>
                             <name>Kafkaexplorer</name>
                             <!-- optional -->
-                            <bundleJre>false</bundleJre>
+                            <bundleJre>true</bundleJre>
                             <jrePath>C:\Program Files\java\jre1.8.0_281</jrePath>
                             <generateInstaller>true</generateInstaller>
                             <administratorRequired>false</administratorRequired>
@@ -249,10 +249,6 @@
                                 <fileSet>
                                     <sourceFile>${project.build.directory}/${project.artifactId}_${project.version}.exe</sourceFile>
                                     <destinationFile>releases/${project.artifactId}_${project.version}-installer.exe</destinationFile>
-                                </fileSet>
-                                <fileSet>
-                                    <sourceFile>${project.build.directory}/${project.artifactId}/${project.artifactId}.exe</sourceFile>
-                                    <destinationFile>releases/${project.artifactId}_${project.version}.exe</destinationFile>
                                 </fileSet>
                             </fileSets>
                         </configuration>
