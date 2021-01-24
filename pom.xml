@@ -248,7 +248,7 @@
                             <fileSets>
                                 <fileSet>
                                     <sourceFile>${project.build.directory}/${project.artifactId}_${project.version}.exe</sourceFile>
-                                    <destinationFile>releases/${project.artifactId}_${project.version}-installer.exe</destinationFile>
+                                    <destinationFile>releases/${project.artifactId}-${project.version}-installer.exe</destinationFile>
                                 </fileSet>
                             </fileSets>
                         </configuration>
