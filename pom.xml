@@ -5,7 +5,8 @@
     <artifactId>kafkaexplorer</artifactId>
     <packaging>jar</packaging>
     <version>1.1</version>
-    <name>demo</name>
+
+    <name>kafkaexplorer-${project.version}</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -14,6 +15,12 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.27</version>
+        </dependency>
         <dependency>
             <groupId>com.akathist.maven.plugins.launch4j</groupId>
             <artifactId>launch4j-maven-plugin</artifactId>
@@ -52,7 +59,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>2.12.0</version>
+            <version>2.12.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -69,17 +76,12 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.14.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.cedarsoftware/java-util -->
-        <dependency>
-            <groupId>com.cedarsoftware</groupId>
-            <artifactId>java-util</artifactId>
-            <version>1.62.0</version>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.github.fvarrui/javapackager -->
         <dependency>
             <groupId>io.github.fvarrui</groupId>
             <artifactId>javapackager</artifactId>
-            <version>1.5.0</version>
+            <version>1.5.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
         <dependency>
@@ -87,14 +89,6 @@
             <artifactId>maven-resources-plugin</artifactId>
             <version>3.2.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.coderplus.maven.plugins/copy-rename-maven-plugin -->
-        <dependency>
-            <groupId>com.coderplus.maven.plugins</groupId>
-            <artifactId>copy-rename-maven-plugin</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-
-
     </dependencies>
 
 
@@ -121,12 +115,31 @@
 
 
         <plugins>
+
+            <!--
+                        <plugin>
+                            <artifactId>maven-dependency-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <phase>process-sources</phase>
+
+                                    <goals>
+                                        <goal>copy-dependencies</goal>
+                                    </goals>
+
+                                    <configuration>
+                                        <outputDirectory>lib</outputDirectory>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+            -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                    <mainClass>com.kafkaexplorer.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -134,57 +147,36 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <release>15.0.1</release>
+                    <source>15.0.1</source>
+                    <target>15.0.1</target>
                 </configuration>
             </plugin>
 
 
-            <!--
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-shade-plugin</artifactId>
-                            <version>3.2.4</version>
-                            <executions>
-                                <execution>
-                                    <phase>package</phase>
-                                    <goals>
-                                        <goal>shade</goal>
-                                    </goals>
-                                    <configuration>
-                                        <transformers>
-                                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                                <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                                            </transformer>
-                                        </transformers>
-                                        <outputFile>releases/${project.artifactId}-${project.version}-${os.detected.name}.jar</outputFile>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
--->
-           <plugin>
-               <groupId>io.github.fvarrui</groupId>
-               <artifactId>javapackager</artifactId>
-               <version>1.5.0</version>
-               <executions>
-                   <execution>
-                       <phase>package</phase>
-                       <goals>
-                           <goal>package</goal>
-                       </goals>
-                       <configuration>
-                           <!-- mandatory -->
-                            <mainClass>com.kafkaexplorer.Launcher</mainClass>
+
+            <plugin>
+                <groupId>io.github.fvarrui</groupId>
+                <artifactId>javapackager</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <!-- mandatory -->
+                            <mainClass>com.kafkaexplorer.Main</mainClass>
                             <name>Kafkaexplorer</name>
                             <!-- optional -->
                             <bundleJre>true</bundleJre>
-                            <jrePath>C:\Program Files\java\jre1.8.0_281</jrePath>
+                            <!--  <jrePath>/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk</jrePath>-->
                             <generateInstaller>true</generateInstaller>
                             <administratorRequired>false</administratorRequired>
                             <platform>windows</platform>
                             <createZipball>false</createZipball>
                             <outputDirectory>target</outputDirectory>
+                            <organizationName>Kafkaexplorer</organizationName>
                             <winConfig>
 
                                 <!-- general properties -->
@@ -229,33 +221,71 @@
                         </configuration>
 
                     </execution>
-                </executions>
-            </plugin>
-
-
-            <plugin>
-                <groupId>com.coderplus.maven.plugins</groupId>
-                <artifactId>copy-rename-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <executions>
                     <execution>
-                        <id>copy-and-rename-file</id>
+                        <id>bundling-for-mac</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>rename</goal>
+                            <goal>package</goal>
                         </goals>
                         <configuration>
-                            <fileSets>
-                                <fileSet>
-                                    <sourceFile>${project.build.directory}/${project.artifactId}_${project.version}.exe</sourceFile>
-                                    <destinationFile>releases/${project.artifactId}-${project.version}-installer.exe</destinationFile>
-                                </fileSet>
-                            </fileSets>
+                            <!-- mandatory -->
+                            <mainClass>com.kafkaexplorer.Main</mainClass>
+                            <name>Kafkaexplorer</name>
+
+                            <platform>mac</platform>
+                            <bundleJre>true</bundleJre>
+                            <customizedJre>true</customizedJre>
+                            <additionalModules>snakeyaml, java.base, java.desktop, java.naming, java.sql, java.xml, java.logging, java.management, java.scripting, java.compiler, java.rmi, jdk.charsets,
+                                jdk.xml.dom, java.datatransfer, jdk.httpserver, java.security.sasl, jdk.zipfs, jdk.crypto.ec, jdk.management.agent, java.sql.rowset, jdk.jsobject,
+                                jdk.sctp, java.smartcardio, jdk.unsupported, java.security.jgss, jdk.dynalink, jdk.accessibility, jdk.security.jgss, java.xml.crypto, jdk.jfr,
+                                jdk.net, java.prefs, jdk.naming.rmi, jdk.jdwp.agent, java.instrument, jdk.management, jdk.security.auth, java.management.rmi, jdk.naming.dns, jdk.localedata,
+                                javafx.controls,javafx.fxml,javafx.base,javafx.media,javafx.web,javafx.swing
+                            </additionalModules>
+
+                            <createTarball>false</createTarball>
+                            <!--
+                           <jrePath>jre1.8.0_281.jre</jrePath>
+ -->
+                            <macConfig>
+                                <generatePkg>false</generatePkg>
+                                <icnsFile>img/Kafkaexplorer.icns</icnsFile>
+                                <DeveloperId>stephane.ris@icloud.com</DeveloperId>
+                                <Entitlements>config/Entitlements.plist</Entitlements>
+                            </macConfig>
+
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
+
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resource-one</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+
+                        <configuration>
+                            <outputDirectory>releases</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>*.exe</include>
+                                        <include>*.dmg</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
     </build>
