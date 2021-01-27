@@ -5,7 +5,7 @@
     <artifactId>kafkaexplorer</artifactId>
     <packaging>jar</packaging>
     <version>1.1</version>
-    <name>demo</name>
+    <name>kafkaexplorer-${project.version}</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -14,6 +14,12 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.27</version>
+        </dependency>
         <dependency>
             <groupId>com.akathist.maven.plugins.launch4j</groupId>
             <artifactId>launch4j-maven-plugin</artifactId>
@@ -35,24 +41,24 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
-            <version>14</version>
+            <version>15</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>14</version>
+            <version>15</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.12.0</version>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>2.12.0</version>
+            <version>2.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -69,19 +75,21 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.14.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.cedarsoftware/java-util -->
+
+        <!-- https://mvnrepository.com/artifact/io.github.fvarrui/javapackager -->
         <dependency>
-            <groupId>com.cedarsoftware</groupId>
-            <artifactId>java-util</artifactId>
-            <version>1.62.0</version>
+            <groupId>io.github.fvarrui</groupId>
+            <artifactId>javapackager</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.2.0</version>
         </dependency>
     </dependencies>
-
-
-
-
     <build>
-
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -101,12 +109,13 @@
 
 
         <plugins>
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>com.kafkaexplorer.Launcher</mainClass>
+                    <mainClass>com.kafkaexplorer.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -114,140 +123,134 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <release>15</release>
+                    <source>15</source>
+                    <target>15</target>
                 </configuration>
             </plugin>
-
-
-
-                         <plugin>
-                             <groupId>org.apache.maven.plugins</groupId>
-                             <artifactId>maven-shade-plugin</artifactId>
-                             <version>3.2.4</version>
-                             <executions>
-                                 <execution>
-                                     <phase>package</phase>
-                                     <goals>
-                                         <goal>shade</goal>
-                                     </goals>
-                                     <configuration>
-                                         <transformers>
-                                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                                 <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                                             </transformer>
-                                         </transformers>
-                                         <outputFile>releases/${project.artifactId}-${project.version}-${os.detected.name}.jar</outputFile>
-                                     </configuration>
-                                 </execution>
-                             </executions>
-                         </plugin>
-
-                 <plugin>
-                     <groupId>com.akathist.maven.plugins.launch4j</groupId>
-                     <artifactId>launch4j-maven-plugin</artifactId>
-                     <executions>
-                         <execution>
-                             <id>l4j-clui</id>
-                             <phase>package</phase>
-                             <goals><goal>launch4j</goal></goals>
-                             <configuration>
-                                 <headerType>gui</headerType>
-                                 <outfile>releases/kafkaexplorer-${version}.exe</outfile>
-                                 <jar>releases/${project.artifactId}-${version}-${os.detected.name}.jar</jar>
-                                 <errTitle>${project.artifactId}</errTitle>
-                                 <classPath>
-                                     <mainClass>com.kafkaexplorer.Launcher</mainClass>
-                                     <addDependencies>true</addDependencies>
-                                     <preCp>anything</preCp>
-                                 </classPath>
-
-                                 <jre>
-                                     <bundledJre64Bit>true</bundledJre64Bit>
-                                    <path>%JAVA_HOME%</path>
-                                     <minVersion>1.8.0</minVersion>
-                                     <initialHeapSize>1024</initialHeapSize>
-                                     <maxHeapSize>2048</maxHeapSize>
-                                 </jre>
-                                 <icon>img/ke-icon-blue-no-text.ico</icon>
-                                 <versionInfo>
-                                     <fileVersion>1.2.3.4</fileVersion>
-                                     <txtFileVersion>txt file version?</txtFileVersion>
-                                     <fileDescription>kafkaexplorer</fileDescription>
-                                     <copyright>kafkaexplorer</copyright>
-                                     <productVersion>4.3.2.1</productVersion>
-                                     <txtProductVersion>txt product version</txtProductVersion>
-                                     <productName>kafkaexplorer</productName>
-                                     <internalName>kafkaexplorer</internalName>
-                                     <originalFilename>kafkaexplorer.exe</originalFilename>
-                                 </versionInfo>
-                             </configuration>
-                         </execution>
-                     </executions>
-                 </plugin>
-
-
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>io.github.fvarrui</groupId>
+                <artifactId>javapackager</artifactId>
+                <version>1.5.1</version>
                 <executions>
                     <execution>
-                        <!-- Run our version calculation script -->
-                        <id>Create-MacOS-app-package</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>package</goal>
                         </goals>
                         <configuration>
-                            <executable>bash</executable>
-                            <commandlineArgs>${basedir}/appify/create-macos-app.sh</commandlineArgs>
+                            <!-- mandatory -->
+                            <mainClass>com.kafkaexplorer.Main</mainClass>
+                            <name>Kafkaexplorer</name>
+                            <!-- optional -->
+                            <bundleJre>true</bundleJre>
+                            <customizedJre>true</customizedJre>
+                            <createTarball>false</createTarball>
+                            <modules>java.base,java.management,java.security.jgss</modules>
+                            <additionalModules>javafx.base,javafx.controls,javafx.fxml,javafx.graphics</additionalModules>
+                            <generateInstaller>true</generateInstaller>
+                            <administratorRequired>false</administratorRequired>
+                            <platform>windows</platform>
+                            <createZipball>false</createZipball>
+                            <outputDirectory>target</outputDirectory>
+                            <organizationName>Kafkaexplorer</organizationName>
+                            <winConfig>
+
+                                <!-- general properties -->
+                                <icoFile>img/ke_icon.ico</icoFile>
+                                <generateSetup>true</generateSetup>
+                                <generateMsi>false</generateMsi>
+                                <generateMsm>false</generateMsm>
+                                <!--
+                                <headerType>gui</headerType>
+                                <wrapJar>true|false</wrapJar>
+                                <companyName>${organizationName}</companyName>
+                                <fileVersion>1.0.0.0</fileVersion>
+                                <txtFileVersion>${version}</txtFileVersion>
+                                <productVersion>1.0.0.0</productVersion>
+                                <txtProductVersion>${version}</txtProductVersion>
+                                <fileDescription>${description}</fileDescription>
+                                <copyright>${organizationName}</copyright>
+                                <productName>${name}</productName>
+                                <internalName>${name}</internalName>
+                                <originalFilename>${name}.exe</originalFilename>
+                                <setupMode>installForAllUsers|installForCurrentUser|askTheUser</setupMode>
+                                <setupLanguages>
+                                    <english>compiler:Default.isl</english>
+                                    <spanish>compiler:Languages\Spanish.isl</english>
+                                    [...]
+                                </setupLanguages>
+                                <disableDirPage>true|false</disableDirPage>
+                                <disableProgramGroupPage>true|false</disableProgramGroupPage>
+                                <disableFinishedPage>true|false</disableFinishedPage>
+                                <createDesktopIconTask>true|false</createDesktopIconTask>
+
+                                <signing>
+                                    <keystore>path/to/keystore</keystore>
+                                    <storepass>password</storepass>
+                                    <alias>cert_alias</alias>
+                                    [...]
+                                </signing>
+    -->
+                            </winConfig>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>bundling-for-mac</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+
+                            <mainClass>com.kafkaexplorer.Main</mainClass>
+                            <name>Kafkaexplorer</name>
+
+                            <platform>mac</platform>
+                            <bundleJre>true</bundleJre>
+                            <customizedJre>true</customizedJre>
+                            <createTarball>false</createTarball>
+                            <modules>java.base,java.management,java.security.jgss</modules>
+                            <additionalModules>javafx.base,javafx.controls,javafx.fxml,javafx.graphics</additionalModules>
+                            <macConfig>
+                                <generatePkg>false</generatePkg>
+                                <icnsFile>img/Kafkaexplorer.icns</icnsFile>
+                                <DeveloperId>stephane.ris@icloud.com</DeveloperId>
+                                <Entitlements>config/Entitlements.plist</Entitlements>
+                            </macConfig>
+
+                        </configuration>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resource-one</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+
+                        <configuration>
+                            <outputDirectory>releases</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>*.exe</include>
+                                        <include>*.dmg</include>
+                                    </includes>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!-- Disable DMG creation when building on Windows -->
-        <profile>
-            <id>windows</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <executions>
-                            <execution>
-                                <!-- Run our version calculation script -->
-                                <id>Create-MacOS-app-package</id>
-                                <phase>none</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- Disable .exe creation when building on Mac -->
-        <profile>
-        <id>mac</id>
-        <build>
-        <plugins>
-            <plugin>
-                <groupId>com.akathist.maven.plugins.launch4j</groupId>
-                <artifactId>launch4j-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>l4j-clui</id>
-                        <phase>none</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        </build>
-        </profile>
-    </profiles>
 </project>
