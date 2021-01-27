@@ -237,7 +237,7 @@
                             <bundleJre>true</bundleJre>
                             <customizedJre>true</customizedJre>
                             <createTarball>false</createTarball>
-                            <modules>java.base</modules>
+                            <modules>java.base,java.management,java.security.jgss</modules>
                             <additionalModules>javafx.base,javafx.controls,javafx.fxml,javafx.graphics</additionalModules>
                             <macConfig>
                                 <generatePkg>false</generatePkg>

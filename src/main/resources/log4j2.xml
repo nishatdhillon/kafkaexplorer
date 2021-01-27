@@ -4,9 +4,20 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
+
+        <RollingFile name="fileLogger" fileName="logs/app-info.log" filePattern="logs/app-info-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
     </Appenders>
+
     <Loggers>
         <Root level="DEBUG">
+            <AppenderRef ref="fileLogger"/>
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
