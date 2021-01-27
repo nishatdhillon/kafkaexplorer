@@ -51,17 +51,17 @@ A sample config.yaml is provided [here](/config/config.yaml)
 
 Download and execute the latest version:
 
-- Windows: [kafkaexplorer-1.1-installer.exe](/releases/kafkaexplorer-1.1-installer.exe)
-- MacOs: [kafkaexplorer-1.1.dmg](/releases/kafkaexplorer-1.1.dmg)
+- Windows: [kafkaexplorer_1.1.exe](/releases/kafkaexplorer_1.1.exe)
+- MacOs: [kafkaexplorer_1.1.dmg](/releases/kafkaexplorer_1.1.dmg)
 
 ## How to build/package/run from sources
 
 Simply execute:
 - Windows:
 ```
-mvn package javafx:run -P windows
+mvn javafx:run
 ```
 - MacOs:
 ```
-mvn package javafx:run -P mac
+mvn javafx:run
 ```
