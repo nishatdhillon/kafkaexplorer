@@ -51,8 +51,8 @@ A sample config.yaml is provided [here](/config/config.yaml)
 
 Download and execute the latest version:
 
-- Windows: [kafkaexplorer_1.1.exe](/releases/kafkaexplorer_1.1.exe)
-- MacOs: [kafkaexplorer_1.1.dmg](/releases/kafkaexplorer_1.1.dmg)
+- Windows: [Kafkaexplorer_1.1.exe](/releases/Kafkaexplorer_1.1.exe)
+- MacOs: [Kafkaexplorer_1.1.dmg](/releases/Kafkaexplorer_1.1.dmg)
 
 ## How to build/package/run from sources
 
