@@ -24,6 +24,7 @@ import javafx.scene.layout.VBox;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.protocol.types.Field;
 
 import java.io.File;
 import java.io.IOException;
@@ -120,12 +121,35 @@ public class ClusterConfigController implements Initializable {
 
                         //get topic list
                         ArrayList<String> topics = kafkaConnector.listTopics(cluster);
+                        Boolean displayAllTopics = false;
 
                         updateProgress(60, 100);
+                        if (cluster.getFilterTopics().size() == 0)
+                        {
+                            displayAllTopics = true;
+                        }
 
                         for (String topicName : topics) {
-                            TreeItem topicItem = new TreeItem(topicName);
-                            topicsChildren.getChildren().add(topicItem);
+                            Boolean displayThisTopic = false;
+
+                            if (displayAllTopics) {
+                                displayThisTopic = true;
+                            }else {
+                                //Search for bookmarked topics
+                                for (int i=0; i < cluster.getFilterTopics().size(); i++)
+                                {
+                                    if (cluster.getFilterTopics().get(i).getName().equals(topicName)){
+                                        displayThisTopic = true;
+                                    }
+
+                                }
+                            }
+
+                            if (displayThisTopic) {
+                                TreeItem topicItem = new TreeItem(topicName);
+                                topicsChildren.getChildren().add(topicItem);
+                            }
+
                         }
                         updateProgress(80, 100);
 

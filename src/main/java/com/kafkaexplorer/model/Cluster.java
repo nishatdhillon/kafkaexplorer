@@ -2,6 +2,9 @@ package com.kafkaexplorer.model;
 
 import com.kafkaexplorer.logger.MyLogger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cluster {
 
     private String name;
@@ -10,7 +13,7 @@ public class Cluster {
     private String mechanism;
     private String jaasConfig;
     private String consumerGroup;
-
+    private List<FilterTopic> filterTopics = new ArrayList<FilterTopic>();
 
     public Cluster() {}
 
@@ -21,6 +24,7 @@ public class Cluster {
         this.mechanism = cluster.mechanism;
         this.jaasConfig = cluster.jaasConfig;
         this.consumerGroup = cluster.consumerGroup;
+        this.filterTopics = cluster.filterTopics;
     }
 
     public void setName(String name) {
@@ -69,6 +73,14 @@ public class Cluster {
 
     public void setHostname(String hostname) {
         this.hostname = hostname;
+    }
+
+    public List<FilterTopic> getFilterTopics() {
+        return filterTopics;
+    }
+
+    public void setBookMarksTopics(List<FilterTopic> filterTopics) {
+        this.filterTopics = filterTopics;
     }
 
     public void println() {

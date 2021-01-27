@@ -5,6 +5,9 @@
    mechanism: PLAIN      #Only supported option for now
    jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule   required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
    consumerGroup: "kafkaexplorer-consumer-group"  #Consumer group used by KafkaExplorer to consume the topics
+   filterTopics:      # OPTIONAL field. List of Topics to display. If not present, all topics will be displayed.
+      - name: aaa
+      - name: bbb
 
 -  name: Cluster2
    hostname: "192.168.12.68:9092"
@@ -12,3 +15,6 @@
    mechanism: PLAIN      #Only supported option for now
    jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
    consumerGroup: "kafkaexplorer-consumer-group" #Consumer group used by KafkaExplorer to consume the topics
+   filterTopics:      # OPTIONAL field. List of Topics to display. If not present, all topics will be displayed.
+      - name: aaa
+      - name: bbb
