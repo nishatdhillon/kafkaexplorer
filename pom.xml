@@ -171,6 +171,10 @@
                             <name>Kafkaexplorer</name>
                             <!-- optional -->
                             <bundleJre>true</bundleJre>
+                            <customizedJre>true</customizedJre>
+                            <createTarball>false</createTarball>
+                            <modules>java.base</modules>
+                            <additionalModules>javafx.base,javafx.controls,javafx.fxml,javafx.graphics</additionalModules>
                             <!--  <jrePath>/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk</jrePath>-->
                             <generateInstaller>true</generateInstaller>
                             <administratorRequired>false</administratorRequired>
