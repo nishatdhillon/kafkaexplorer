@@ -5,7 +5,6 @@
     <artifactId>kafkaexplorer</artifactId>
     <packaging>jar</packaging>
     <version>1.1</version>
-
     <name>kafkaexplorer-${project.version}</name>
     <url>http://maven.apache.org</url>
 
@@ -54,12 +53,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>2.9.3</version>
+            <version>2.10.5</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.3</version>
+            <version>2.10.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -90,12 +89,7 @@
             <version>3.2.0</version>
         </dependency>
     </dependencies>
-
-
-
-
     <build>
-
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -116,24 +110,6 @@
 
         <plugins>
 
-            <!--
-                        <plugin>
-                            <artifactId>maven-dependency-plugin</artifactId>
-                            <executions>
-                                <execution>
-                                    <phase>process-sources</phase>
-
-                                    <goals>
-                                        <goal>copy-dependencies</goal>
-                                    </goals>
-
-                                    <configuration>
-                                        <outputDirectory>lib</outputDirectory>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
-            -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -170,9 +146,8 @@
                             <bundleJre>true</bundleJre>
                             <customizedJre>true</customizedJre>
                             <createTarball>false</createTarball>
-                            <modules>java.base</modules>
+                            <modules>java.base,java.management,java.security.jgss</modules>
                             <additionalModules>javafx.base,javafx.controls,javafx.fxml,javafx.graphics</additionalModules>
-                            <!--  <jrePath>/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk</jrePath>-->
                             <generateInstaller>true</generateInstaller>
                             <administratorRequired>false</administratorRequired>
                             <platform>windows</platform>
@@ -199,8 +174,6 @@
                                 <productName>${name}</productName>
                                 <internalName>${name}</internalName>
                                 <originalFilename>${name}.exe</originalFilename>
-
-
                                 <setupMode>installForAllUsers|installForCurrentUser|askTheUser</setupMode>
                                 <setupLanguages>
                                     <english>compiler:Default.isl</english>
@@ -221,7 +194,6 @@
     -->
                             </winConfig>
                         </configuration>
-
                     </execution>
                     <execution>
                         <id>bundling-for-mac</id>
@@ -230,7 +202,7 @@
                             <goal>package</goal>
                         </goals>
                         <configuration>
-                            <!-- mandatory -->
+
                             <mainClass>com.kafkaexplorer.Main</mainClass>
                             <name>Kafkaexplorer</name>
 
@@ -250,11 +222,12 @@
                         </configuration>
                     </execution>
                 </executions>
+
             </plugin>
 
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>copy-resource-one</id>
@@ -278,7 +251,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
