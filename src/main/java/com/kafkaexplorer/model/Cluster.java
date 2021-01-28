@@ -13,6 +13,8 @@ public class Cluster {
     private String mechanism;
     private String jaasConfig;
     private String consumerGroup;
+    private String trustStoreJKS;
+    private String trustStoreJKSPwd;
     private List<FilterTopic> filterTopics = new ArrayList<FilterTopic>();
 
     public Cluster() {}
@@ -25,6 +27,8 @@ public class Cluster {
         this.jaasConfig = cluster.jaasConfig;
         this.consumerGroup = cluster.consumerGroup;
         this.filterTopics = cluster.filterTopics;
+        this.trustStoreJKS = cluster.getTrustStoreJKS();
+        this.trustStoreJKSPwd = cluster.getTrustStoreJKSPwd();
     }
 
     public void setName(String name) {
@@ -80,6 +84,33 @@ public class Cluster {
     }
 
     public void setBookMarksTopics(List<FilterTopic> filterTopics) {
+        this.filterTopics = filterTopics;
+    }
+
+    public String getTrustStoreJKS() {
+        if (trustStoreJKS == null)
+            trustStoreJKS = "";
+
+        return trustStoreJKS;
+    }
+
+    public void setTrustStoreJKS(String trustStoreJKS) {
+        this.trustStoreJKS = trustStoreJKS;
+    }
+
+    public String getTrustStoreJKSPwd() {
+
+        if (trustStoreJKSPwd == null)
+            trustStoreJKSPwd = "";
+
+        return trustStoreJKSPwd;
+    }
+
+    public void setTrustStoreJKSPwd(String trustStoreJKSPwd) {
+        this.trustStoreJKSPwd = trustStoreJKSPwd;
+    }
+
+    public void setFilterTopics(List<FilterTopic> filterTopics) {
         this.filterTopics = filterTopics;
     }
 

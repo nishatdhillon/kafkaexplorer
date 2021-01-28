@@ -63,6 +63,12 @@ public class KafkaLib {
         this.props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         this.props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 
+        //set SSL Truststore if any provided in the config.yaml
+        if (cluster.getTrustStoreJKS() != "") {
+            this.props.put("ssl.truststore.location", cluster.getTrustStoreJKS());
+            this.props.put("ssl.truststore.password", cluster.getTrustStoreJKSPwd());
+        }
+
     }
 
     public String connect(Cluster cluster) throws Exception{
