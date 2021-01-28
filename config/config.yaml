@@ -5,9 +5,9 @@
    mechanism: PLAIN      #Only supported option for now
    jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule   required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
    consumerGroup: "kafkaexplorer-consumer-group"  #Consumer group used by KafkaExplorer to consume the topics
-   trustStoreJKS: /folder/myJKs.jks
-   trustStoreJKSPwd: xxxxxxxxxxxxx
-   filterTopics:      # OPTIONAL field. List of Topics to display. If not present, all topics will be displayed.
+   trustStoreJKS: /folder/myJKs.jks # OPTIONAL field.
+   trustStoreJKSPwd: xxxxxxxxxxxxx  # OPTIONAL field.
+   filterTopics:                    # OPTIONAL field. List of Topics to display. If not present, all topics will be displayed.
       - name: aaa
       - name: bbb
 
@@ -17,6 +17,8 @@
    mechanism: PLAIN      #Only supported option for now
    jaasConfig: "org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxxxxxxx' password='xxxxxxxxxx';"
    consumerGroup: "kafkaexplorer-consumer-group" #Consumer group used by KafkaExplorer to consume the topics
+   trustStoreJKS: /folder/myJKs.jks # OPTIONAL field.
+   trustStoreJKSPwd: xxxxxxxxxxxxx  # OPTIONAL field.
    filterTopics:      # OPTIONAL field. List of Topics to display. If not present, all topics will be displayed.
       - name: aaa
       - name: bbb
