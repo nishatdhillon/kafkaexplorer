@@ -13,10 +13,7 @@
       </ToolBar>
       <SplitPane fx:id="mainContent" minWidth="1280.0" VBox.vgrow="ALWAYS">
                     <items>
-      
-                                                            <TreeView fx:id="kafkaTree" maxWidth="350.0" onMouseClicked="#onMouseClicked" />
-      
-                  
+                       <JFXTreeView fx:id="kafkaTree" maxWidth="350.0" onMouseClicked="#onMouseClicked" />
                     </items>
                   </SplitPane>
    </children>

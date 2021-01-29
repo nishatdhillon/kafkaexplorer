@@ -2,7 +2,7 @@
     -jfx-button-type: FLAT;
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-border-color: #a1a3b0;
-    -fx-border-width: 0,5 px;
+    -fx-border-width: 0.5px;
     -jfx-rippler-fill: #2212d0;
 }
 
@@ -10,5 +10,33 @@
     -jfx-rippler-fill: #2212d0;
 }
 
+.tree-view, .tree-cell {
+    -fx-background-color: black ;
+    -fx-text-fill: white ;
 
+}
+.tree-cell:expanded {
+    -fx-background-color: #404040 ;
 
+}
+.tree-cell:selected {
+    -fx-font-weight: bold ;
+    -fx-background-color: #404040 ;
+    -fx-border-width: 0.5px;
+    -fx-border-color: #6e5fdd;
+}
+
+.tree-cell {
+    -fx-padding: 0.75em 0em 0.75em 0em ;
+}
+
+.tree-cell .selection-bar {
+    -fx-background-color: #6e5fdd;
+}
+
+.tree-cell .tree-disclosure-node .arrow {
+    -fx-background-color: white;
+}
+.tree-cell:expanded .tree-disclosure-node .arrow {
+    -fx-background-color: white;
+}
