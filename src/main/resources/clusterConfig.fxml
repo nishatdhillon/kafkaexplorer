@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -36,7 +37,8 @@
             <Label layoutX="79.0" layoutY="79.0" text="sasl.mechanism" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <TextField fx:id="saslMechanism" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
             <TextField fx:id="jaasConf" editable="false" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+
+            <JFXButton mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
          <TextField fx:id="name" editable="false" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
          <Label text="Cluster name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />

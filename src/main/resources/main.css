@@ -1,0 +1,14 @@
+.button {
+    -jfx-button-type: FLAT;
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-border-color: #a1a3b0;
+    -fx-border-width: 0,5 px;
+    -jfx-rippler-fill: #2212d0;
+}
+
+.button .jfx-rippler{
+    -jfx-rippler-fill: #2212d0;
+}
+
+
+

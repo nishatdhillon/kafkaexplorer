@@ -13,6 +13,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>gluon-nexus-repository</id>
+            <url>http://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
         <dependency>
@@ -88,6 +95,13 @@
             <artifactId>maven-resources-plugin</artifactId>
             <version>3.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.10</version>
+        </dependency>
+
+
     </dependencies>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -118,6 +132,7 @@
                     <mainClass>com.kafkaexplorer.Main</mainClass>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
