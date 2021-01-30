@@ -124,11 +124,6 @@ public class Cluster {
         MyLogger.logDebug(this.jaasConfig);
     }
 
-    public String getJaasConfigWithoutPassword() {
-
-       return jaasConfig.substring(0, jaasConfig.indexOf("password=")) + "password='***masked***';";
-    }
-
     public String getId() {
         return id;
     }

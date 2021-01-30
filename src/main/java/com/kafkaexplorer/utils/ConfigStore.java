@@ -1,8 +1,13 @@
 package com.kafkaexplorer.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.kafkaexplorer.model.Cluster;
+import javafx.scene.Node;
+import javafx.scene.control.TreeItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +22,7 @@ public class ConfigStore {
 
         HashMap<String, String> errorList = new HashMap<String, String>();
 
-        String path = System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml";
+        String path = System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml";
         File file = new File(path);
 
         // Instantiating a new ObjectMapper as a YAMLFactory
@@ -52,7 +57,7 @@ public class ConfigStore {
      public Cluster[] loadClusters() throws IOException {
 
          //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
-         String path = System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml";
+         String path = System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml";
          File file = new File(path);
 
          // Instantiating a new ObjectMapper as a YAMLFactory
@@ -71,7 +76,7 @@ public class ConfigStore {
         Cluster cluster = new Cluster();
 
         //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
-        String path = System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml";
+        String path = System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml";
         File file = new File(path);
 
         // Instantiating a new ObjectMapper as a YAMLFactory
@@ -99,12 +104,37 @@ public class ConfigStore {
         return cluster;
     }
 
-    public void saveCluster(Cluster cluster) {
+    public boolean saveCluster(Cluster cluster) {
         System.out.println("Cluster to save: " + cluster.getId());
         //real yaml file
-        //locate cluster to update
-        //update cluster
-        //save file
+        try {
+            Cluster[] clusters = this.loadClusters();
+
+            //locate cluster to update
+            for (int i=0; i < clusters.length; i++) {
+                System.out.println("found!!!!" + clusters[i].getId() + "  "+ cluster.getId());
+                if (clusters[i].getId().equals(cluster.getId())) {
+                    //update cluster
+
+                    clusters[i] = cluster;
+                }
+            }
+
+
+            //save file
+            ObjectMapper om = new ObjectMapper(new YAMLFactory());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            om.writeValue(new File(System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml"), clusters);
+
+            return true;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
+
     }
 
     public void deleteCluster(Cluster cluster) {

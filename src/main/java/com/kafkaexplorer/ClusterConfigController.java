@@ -81,7 +81,9 @@ public class ClusterConfigController implements Initializable {
         name.setText(cluster.getName());
         saslMechanism.setText(cluster.getMechanism());
         securityType.setText(cluster.getProtocol());
-        jaasConf.setText(cluster.getJaasConfigWithoutPassword());
+        //todo mask pwd on screen
+        //jaasConf.setText(cluster.getJaasConfig().substring(0, cluster.getJaasConfig().indexOf("password=")) + "password='***masked***';");
+        jaasConf.setText(cluster.getJaasConfig());
         consumerGroup.setText(cluster.getConsumerGroup());
         kafkaTreeRef = clusterTreeView;
     }
