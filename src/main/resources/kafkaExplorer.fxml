@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.KafkaExplorerController">
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.KafkaExplorerController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
         <items>
-            <JFXButton text="Add Cluster" />
+            <JFXButton mnemonicParsing="false" text="Add Cluster" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <JFXButton mnemonicParsing="false" text="Help" />
         </items>
       </ToolBar>
       <SplitPane fx:id="mainContent" minWidth="1280.0" VBox.vgrow="ALWAYS">

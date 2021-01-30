@@ -9,6 +9,11 @@
     -fx-background-color: -fx-body-color;
     -fx-text-fill: lightyellow ;
 }
+
+.split-pane > .split-pane-divider {
+    -fx-padding: 0 1px 0 1px;
+}
+
 .tool-bar {
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0, 0, 0, 0 0 1 0;
@@ -17,10 +22,10 @@
 
 .button {
     -jfx-button-type: FLAT;
-    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, #4C5052;
     -fx-border-color: #a1a3b0;
     -fx-border-width: 0.5px;
-    -jfx-rippler-fill: #2212d0;
+    -fx-text-fill: #BBBBBB ;
 }
 
 .button .jfx-rippler{

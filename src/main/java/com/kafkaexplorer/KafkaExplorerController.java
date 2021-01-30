@@ -2,6 +2,7 @@ package com.kafkaexplorer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.kafkaexplorer.utils.ConfigStore;
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
 import javafx.application.Platform;
@@ -13,9 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -23,7 +22,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -41,7 +39,7 @@ public class KafkaExplorerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Validate config.yaml file
-        HashMap<String, String> errorList = new Utils().validateYamlConfig();
+        HashMap<String, String> errorList = new ConfigStore().validateYamlConfig();
 
         if (errorList.size() > 0) {
             //show an alert Dialog
@@ -141,7 +139,7 @@ public class KafkaExplorerController implements Initializable {
                     TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
 
                     //Build cluster object from cluster name
-                    Cluster cluster = new Utils().getClusterByName(selectedItem.getParent().getParent().getValue().toString());
+                    Cluster cluster = new ConfigStore().getClusterByName(selectedItem.getParent().getParent().getValue().toString());
 
                     topicBrowserController.populateScreen(cluster, selectedItem.getValue().toString(), kafkaTree);
                     //mainContent.getChildren().setAll(mainRoot);

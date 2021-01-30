@@ -1,32 +1,22 @@
 package com.kafkaexplorer;
 
-import com.kafkaexplorer.kafkaconnector.KafkaLib;
+import com.kafkaexplorer.utils.ConfigStore;
+import com.kafkaexplorer.utils.KafkaLib;
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
-import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import org.apache.kafka.common.PartitionInfo;
-import org.apache.kafka.common.protocol.types.Field;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -39,7 +29,8 @@ public class ClusterConfigController implements Initializable {
     @FXML
     public TextField securityType;
     public TextField jaasConf;
-    public TextField configYamlPath;
+    public TextField jks;
+    public TextField  jksPwd;
     public StackPane stack;
     public ProgressBar progBar1;
     @FXML
@@ -82,7 +73,8 @@ public class ClusterConfigController implements Initializable {
 
     public void populateScreen(Cluster cluster, TreeView<String> clusterTreeView) {
         this.cluster = cluster;
-        configYamlPath.setText(System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml");
+        jks.setText(cluster.getTrustStoreJKS());
+        jksPwd.setText(cluster.getTrustStoreJKSPwd());
         bootstrap.setText(cluster.getHostname());
         name.setText(cluster.getName());
         saslMechanism.setText(cluster.getMechanism());
@@ -193,6 +185,22 @@ public class ClusterConfigController implements Initializable {
         new Thread(task).start();
 
     }
+
+
+    public void saveCluster(MouseEvent mouseEvent) throws IOException {
+
+        cluster.setTrustStoreJKS(jks.getText());
+        cluster.setTrustStoreJKSPwd(jksPwd.getText());
+        cluster.setHostname(bootstrap.getText());
+        cluster.setName(name.getText());
+        cluster.setMechanism(saslMechanism.getText());
+        cluster.setProtocol(securityType.getText());
+        cluster.setJaasConfig(jaasConf.getText());
+        cluster.setConsumerGroup(consumerGroup.getText());
+
+        new ConfigStore().saveCluster(cluster);
+    }
+
 
     private void setClusterIconToGreen(String clusterName, boolean isGreen) {
 
