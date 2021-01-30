@@ -82,10 +82,20 @@ public class ConfigStore {
     }
 
     public void saveCluster(Cluster cluster) {
-
-
-
-
+        System.out.println("Cluster to save: " + cluster.getId());
+        //real yaml file
+        //locate cluster to update
+        //update cluster
+        //save file
     }
+
+    public void deleteCluster(Cluster cluster) {
+        System.out.println("Cluster to delete: " + cluster.getId());
+        //real yaml file
+        //locate cluster to delete
+        //delete cluster
+        //save file
+    }
+
 }
 

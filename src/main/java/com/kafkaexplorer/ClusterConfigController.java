@@ -4,6 +4,7 @@ import com.kafkaexplorer.utils.ConfigStore;
 import com.kafkaexplorer.utils.KafkaLib;
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
+import com.kafkaexplorer.utils.UI;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.StageStyle;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -219,5 +221,11 @@ public class ClusterConfigController implements Initializable {
 
     }
 
+    public void deleteCluster(MouseEvent mouseEvent) {
+        //Ask to confirm deletion
+        if (new UI().confirmationDialog(Alert.AlertType.CONFIRMATION, "Are you sure?")){
+            new ConfigStore().deleteCluster(cluster);
+        }
+    }
 
 }

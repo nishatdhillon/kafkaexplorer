@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Cluster {
 
+    private String id;
     private String name;
     private String hostname;
     private String protocol;
@@ -20,13 +21,14 @@ public class Cluster {
     public Cluster() {}
 
     public Cluster(Cluster cluster) {
-        this.name = cluster.name;
-        this.hostname = cluster.hostname;
-        this.protocol = cluster.protocol;
-        this.mechanism = cluster.mechanism;
-        this.jaasConfig = cluster.jaasConfig;
-        this.consumerGroup = cluster.consumerGroup;
-        this.filterTopics = cluster.filterTopics;
+        this.id = cluster.getId();
+        this.name = cluster.getName();
+        this.hostname = cluster.getHostname();
+        this.protocol = cluster.getProtocol();
+        this.mechanism = cluster.getMechanism();
+        this.jaasConfig = cluster.getJaasConfig();
+        this.consumerGroup = cluster.getConsumerGroup();
+        this.filterTopics = cluster.getFilterTopics();
         this.trustStoreJKS = cluster.getTrustStoreJKS();
         this.trustStoreJKSPwd = cluster.getTrustStoreJKSPwd();
     }
@@ -125,5 +127,13 @@ public class Cluster {
     public String getJaasConfigWithoutPassword() {
 
        return jaasConfig.substring(0, jaasConfig.indexOf("password=")) + "password='***masked***';";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

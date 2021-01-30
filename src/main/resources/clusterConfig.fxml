@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<GridPane minWidth="1000.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.ClusterConfigController">
+<GridPane minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.ClusterConfigController">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="13.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="8.0" prefWidth="8.0" />
@@ -33,9 +27,10 @@
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
       <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="30.0" minHeight="17.0" prefHeight="17.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="43.0" minHeight="30.0" prefHeight="36.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="57.0" minHeight="46.0" prefHeight="46.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="41.0" minHeight="30.0" prefHeight="41.0" vgrow="NEVER" />
         </rowConstraints>
         <children>
             <TextField id="bootstrap" fx:id="bootstrap" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
@@ -45,7 +40,7 @@
             <TextField fx:id="saslMechanism" maxWidth="312.0" minWidth="200.0" prefHeight="25.0" prefWidth="312.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
             <TextField fx:id="jaasConf" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
 
-            <JFXButton mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+            <JFXButton mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Connect" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
          <TextField fx:id="name" maxWidth="298.0" minWidth="200.0" prefHeight="25.0" prefWidth="298.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          <Label text="Cluster name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />
@@ -57,11 +52,11 @@
       <TextField fx:id="securityType" maxWidth="306.0" minWidth="200.0" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <Label layoutX="55.0" layoutY="77.0" prefHeight="17.0" prefWidth="148.0" text="Jks truststore location" GridPane.columnIndex="2" GridPane.rowIndex="6" />
       <TextField fx:id="jks" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-      <Label prefHeight="38.0" prefWidth="644.0" text="Help:&#10;If you are connected     but don't see any topics. You need to &quot;ALLOW&quot; the &quot;DESCRIBE&quot; ACL on the required &quot;TOPICS&quot;." GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="10" GridPane.valignment="BOTTOM" />
+      <Label prefHeight="38.0" prefWidth="644.0" text="Help:&#10;If you are connected     but don't see any topics. You need to &quot;ALLOW&quot; the &quot;DESCRIBE&quot; ACL on the required &quot;TOPICS&quot;." GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="11" GridPane.valignment="BOTTOM" />
       <Label layoutX="49.0" layoutY="197.0" text="consumer group" GridPane.columnIndex="2" GridPane.rowIndex="8" />
       <TextField fx:id="consumerGroup" GridPane.columnIndex="4" GridPane.rowIndex="8" />
       <Label layoutX="49.0" layoutY="137.0" text="bootstrap.servers" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.valignment="BOTTOM">
+      <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="11" GridPane.valignment="BOTTOM">
          <image>
             <Image url="@kafka-icon-green.png" />
          </image>
@@ -69,13 +64,13 @@
             <Insets bottom="5.0" left="110.0" />
          </GridPane.margin>
       </ImageView>
-      <ProgressBar fx:id="progBar1" prefHeight="30.0" prefWidth="244.0" progress="0.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+      <ProgressBar fx:id="progBar1" prefHeight="30.0" prefWidth="244.0" progress="0.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets top="20.0" />
          </GridPane.margin>
       </ProgressBar>
-      <JFXButton mnemonicParsing="false" onMouseClicked="#saveCluster" text="Save" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
-      <JFXButton mnemonicParsing="false" onMouseClicked="#connectToKafka" text="Delete" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+      <JFXButton mnemonicParsing="false" onMouseClicked="#saveCluster" text="Save" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
+      <JFXButton mnemonicParsing="false" onMouseClicked="#deleteCluster" text="Delete" GridPane.columnIndex="4" GridPane.rowIndex="10" />
       <Label prefHeight="17.0" prefWidth="148.0" text="Jks truststore password" GridPane.columnIndex="2" GridPane.rowIndex="7" />
       <TextField fx:id="jksPwd" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
 

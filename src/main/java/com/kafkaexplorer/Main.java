@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.Locale;
+import java.util.UUID;
 
 public class Main extends Application {
 
@@ -18,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
+System.out.println(UUID.randomUUID().toString().replace("-", ""));
         Locale.setDefault(new Locale("en", "CA"));
         Parent root = FXMLLoader.load(getClass().getResource("/kafkaExplorer.fxml"));
         primaryStage.setTitle("Kafka Explorer (community-edition)");
