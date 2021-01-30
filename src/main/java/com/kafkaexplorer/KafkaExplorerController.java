@@ -58,16 +58,9 @@ public class KafkaExplorerController implements Initializable {
             Platform.exit();
             System.exit(0);
         }
-        //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
-        String path = System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml";
-        File file = new File(path);
 
-        // Instantiating a new ObjectMapper as a YAMLFactory
-        ObjectMapper om = new ObjectMapper(new YAMLFactory());
-
-        // Mapping the cluster Array from the YAML file to the Cluster class
         try {
-            clusters = om.readValue(file, com.kafkaexplorer.model.Cluster[].class);
+            clusters = new ConfigStore().loadClusters();
 
             TreeItem<String> root = new TreeItem<>("Kafka Clusters");
 

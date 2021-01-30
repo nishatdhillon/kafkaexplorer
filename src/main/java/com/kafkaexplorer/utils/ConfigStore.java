@@ -48,6 +48,24 @@ public class ConfigStore {
 
     }
 
+
+     public Cluster[] loadClusters() throws IOException {
+
+         //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
+         String path = System.getProperty("user.home") + File.separator + "kafkaexplorer" + File.separator + "config.yaml";
+         File file = new File(path);
+
+         // Instantiating a new ObjectMapper as a YAMLFactory
+         ObjectMapper om = new ObjectMapper(new YAMLFactory());
+
+         // Mapping the cluster Array from the YAML file to the Cluster class
+
+         Cluster[] clusters = om.readValue(file, com.kafkaexplorer.model.Cluster[].class);
+        return clusters;
+     }
+
+
+
     public Cluster getClusterByName(String clusterName) {
 
         Cluster cluster = new Cluster();
