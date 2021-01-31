@@ -7,12 +7,14 @@ import com.kafkaexplorer.model.Cluster;
 import com.kafkaexplorer.utils.UI;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.StageStyle;
 
@@ -40,6 +42,7 @@ public class ClusterConfigController implements Initializable {
     @FXML
     public TextField saslMechanism;
     public TextField consumerGroup;
+    public GridPane rootGridPane;
     private Cluster cluster;
     private TreeView<String> kafkaTreeRef;
 
@@ -203,6 +206,10 @@ public class ClusterConfigController implements Initializable {
         cluster.setConsumerGroup(consumerGroup.getText());
 
         new ConfigStore().saveCluster(cluster);
+
+        //refresh cluster list
+        new UI().refreshClusterList(kafkaTreeRef);
+
     }
 
 
@@ -227,6 +234,14 @@ public class ClusterConfigController implements Initializable {
         //Ask to confirm deletion
         if (new UI().confirmationDialog(Alert.AlertType.CONFIRMATION, "Are you sure?")){
             new ConfigStore().deleteCluster(cluster);
+            //refresh cluster list
+            try {
+                new UI().refreshClusterList(kafkaTreeRef);
+                this.rootGridPane.getChildren().clear();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

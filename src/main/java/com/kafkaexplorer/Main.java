@@ -18,8 +18,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-System.out.println(UUID.randomUUID().toString().replace("-", ""));
         Locale.setDefault(new Locale("en", "CA"));
         Parent root = FXMLLoader.load(getClass().getResource("/kafkaExplorer.fxml"));
         primaryStage.setTitle("Kafka Explorer (community-edition)");

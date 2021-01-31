@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.stream.IntStream;
 
 public class ConfigStore {
 
@@ -59,6 +60,12 @@ public class ConfigStore {
          //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
          String path = System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml";
          File file = new File(path);
+
+         if (!file.exists()) {
+             //create empty config file
+             Cluster[] emptyClusters = new Cluster[]{};
+             saveYaml(emptyClusters);
+         }
 
          // Instantiating a new ObjectMapper as a YAMLFactory
          ObjectMapper om = new ObjectMapper(new YAMLFactory());
@@ -112,7 +119,6 @@ public class ConfigStore {
 
             //locate cluster to update
             for (int i=0; i < clusters.length; i++) {
-                System.out.println("found!!!!" + clusters[i].getId() + "  "+ cluster.getId());
                 if (clusters[i].getId().equals(cluster.getId())) {
                     //update cluster
 
@@ -120,11 +126,8 @@ public class ConfigStore {
                 }
             }
 
-
             //save file
-            ObjectMapper om = new ObjectMapper(new YAMLFactory());
-            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-            om.writeValue(new File(System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml"), clusters);
+            saveYaml(clusters);
 
             return true;
 
@@ -132,17 +135,89 @@ public class ConfigStore {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean addCluster(Cluster cluster) {
+        System.out.println("Cluster to add: " + cluster.getId());
+        //real yaml file
+        try {
+            Cluster[] clusters = this.loadClusters();
+            // Create another array of size +1
+            Cluster[] anotherArray = new Cluster[clusters.length + 1];
+
+            for (int i=0; i < clusters.length; i++) {
+                anotherArray[i] = clusters[i];
+            }
+
+            anotherArray[anotherArray.length - 1] = cluster;
+
+            //save file
+            saveYaml(anotherArray);
+
+            return true;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
+    public boolean deleteCluster(Cluster cluster) {
+        System.out.println("Cluster to delete: " + cluster.getId());
+
+         int indexToDelete = -1;
+        //real yaml file
+        try {
+            Cluster[] clusters = this.loadClusters();
+
+            // Create another array of size -1
+            Cluster[] anotherArray = new Cluster[clusters.length - 1];
+
+            //locate cluster to delete
+            for (int i=0; i < clusters.length; i++) {
+
+                if (clusters[i].getId().equals(cluster.getId())) {
+                    //update cluster
+                    indexToDelete = i;
+                }
+            }
+
+            if (indexToDelete != -1)
+            {
+                // Copy the elements except the index
+                // from original array to the other array
+                for (int i = 0, k = 0; i < clusters.length; i++) {
+
+                    // if the index is
+                    // the removal element index
+                    if (i == indexToDelete) {
+                        continue;
+                    }
+
+                    // if the index is not
+                    // the removal element index
+                    anotherArray[k++] = clusters[i];
+                }
+                //save file
+                saveYaml(anotherArray);
+            }
+            return true;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
 
     }
 
-    public void deleteCluster(Cluster cluster) {
-        System.out.println("Cluster to delete: " + cluster.getId());
-        //real yaml file
-        //locate cluster to delete
-        //delete cluster
-        //save file
+    private void saveYaml(Cluster[] clusters) throws IOException {
+
+    //save file
+    ObjectMapper om = new ObjectMapper(new YAMLFactory());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            om.writeValue(new File(System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml"), clusters);
+
     }
 
 }

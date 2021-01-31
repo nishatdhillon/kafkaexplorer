@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.kafkaexplorer.utils.ConfigStore;
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
+import com.kafkaexplorer.utils.UI;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 
 public class KafkaExplorerController implements Initializable {
@@ -38,46 +40,8 @@ public class KafkaExplorerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //Validate config.yaml file
-        HashMap<String, String> errorList = new ConfigStore().validateYamlConfig();
-
-        if (errorList.size() > 0) {
-            //show an alert Dialog
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            String errorMessage = "";
-
-            //Todo manage multiple error messages
-            errorList.entrySet().forEach(entry -> {
-                a.setHeaderText(entry.getKey());
-                a.setContentText(entry.getValue());
-            });
-
-            a.showAndWait();
-
-            //Exit the application
-            Platform.exit();
-            System.exit(0);
-        }
-
         try {
-            clusters = new ConfigStore().loadClusters();
-
-            TreeItem<String> root = new TreeItem<>("Kafka Clusters");
-
-            for (int i = 0; i < clusters.length; i++) {
-                //build kafka cluster tree
-                Node rootIcon = new ImageView(new Image(getClass().getResourceAsStream("/kafka-icon-grey.png")));
-                TreeItem<String> clusterItem = new TreeItem<String>(clusters[i].getName(), rootIcon);
-
-                root.getChildren().add(clusterItem);
-            }
-
-
-            kafkaTree.setRoot(root);
-            root.setExpanded(true);
-
-            MyLogger.logDebug("KafkaExplorerController initialized! ");
-
+            new UI().refreshClusterList(kafkaTree);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,31 +52,29 @@ public class KafkaExplorerController implements Initializable {
 
         //Open the topicBrowser screen
         try {
+            clusters = new ConfigStore().loadClusters();
             // Get selected Node
             Node node = mouseEvent.getPickResult().getIntersectedNode();
 
             //Ensure that user clicked on a TreeCell
             if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
                 TreeItem selectedItem = (TreeItem) kafkaTree.getSelectionModel().getSelectedItem();
-
                 //selectedItem is a cluster, display cluster config
                 if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters") {
                     FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("/clusterConfig.fxml"));
                     GridPane mainRoot = clusterConfigLoader.load();
                     ClusterConfigController clusterConfigController = clusterConfigLoader.getController();
-
                     //find selected cluster from Clusters Array
                     Cluster selectedCluster = null;
 
                     for (int i = 0; i < clusters.length; i++) {
-                        if (clusters[i].getName() == selectedItem.getValue()) {
+                        if (clusters[i].getName().equals(selectedItem.getValue())) {
                             selectedCluster = new Cluster(clusters[i]);
                         }
                     }
 
                     if (selectedCluster != null) {
                         clusterConfigController.populateScreen(selectedCluster, kafkaTree);
-
                        // mainContent.getChildren().setAll(mainRoot);
                         if (mainContent.getItems().size() > 1)
                              mainContent.getItems().remove(1);
@@ -141,13 +103,8 @@ public class KafkaExplorerController implements Initializable {
                         mainContent.getItems().remove(1);
 
                     mainContent.getItems().add(mainRoot);
-
-
                 }
-
-
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,4 +112,22 @@ public class KafkaExplorerController implements Initializable {
     }
 
 
+    public void addCluster(MouseEvent mouseEvent) {
+
+        try {
+            clusters = new ConfigStore().loadClusters();
+            Cluster c1 = new Cluster();
+            c1.setName("New Cluster");
+
+            c1.setId(UUID.randomUUID().toString().replace("-", ""));
+
+            new ConfigStore().addCluster(c1);
+            new UI().refreshClusterList(kafkaTree);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
