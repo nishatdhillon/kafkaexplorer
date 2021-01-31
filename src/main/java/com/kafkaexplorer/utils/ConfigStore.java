@@ -58,8 +58,14 @@ public class ConfigStore {
      public Cluster[] loadClusters() throws IOException {
 
          //Load config.yaml file from the user.home/kafkaexplorer/config.yaml
-         String path = System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml";
-         File file = new File(path);
+        // String path = System.getProperty("user.home") + File.separator + ".kafkaexplorer" + File.separator + "config.yaml";
+
+         File configDir = new File(System.getProperty("user.home"), ".kafkaExplorer");
+         if (!configDir.isDirectory())
+             if (!configDir.mkdirs())
+                 throw new IOException("Failed to create directory");
+
+         File file = new File(configDir, "config.yaml");
 
          if (!file.exists()) {
              //create empty config file
