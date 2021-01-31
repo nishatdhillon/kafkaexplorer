@@ -23,6 +23,7 @@ Working on **Windows** and **MacOs**. Based on [JavaFx](https://en.wikipedia.org
 - See partitions information for a topic (leader, replicas, inSynReplica)
 - Produce String messages into topics
 - Support protocol: SASL_SSL and mechanism: PLAIN
+- JKS truststore support 
 
 Coming soon Features:
 - Support more security protocols like SSL (keystore authentication)
@@ -34,34 +35,26 @@ Coming soon Features:
 
 Have questions? [Q&A section](https://github.com/stephaneuh/kafkaexplorer/discussions/categories/q-a).
 
-## Requirements (config.yaml)
 
-1. Java OpenJDK 11 or later with the JAVA_HOME environment variable set.
+## How to install
 
-2. A config file with all the connection information to your kafka clusters must exist here:
-
-| OS  | location  |
-| --- | --- |
-|Windows|%HOMEDRIVE%%HOMEPATH%\kafkaexplorer\config.yaml <br>(like C:\Users\MyUser\kafkaexplorer\config.yaml)| 
-|MacOs|~/kafkaexplorer/config.yaml|
-
-A sample config.yaml is provided [here](/config/config.yaml)
-
-## How to run from binaries
-
-Download and execute the latest version:
+Download and install the latest version:
 
 - Windows: [Kafkaexplorer_1.1.exe](/releases/Kafkaexplorer_1.1.exe)
 - MacOs: [Kafkaexplorer_1.1.dmg](/releases/Kafkaexplorer_1.1.dmg)
 
+## How to connect to a Kafka cluster
+![Alt text](img/newCluster.PNG "Main")
+- Click on "Add Cluster"
+- Select the "New Cluster" in the list
+- Enter the connection information
+- Save
+
+
 ## How to build/package/run from sources
 
 Simply execute:
-- Windows:
-```
-mvn javafx:run
-```
-- MacOs:
+
 ```
 mvn javafx:run
 ```
