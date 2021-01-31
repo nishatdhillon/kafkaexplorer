@@ -1,6 +1,7 @@
 package com.kafkaexplorer;
 
 import com.kafkaexplorer.utils.ConfigStore;
+import com.kafkaexplorer.utils.CustomFileChooser;
 import com.kafkaexplorer.utils.KafkaLib;
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
@@ -16,8 +17,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -245,4 +249,9 @@ public class ClusterConfigController implements Initializable {
         }
     }
 
+    public void browseJKS(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        Stage stage = (Stage) rootGridPane.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+    }
 }
