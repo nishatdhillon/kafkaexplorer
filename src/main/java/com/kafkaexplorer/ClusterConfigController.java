@@ -251,7 +251,10 @@ public class ClusterConfigController implements Initializable {
 
     public void browseJKS(MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JKS files (*.jks)", "*.jks"));
         Stage stage = (Stage) rootGridPane.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null)
+            this.jks.setText(selectedFile.getPath());
     }
 }

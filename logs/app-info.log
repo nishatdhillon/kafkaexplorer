@@ -5566,3 +5566,323 @@
 [DEBUG] 2021-01-31 14:03:54.592 [Thread-4] ConsumerCoordinator - [Consumer clientId=consumer-kafkaexplorer-consumer-group-4, groupId=kafkaexplorer-consumer-group] Committed offset 0 for partition aaa-0
 [DEBUG] 2021-01-31 14:03:54.592 [Thread-4] ConsumerCoordinator - [Consumer clientId=consumer-kafkaexplorer-consumer-group-4, groupId=kafkaexplorer-consumer-group] Committed offset 0 for partition aaa-4
 [DEBUG] 2021-01-31 14:03:54.592 [Thread-4] ConsumerCoordinator - [Consumer clientId=consumer-kafkaexplorer-consumer-group-4, groupId=kafkaexplorer-consumer-group] Completed asynchronous auto-commit of offsets {aaa-1=OffsetAndMetadata{offset=0, leaderEpoch=null, metadata=''}, aaa-2=OffsetAndMetadata{offset=0, leaderEpoch=null, metadata=''}, aaa-0=OffsetAndMetadata{offset=0, leaderEpoch=null, metadata=''}, aaa-5=OffsetAndMetadata{offset=0, leaderEpoch=null, metadata=''}, aaa-3=OffsetAndMetadata{offset=13, leaderEpoch=0, metadata=''}, aaa-4=OffsetAndMetadata{offset=0, leaderEpoch=null, metadata=''}}
+[DEBUG] 2021-01-31 18:43:58.419 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[DEBUG] 2021-01-31 18:44:57.117 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[DEBUG] 2021-01-31 18:45:11.839 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[DEBUG] 2021-01-31 20:00:26.562 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[DEBUG] 2021-01-31 20:03:20.251 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[DEBUG] 2021-01-31 20:04:14.514 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[DEBUG] 2021-01-31 20:05:21.003 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[DEBUG] 2021-01-31 20:05:42.871 [JavaFX Application Thread] MyLogger - KafkaExplorerController initialized! 
+[INFO ] 2021-01-31 20:06:14.857 [Thread-3] ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = latest
+	bootstrap.servers = [pkc-419q3.us-east4.gcp.confluent.cloud:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-kafkaexplorer-consumer-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 5000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = kafkaexplorer-consumer-group
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 5000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = [hidden]
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = PLAIN
+	security.protocol = SSL
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	socket.connection.setup.timeout.max.ms = 127000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+[DEBUG] 2021-01-31 20:06:14.861 [Thread-3] KafkaConsumer - [Consumer clientId=consumer-kafkaexplorer-consumer-group-1, groupId=kafkaexplorer-consumer-group] Initializing the Kafka consumer
+[DEBUG] 2021-01-31 20:06:15.107 [Thread-3] DefaultSslEngineFactory - Created SSL context with keystore null, truststore null, provider SunJSSE.
+[WARN ] 2021-01-31 20:06:15.169 [Thread-3] ConsumerConfig - The configuration 'acks' was supplied but isn't a known config.
+[WARN ] 2021-01-31 20:06:15.170 [Thread-3] ConsumerConfig - The configuration 'key.serializer' was supplied but isn't a known config.
+[WARN ] 2021-01-31 20:06:15.170 [Thread-3] ConsumerConfig - The configuration 'value.serializer' was supplied but isn't a known config.
+[INFO ] 2021-01-31 20:06:15.171 [Thread-3] AppInfoParser - Kafka version: 2.7.0
+[INFO ] 2021-01-31 20:06:15.171 [Thread-3] AppInfoParser - Kafka commitId: 448719dc99a19793
+[INFO ] 2021-01-31 20:06:15.171 [Thread-3] AppInfoParser - Kafka startTimeMs: 1612141575170
+[DEBUG] 2021-01-31 20:06:15.172 [Thread-3] KafkaConsumer - [Consumer clientId=consumer-kafkaexplorer-consumer-group-1, groupId=kafkaexplorer-consumer-group] Kafka consumer initialized
+[DEBUG] 2021-01-31 20:06:15.175 [Thread-3] ConsumerCoordinator - [Consumer clientId=consumer-kafkaexplorer-consumer-group-1, groupId=kafkaexplorer-consumer-group] Sending synchronous auto-commit of offsets {}
+[DEBUG] 2021-01-31 20:06:15.175 [Thread-3] ConsumerCoordinator - [Consumer clientId=consumer-kafkaexplorer-consumer-group-1, groupId=kafkaexplorer-consumer-group] Executing onLeavePrepare with generation Generation{generationId=-1, memberId='', protocol='null'} and memberId 
+[DEBUG] 2021-01-31 20:06:15.175 [Thread-3] AbstractCoordinator - [Consumer clientId=consumer-kafkaexplorer-consumer-group-1, groupId=kafkaexplorer-consumer-group] Resetting generation due to consumer pro-actively leaving the group
+[INFO ] 2021-01-31 20:06:15.175 [Thread-3] Metrics - Metrics scheduler closed
+[INFO ] 2021-01-31 20:06:15.176 [Thread-3] Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[INFO ] 2021-01-31 20:06:15.176 [Thread-3] Metrics - Metrics reporters closed
+[INFO ] 2021-01-31 20:06:15.179 [Thread-3] AppInfoParser - App info kafka.consumer for consumer-kafkaexplorer-consumer-group-1 unregistered
+[DEBUG] 2021-01-31 20:06:15.179 [Thread-3] KafkaConsumer - [Consumer clientId=consumer-kafkaexplorer-consumer-group-1, groupId=kafkaexplorer-consumer-group] Kafka consumer has been closed
+[INFO ] 2021-01-31 20:06:15.182 [Thread-3] ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = latest
+	bootstrap.servers = [pkc-419q3.us-east4.gcp.confluent.cloud:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-kafkaexplorer-consumer-group-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 5000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = kafkaexplorer-consumer-group
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 5000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = [hidden]
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = PLAIN
+	security.protocol = SSL
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	socket.connection.setup.timeout.max.ms = 127000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+[DEBUG] 2021-01-31 20:06:15.183 [Thread-3] KafkaConsumer - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initializing the Kafka consumer
+[DEBUG] 2021-01-31 20:06:15.184 [Thread-3] DefaultSslEngineFactory - Created SSL context with keystore null, truststore null, provider SunJSSE.
+[WARN ] 2021-01-31 20:06:15.191 [Thread-3] ConsumerConfig - The configuration 'acks' was supplied but isn't a known config.
+[WARN ] 2021-01-31 20:06:15.191 [Thread-3] ConsumerConfig - The configuration 'key.serializer' was supplied but isn't a known config.
+[WARN ] 2021-01-31 20:06:15.191 [Thread-3] ConsumerConfig - The configuration 'value.serializer' was supplied but isn't a known config.
+[INFO ] 2021-01-31 20:06:15.191 [Thread-3] AppInfoParser - Kafka version: 2.7.0
+[INFO ] 2021-01-31 20:06:15.191 [Thread-3] AppInfoParser - Kafka commitId: 448719dc99a19793
+[INFO ] 2021-01-31 20:06:15.192 [Thread-3] AppInfoParser - Kafka startTimeMs: 1612141575191
+[DEBUG] 2021-01-31 20:06:15.192 [Thread-3] KafkaConsumer - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Kafka consumer initialized
+[DEBUG] 2021-01-31 20:06:15.356 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating connection to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null) using address pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:15.392 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Created socket with SO_RCVBUF = 65536, SO_SNDBUF = 131072, SO_TIMEOUT = 0 to node -1
+[DEBUG] 2021-01-31 20:06:15.419 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Completed connection to node -1. Fetching API versions.
+[DEBUG] 2021-01-31 20:06:15.558 [Thread-3] SslTransportLayer - [SslTransportLayer channelId=-1 key=channel=java.nio.channels.SocketChannel[connection-pending remote=pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88:9092], selector=sun.nio.ch.WindowsSelectorImpl@5113caf1, interestOps=8, readyOps=0] SSL handshake completed successfully with peerHost 'pkc-419q3.us-east4.gcp.confluent.cloud' peerPort 9092 peerPrincipal 'CN=*.us-east4.gcp.confluent.cloud' cipherSuite 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'
+[DEBUG] 2021-01-31 20:06:15.559 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Successfully authenticated with pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:15.560 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating API versions fetch from node -1.
+[DEBUG] 2021-01-31 20:06:15.568 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending API_VERSIONS request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=1) and timeout 5000 to node -1: {client_software_name=apache-kafka-java,client_software_version=2.7.0,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:15.626 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Received API_VERSIONS response from node -1 for request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=1): org.apache.kafka.common.requests.ApiVersionsResponse@629a5ec
+[DEBUG] 2021-01-31 20:06:15.627 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Recorded API versions for node -1: (Produce(0): 0 to 8 [usable: 8], Fetch(1): 0 to 12 [usable: 12], ListOffsets(2): 0 to 5 [usable: 5], Metadata(3): 0 to 9 [usable: 9], LeaderAndIsr(4): 0 to 4 [usable: 4], StopReplica(5): 0 to 3 [usable: 3], UpdateMetadata(6): 0 to 6 [usable: 6], ControlledShutdown(7): 0 to 3 [usable: 3], OffsetCommit(8): 0 to 8 [usable: 8], OffsetFetch(9): 0 to 7 [usable: 7], FindCoordinator(10): 0 to 3 [usable: 3], JoinGroup(11): 0 to 7 [usable: 7], Heartbeat(12): 0 to 4 [usable: 4], LeaveGroup(13): 0 to 4 [usable: 4], SyncGroup(14): 0 to 5 [usable: 5], DescribeGroups(15): 0 to 5 [usable: 5], ListGroups(16): 0 to 4 [usable: 4], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 3 [usable: 3], CreateTopics(19): 0 to 6 [usable: 6], DeleteTopics(20): 0 to 5 [usable: 5], DeleteRecords(21): 0 to 2 [usable: 2], InitProducerId(22): 0 to 4 [usable: 4], OffsetForLeaderEpoch(23): 0 to 3 [usable: 3], AddPartitionsToTxn(24): 0 to 2 [usable: 2], AddOffsetsToTxn(25): 0 to 2 [usable: 2], EndTxn(26): 0 to 2 [usable: 2], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 to 3 [usable: 3], DescribeAcls(29): 0 to 2 [usable: 2], CreateAcls(30): 0 to 2 [usable: 2], DeleteAcls(31): 0 to 2 [usable: 2], DescribeConfigs(32): 0 to 3 [usable: 3], AlterConfigs(33): 0 to 1 [usable: 1], AlterReplicaLogDirs(34): 0 to 1 [usable: 1], DescribeLogDirs(35): 0 to 2 [usable: 2], SaslAuthenticate(36): 0 to 2 [usable: 2], CreatePartitions(37): 0 to 3 [usable: 3], CreateDelegationToken(38): 0 to 2 [usable: 2], RenewDelegationToken(39): 0 to 2 [usable: 2], ExpireDelegationToken(40): 0 to 2 [usable: 2], DescribeDelegationToken(41): 0 to 2 [usable: 2], DeleteGroups(42): 0 to 2 [usable: 2], ElectLeaders(43): 0 to 2 [usable: 2], IncrementalAlterConfigs(44): 0 to 1 [usable: 1], AlterPartitionReassignments(45): 0 [usable: 0], ListPartitionReassignments(46): 0 [usable: 0], OffsetDelete(47): 0 [usable: 0], DescribeClientQuotas(48): 0 [usable: 0], AlterClientQuotas(49): 0 [usable: 0], DescribeUserScramCredentials(50): 0 [usable: 0], AlterUserScramCredentials(51): 0 [usable: 0], AlterIsr(56): 0 [usable: 0], UpdateFeatures(57): 0 [usable: 0], UNKNOWN(10000): 0 to 2, UNKNOWN(10001): 0, UNKNOWN(10002): 0, UNKNOWN(10003): 0, UNKNOWN(10004): 0, UNKNOWN(10005): 0, UNKNOWN(10006): 0, UNKNOWN(10007): 0 to 1, UNKNOWN(10008): 0, UNKNOWN(10009): 0, UNKNOWN(10010): 0)
+[DEBUG] 2021-01-31 20:06:15.629 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending metadata request MetadataRequestData(topics=[], allowAutoTopicCreation=true, includeClusterAuthorizedOperations=false, includeTopicAuthorizedOperations=false) to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null)
+[DEBUG] 2021-01-31 20:06:15.629 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=2) and timeout 5000 to node -1: {topics=[],allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:15.630 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=0) and timeout 5000 to node -1: {topics=null,allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:16.667 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Connection with pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88 disconnected
+java.io.EOFException: null
+	at org.apache.kafka.common.network.SslTransportLayer.read(SslTransportLayer.java:619) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.NetworkReceive.readFrom(NetworkReceive.java:95) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.KafkaChannel.receive(KafkaChannel.java:447) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.KafkaChannel.read(KafkaChannel.java:397) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.attemptRead(Selector.java:674) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:576) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:561) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:265) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:236) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:215) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.Fetcher.getTopicMetadata(Fetcher.java:375) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.Fetcher.getAllTopicMetadata(Fetcher.java:358) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.KafkaConsumer.listTopics(KafkaConsumer.java:1999) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.KafkaConsumer.listTopics(KafkaConsumer.java:1977) [kafka-clients-2.7.0.jar:?]
+	at com.kafkaexplorer.utils.KafkaLib.listTopics(KafkaLib.java:86) [classes/:?]
+	at com.kafkaexplorer.ClusterConfigController$1.call(ClusterConfigController.java:126) [classes/:?]
+	at com.kafkaexplorer.ClusterConfigController$1.call(ClusterConfigController.java:101) [classes/:?]
+	at javafx.concurrent.Task$TaskCallable.call(Task.java:1425) [javafx-graphics-15-win.jar:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
+	at java.lang.Thread.run(Thread.java:832) [?:?]
+[DEBUG] 2021-01-31 20:06:16.680 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Node -1 disconnected.
+[WARN ] 2021-01-31 20:06:16.683 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Bootstrap broker pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null) disconnected
+[DEBUG] 2021-01-31 20:06:16.684 [Thread-3] ConsumerNetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Cancelled request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=0) due to node -1 being disconnected
+[DEBUG] 2021-01-31 20:06:16.786 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating connection to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null) using address pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:16.812 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Created socket with SO_RCVBUF = 65536, SO_SNDBUF = 131072, SO_TIMEOUT = 0 to node -1
+[DEBUG] 2021-01-31 20:06:16.825 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Completed connection to node -1. Fetching API versions.
+[DEBUG] 2021-01-31 20:06:16.959 [Thread-3] SslTransportLayer - [SslTransportLayer channelId=-1 key=channel=java.nio.channels.SocketChannel[connection-pending remote=pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88:9092], selector=sun.nio.ch.WindowsSelectorImpl@5113caf1, interestOps=8, readyOps=0] SSL handshake completed successfully with peerHost 'pkc-419q3.us-east4.gcp.confluent.cloud' peerPort 9092 peerPrincipal 'CN=*.us-east4.gcp.confluent.cloud' cipherSuite 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'
+[DEBUG] 2021-01-31 20:06:16.959 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Successfully authenticated with pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:16.959 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating API versions fetch from node -1.
+[DEBUG] 2021-01-31 20:06:16.959 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending API_VERSIONS request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=4) and timeout 5000 to node -1: {client_software_name=apache-kafka-java,client_software_version=2.7.0,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:16.989 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Received API_VERSIONS response from node -1 for request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=4): org.apache.kafka.common.requests.ApiVersionsResponse@7f222543
+[DEBUG] 2021-01-31 20:06:16.989 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Recorded API versions for node -1: (Produce(0): 0 to 8 [usable: 8], Fetch(1): 0 to 12 [usable: 12], ListOffsets(2): 0 to 5 [usable: 5], Metadata(3): 0 to 9 [usable: 9], LeaderAndIsr(4): 0 to 4 [usable: 4], StopReplica(5): 0 to 3 [usable: 3], UpdateMetadata(6): 0 to 6 [usable: 6], ControlledShutdown(7): 0 to 3 [usable: 3], OffsetCommit(8): 0 to 8 [usable: 8], OffsetFetch(9): 0 to 7 [usable: 7], FindCoordinator(10): 0 to 3 [usable: 3], JoinGroup(11): 0 to 7 [usable: 7], Heartbeat(12): 0 to 4 [usable: 4], LeaveGroup(13): 0 to 4 [usable: 4], SyncGroup(14): 0 to 5 [usable: 5], DescribeGroups(15): 0 to 5 [usable: 5], ListGroups(16): 0 to 4 [usable: 4], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 3 [usable: 3], CreateTopics(19): 0 to 6 [usable: 6], DeleteTopics(20): 0 to 5 [usable: 5], DeleteRecords(21): 0 to 2 [usable: 2], InitProducerId(22): 0 to 4 [usable: 4], OffsetForLeaderEpoch(23): 0 to 3 [usable: 3], AddPartitionsToTxn(24): 0 to 2 [usable: 2], AddOffsetsToTxn(25): 0 to 2 [usable: 2], EndTxn(26): 0 to 2 [usable: 2], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 to 3 [usable: 3], DescribeAcls(29): 0 to 2 [usable: 2], CreateAcls(30): 0 to 2 [usable: 2], DeleteAcls(31): 0 to 2 [usable: 2], DescribeConfigs(32): 0 to 3 [usable: 3], AlterConfigs(33): 0 to 1 [usable: 1], AlterReplicaLogDirs(34): 0 to 1 [usable: 1], DescribeLogDirs(35): 0 to 2 [usable: 2], SaslAuthenticate(36): 0 to 2 [usable: 2], CreatePartitions(37): 0 to 3 [usable: 3], CreateDelegationToken(38): 0 to 2 [usable: 2], RenewDelegationToken(39): 0 to 2 [usable: 2], ExpireDelegationToken(40): 0 to 2 [usable: 2], DescribeDelegationToken(41): 0 to 2 [usable: 2], DeleteGroups(42): 0 to 2 [usable: 2], ElectLeaders(43): 0 to 2 [usable: 2], IncrementalAlterConfigs(44): 0 to 1 [usable: 1], AlterPartitionReassignments(45): 0 [usable: 0], ListPartitionReassignments(46): 0 [usable: 0], OffsetDelete(47): 0 [usable: 0], DescribeClientQuotas(48): 0 [usable: 0], AlterClientQuotas(49): 0 [usable: 0], DescribeUserScramCredentials(50): 0 [usable: 0], AlterUserScramCredentials(51): 0 [usable: 0], AlterIsr(56): 0 [usable: 0], UpdateFeatures(57): 0 [usable: 0], UNKNOWN(10000): 0 to 2, UNKNOWN(10001): 0, UNKNOWN(10002): 0, UNKNOWN(10003): 0, UNKNOWN(10004): 0, UNKNOWN(10005): 0, UNKNOWN(10006): 0, UNKNOWN(10007): 0 to 1, UNKNOWN(10008): 0, UNKNOWN(10009): 0, UNKNOWN(10010): 0)
+[DEBUG] 2021-01-31 20:06:16.990 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending metadata request MetadataRequestData(topics=[], allowAutoTopicCreation=true, includeClusterAuthorizedOperations=false, includeTopicAuthorizedOperations=false) to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null)
+[DEBUG] 2021-01-31 20:06:16.990 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=5) and timeout 5000 to node -1: {topics=[],allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:16.991 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=3) and timeout 5000 to node -1: {topics=null,allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:18.041 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Connection with pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88 disconnected
+java.io.EOFException: null
+	at org.apache.kafka.common.network.SslTransportLayer.read(SslTransportLayer.java:619) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.NetworkReceive.readFrom(NetworkReceive.java:95) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.KafkaChannel.receive(KafkaChannel.java:447) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.KafkaChannel.read(KafkaChannel.java:397) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.attemptRead(Selector.java:674) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:576) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:561) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:265) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:236) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:215) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.Fetcher.getTopicMetadata(Fetcher.java:375) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.Fetcher.getAllTopicMetadata(Fetcher.java:358) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.KafkaConsumer.listTopics(KafkaConsumer.java:1999) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.KafkaConsumer.listTopics(KafkaConsumer.java:1977) [kafka-clients-2.7.0.jar:?]
+	at com.kafkaexplorer.utils.KafkaLib.listTopics(KafkaLib.java:86) [classes/:?]
+	at com.kafkaexplorer.ClusterConfigController$1.call(ClusterConfigController.java:126) [classes/:?]
+	at com.kafkaexplorer.ClusterConfigController$1.call(ClusterConfigController.java:101) [classes/:?]
+	at javafx.concurrent.Task$TaskCallable.call(Task.java:1425) [javafx-graphics-15-win.jar:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
+	at java.lang.Thread.run(Thread.java:832) [?:?]
+[DEBUG] 2021-01-31 20:06:18.043 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Node -1 disconnected.
+[WARN ] 2021-01-31 20:06:18.044 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Bootstrap broker pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null) disconnected
+[DEBUG] 2021-01-31 20:06:18.045 [Thread-3] ConsumerNetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Cancelled request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=3) due to node -1 being disconnected
+[DEBUG] 2021-01-31 20:06:18.147 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating connection to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null) using address pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:18.186 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Created socket with SO_RCVBUF = 65536, SO_SNDBUF = 131072, SO_TIMEOUT = 0 to node -1
+[DEBUG] 2021-01-31 20:06:18.190 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Completed connection to node -1. Fetching API versions.
+[DEBUG] 2021-01-31 20:06:18.292 [Thread-3] SslTransportLayer - [SslTransportLayer channelId=-1 key=channel=java.nio.channels.SocketChannel[connection-pending remote=pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88:9092], selector=sun.nio.ch.WindowsSelectorImpl@5113caf1, interestOps=8, readyOps=0] SSL handshake completed successfully with peerHost 'pkc-419q3.us-east4.gcp.confluent.cloud' peerPort 9092 peerPrincipal 'CN=*.us-east4.gcp.confluent.cloud' cipherSuite 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'
+[DEBUG] 2021-01-31 20:06:18.292 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Successfully authenticated with pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:18.293 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating API versions fetch from node -1.
+[DEBUG] 2021-01-31 20:06:18.293 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending API_VERSIONS request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=7) and timeout 5000 to node -1: {client_software_name=apache-kafka-java,client_software_version=2.7.0,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:18.319 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Received API_VERSIONS response from node -1 for request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=7): org.apache.kafka.common.requests.ApiVersionsResponse@5de1a74b
+[DEBUG] 2021-01-31 20:06:18.319 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Recorded API versions for node -1: (Produce(0): 0 to 8 [usable: 8], Fetch(1): 0 to 12 [usable: 12], ListOffsets(2): 0 to 5 [usable: 5], Metadata(3): 0 to 9 [usable: 9], LeaderAndIsr(4): 0 to 4 [usable: 4], StopReplica(5): 0 to 3 [usable: 3], UpdateMetadata(6): 0 to 6 [usable: 6], ControlledShutdown(7): 0 to 3 [usable: 3], OffsetCommit(8): 0 to 8 [usable: 8], OffsetFetch(9): 0 to 7 [usable: 7], FindCoordinator(10): 0 to 3 [usable: 3], JoinGroup(11): 0 to 7 [usable: 7], Heartbeat(12): 0 to 4 [usable: 4], LeaveGroup(13): 0 to 4 [usable: 4], SyncGroup(14): 0 to 5 [usable: 5], DescribeGroups(15): 0 to 5 [usable: 5], ListGroups(16): 0 to 4 [usable: 4], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 3 [usable: 3], CreateTopics(19): 0 to 6 [usable: 6], DeleteTopics(20): 0 to 5 [usable: 5], DeleteRecords(21): 0 to 2 [usable: 2], InitProducerId(22): 0 to 4 [usable: 4], OffsetForLeaderEpoch(23): 0 to 3 [usable: 3], AddPartitionsToTxn(24): 0 to 2 [usable: 2], AddOffsetsToTxn(25): 0 to 2 [usable: 2], EndTxn(26): 0 to 2 [usable: 2], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 to 3 [usable: 3], DescribeAcls(29): 0 to 2 [usable: 2], CreateAcls(30): 0 to 2 [usable: 2], DeleteAcls(31): 0 to 2 [usable: 2], DescribeConfigs(32): 0 to 3 [usable: 3], AlterConfigs(33): 0 to 1 [usable: 1], AlterReplicaLogDirs(34): 0 to 1 [usable: 1], DescribeLogDirs(35): 0 to 2 [usable: 2], SaslAuthenticate(36): 0 to 2 [usable: 2], CreatePartitions(37): 0 to 3 [usable: 3], CreateDelegationToken(38): 0 to 2 [usable: 2], RenewDelegationToken(39): 0 to 2 [usable: 2], ExpireDelegationToken(40): 0 to 2 [usable: 2], DescribeDelegationToken(41): 0 to 2 [usable: 2], DeleteGroups(42): 0 to 2 [usable: 2], ElectLeaders(43): 0 to 2 [usable: 2], IncrementalAlterConfigs(44): 0 to 1 [usable: 1], AlterPartitionReassignments(45): 0 [usable: 0], ListPartitionReassignments(46): 0 [usable: 0], OffsetDelete(47): 0 [usable: 0], DescribeClientQuotas(48): 0 [usable: 0], AlterClientQuotas(49): 0 [usable: 0], DescribeUserScramCredentials(50): 0 [usable: 0], AlterUserScramCredentials(51): 0 [usable: 0], AlterIsr(56): 0 [usable: 0], UpdateFeatures(57): 0 [usable: 0], UNKNOWN(10000): 0 to 2, UNKNOWN(10001): 0, UNKNOWN(10002): 0, UNKNOWN(10003): 0, UNKNOWN(10004): 0, UNKNOWN(10005): 0, UNKNOWN(10006): 0, UNKNOWN(10007): 0 to 1, UNKNOWN(10008): 0, UNKNOWN(10009): 0, UNKNOWN(10010): 0)
+[DEBUG] 2021-01-31 20:06:18.320 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending metadata request MetadataRequestData(topics=[], allowAutoTopicCreation=true, includeClusterAuthorizedOperations=false, includeTopicAuthorizedOperations=false) to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null)
+[DEBUG] 2021-01-31 20:06:18.320 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=8) and timeout 5000 to node -1: {topics=[],allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:18.320 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=6) and timeout 5000 to node -1: {topics=null,allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:19.356 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Connection with pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88 disconnected
+java.io.EOFException: null
+	at org.apache.kafka.common.network.SslTransportLayer.read(SslTransportLayer.java:619) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.NetworkReceive.readFrom(NetworkReceive.java:95) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.KafkaChannel.receive(KafkaChannel.java:447) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.KafkaChannel.read(KafkaChannel.java:397) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.attemptRead(Selector.java:674) ~[kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:576) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:561) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:265) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:236) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient.poll(ConsumerNetworkClient.java:215) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.Fetcher.getTopicMetadata(Fetcher.java:375) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.internals.Fetcher.getAllTopicMetadata(Fetcher.java:358) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.KafkaConsumer.listTopics(KafkaConsumer.java:1999) [kafka-clients-2.7.0.jar:?]
+	at org.apache.kafka.clients.consumer.KafkaConsumer.listTopics(KafkaConsumer.java:1977) [kafka-clients-2.7.0.jar:?]
+	at com.kafkaexplorer.utils.KafkaLib.listTopics(KafkaLib.java:86) [classes/:?]
+	at com.kafkaexplorer.ClusterConfigController$1.call(ClusterConfigController.java:126) [classes/:?]
+	at com.kafkaexplorer.ClusterConfigController$1.call(ClusterConfigController.java:101) [classes/:?]
+	at javafx.concurrent.Task$TaskCallable.call(Task.java:1425) [javafx-graphics-15-win.jar:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
+	at java.lang.Thread.run(Thread.java:832) [?:?]
+[DEBUG] 2021-01-31 20:06:19.357 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Node -1 disconnected.
+[WARN ] 2021-01-31 20:06:19.357 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Bootstrap broker pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null) disconnected
+[DEBUG] 2021-01-31 20:06:19.357 [Thread-3] ConsumerNetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Cancelled request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=6) due to node -1 being disconnected
+[DEBUG] 2021-01-31 20:06:19.461 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating connection to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null) using address pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:19.488 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Created socket with SO_RCVBUF = 65536, SO_SNDBUF = 131072, SO_TIMEOUT = 0 to node -1
+[DEBUG] 2021-01-31 20:06:19.492 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Completed connection to node -1. Fetching API versions.
+[DEBUG] 2021-01-31 20:06:19.574 [Thread-3] SslTransportLayer - [SslTransportLayer channelId=-1 key=channel=java.nio.channels.SocketChannel[connection-pending remote=pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88:9092], selector=sun.nio.ch.WindowsSelectorImpl@5113caf1, interestOps=8, readyOps=0] SSL handshake completed successfully with peerHost 'pkc-419q3.us-east4.gcp.confluent.cloud' peerPort 9092 peerPrincipal 'CN=*.us-east4.gcp.confluent.cloud' cipherSuite 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'
+[DEBUG] 2021-01-31 20:06:19.574 [Thread-3] Selector - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Successfully authenticated with pkc-419q3.us-east4.gcp.confluent.cloud/35.236.209.88
+[DEBUG] 2021-01-31 20:06:19.574 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Initiating API versions fetch from node -1.
+[DEBUG] 2021-01-31 20:06:19.575 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending API_VERSIONS request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=10) and timeout 5000 to node -1: {client_software_name=apache-kafka-java,client_software_version=2.7.0,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:19.600 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Received API_VERSIONS response from node -1 for request with header RequestHeader(apiKey=API_VERSIONS, apiVersion=3, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=10): org.apache.kafka.common.requests.ApiVersionsResponse@5f9eb6f9
+[DEBUG] 2021-01-31 20:06:19.601 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Recorded API versions for node -1: (Produce(0): 0 to 8 [usable: 8], Fetch(1): 0 to 12 [usable: 12], ListOffsets(2): 0 to 5 [usable: 5], Metadata(3): 0 to 9 [usable: 9], LeaderAndIsr(4): 0 to 4 [usable: 4], StopReplica(5): 0 to 3 [usable: 3], UpdateMetadata(6): 0 to 6 [usable: 6], ControlledShutdown(7): 0 to 3 [usable: 3], OffsetCommit(8): 0 to 8 [usable: 8], OffsetFetch(9): 0 to 7 [usable: 7], FindCoordinator(10): 0 to 3 [usable: 3], JoinGroup(11): 0 to 7 [usable: 7], Heartbeat(12): 0 to 4 [usable: 4], LeaveGroup(13): 0 to 4 [usable: 4], SyncGroup(14): 0 to 5 [usable: 5], DescribeGroups(15): 0 to 5 [usable: 5], ListGroups(16): 0 to 4 [usable: 4], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 3 [usable: 3], CreateTopics(19): 0 to 6 [usable: 6], DeleteTopics(20): 0 to 5 [usable: 5], DeleteRecords(21): 0 to 2 [usable: 2], InitProducerId(22): 0 to 4 [usable: 4], OffsetForLeaderEpoch(23): 0 to 3 [usable: 3], AddPartitionsToTxn(24): 0 to 2 [usable: 2], AddOffsetsToTxn(25): 0 to 2 [usable: 2], EndTxn(26): 0 to 2 [usable: 2], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 to 3 [usable: 3], DescribeAcls(29): 0 to 2 [usable: 2], CreateAcls(30): 0 to 2 [usable: 2], DeleteAcls(31): 0 to 2 [usable: 2], DescribeConfigs(32): 0 to 3 [usable: 3], AlterConfigs(33): 0 to 1 [usable: 1], AlterReplicaLogDirs(34): 0 to 1 [usable: 1], DescribeLogDirs(35): 0 to 2 [usable: 2], SaslAuthenticate(36): 0 to 2 [usable: 2], CreatePartitions(37): 0 to 3 [usable: 3], CreateDelegationToken(38): 0 to 2 [usable: 2], RenewDelegationToken(39): 0 to 2 [usable: 2], ExpireDelegationToken(40): 0 to 2 [usable: 2], DescribeDelegationToken(41): 0 to 2 [usable: 2], DeleteGroups(42): 0 to 2 [usable: 2], ElectLeaders(43): 0 to 2 [usable: 2], IncrementalAlterConfigs(44): 0 to 1 [usable: 1], AlterPartitionReassignments(45): 0 [usable: 0], ListPartitionReassignments(46): 0 [usable: 0], OffsetDelete(47): 0 [usable: 0], DescribeClientQuotas(48): 0 [usable: 0], AlterClientQuotas(49): 0 [usable: 0], DescribeUserScramCredentials(50): 0 [usable: 0], AlterUserScramCredentials(51): 0 [usable: 0], AlterIsr(56): 0 [usable: 0], UpdateFeatures(57): 0 [usable: 0], UNKNOWN(10000): 0 to 2, UNKNOWN(10001): 0, UNKNOWN(10002): 0, UNKNOWN(10003): 0, UNKNOWN(10004): 0, UNKNOWN(10005): 0, UNKNOWN(10006): 0, UNKNOWN(10007): 0 to 1, UNKNOWN(10008): 0, UNKNOWN(10009): 0, UNKNOWN(10010): 0)
+[DEBUG] 2021-01-31 20:06:19.601 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending metadata request MetadataRequestData(topics=[], allowAutoTopicCreation=true, includeClusterAuthorizedOperations=false, includeTopicAuthorizedOperations=false) to node pkc-419q3.us-east4.gcp.confluent.cloud:9092 (id: -1 rack: null)
+[DEBUG] 2021-01-31 20:06:19.601 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=11) and timeout 5000 to node -1: {topics=[],allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:19.602 [Thread-3] NetworkClient - [Consumer clientId=consumer-kafkaexplorer-consumer-group-2, groupId=kafkaexplorer-consumer-group] Sending METADATA request with header RequestHeader(apiKey=METADATA, apiVersion=9, clientId=consumer-kafkaexplorer-consumer-group-2, correlationId=9) and timeout 5000 to node -1: {topics=null,allow_auto_topic_creation=true,include_cluster_authorized_operations=false,include_topic_authorized_operations=false,_tagged_fields={}}
+[DEBUG] 2021-01-31 20:06:20.194 [JavaFX Application Thread] MyLogger - The task failed with the following exception: org.apache.kafka.common.errors.TimeoutException: Timeout expired while fetching topic metadata
+
