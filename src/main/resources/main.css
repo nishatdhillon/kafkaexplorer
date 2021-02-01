@@ -70,3 +70,34 @@
 .tree-cell:expanded .tree-disclosure-node .arrow {
     -fx-background-color: white;
 }
+
+.table-row-cell:odd{
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+.table-row-cell:selected {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #45484A;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
