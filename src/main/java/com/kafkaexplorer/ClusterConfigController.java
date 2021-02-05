@@ -40,7 +40,6 @@ public class ClusterConfigController implements Initializable {
     public TextField jks;
     public TextField  jksPwd;
     public StackPane stack;
-    public ProgressBar progBar1;
     @FXML
     public TextField bootstrap;
     @FXML
@@ -76,8 +75,6 @@ public class ClusterConfigController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        progBar1.setVisible(false);
     }
 
     public void populateScreen(Cluster cluster, TreeView<String> clusterTreeView) {
@@ -97,23 +94,23 @@ public class ClusterConfigController implements Initializable {
 
     public void connectToKafka(MouseEvent mouseEvent) throws IOException {
         //connect to kafka cluster and list all topics
-        progBar1.setVisible(true);
+
+
         Task task = new Task<Void>() {
             @Override
             public Void call() throws Exception {
-                KafkaLib kafkaConnector = new KafkaLib();
-                progBar1.setDisable(false);
 
-                updateProgress(20, 100);
+                ((ProgressIndicator)rootGridPane.getScene().lookup("#progBar2")).setVisible(true);
+
+                KafkaLib kafkaConnector = new KafkaLib();
                 kafkaConnector.connect(cluster);
+
+
 
                 //kafkaTree
                 for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
 
                     if (child.getValue().equals(name.getText())) {
-
-                        updateProgress(40, 100);
-
                         //remove any existing topics
                         child.getChildren().clear();
 
@@ -126,7 +123,6 @@ public class ClusterConfigController implements Initializable {
                         ArrayList<String> topics = kafkaConnector.listTopics(cluster);
                         Boolean displayAllTopics = false;
 
-                        updateProgress(60, 100);
                         if (cluster.getFilterTopics().size() == 0)
                         {
                             displayAllTopics = true;
@@ -154,8 +150,6 @@ public class ClusterConfigController implements Initializable {
                             }
 
                         }
-                        updateProgress(80, 100);
-
                         child.setExpanded(true);
                         topicsChildren.setExpanded(true);
                     } else {
@@ -163,7 +157,7 @@ public class ClusterConfigController implements Initializable {
                     }
 
                 }
-                updateProgress(100, 100);
+                ((ProgressIndicator)rootGridPane.getScene().lookup("#progBar2")).setVisible(false);
                 return null;
             }
         };
@@ -178,7 +172,7 @@ public class ClusterConfigController implements Initializable {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText(errors.toString());
             a.show();
-            progBar1.setVisible(false);
+            ((ProgressIndicator)rootGridPane.getScene().lookup("#progBar2")).setVisible(false);
 
             //change cluster icon to grey
             setClusterIconToGreen(name.getText(), false);
@@ -188,10 +182,8 @@ public class ClusterConfigController implements Initializable {
         task.setOnSucceeded(evt -> {
             //change cluster icon to green
             setClusterIconToGreen(name.getText(), true);
-
+            ((ProgressIndicator)rootGridPane.getScene().lookup("#progBar2")).setVisible(false);
         });
-
-        progBar1.progressProperty().bind(task.progressProperty());
 
         new Thread(task).start();
 

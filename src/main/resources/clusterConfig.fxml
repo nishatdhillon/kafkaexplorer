@@ -45,7 +45,7 @@
          <Label text="Cluster name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />
       <Label GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
-      <Label text="Format: PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL" GridPane.columnIndex="5" GridPane.rowIndex="4">
+      <Label text="Ex: SASL_SSL" GridPane.columnIndex="5" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>
@@ -64,11 +64,6 @@
             <Insets bottom="5.0" left="110.0" />
          </GridPane.margin>
       </ImageView>
-      <ProgressBar fx:id="progBar1" prefHeight="30.0" prefWidth="244.0" progress="0.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER">
-         <GridPane.margin>
-            <Insets top="20.0" />
-         </GridPane.margin>
-      </ProgressBar>
       <JFXButton mnemonicParsing="false" onMouseClicked="#saveCluster" text="Save" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
       <JFXButton mnemonicParsing="false" onMouseClicked="#browseJKS" text="Browse" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="6">
          <GridPane.margin>
@@ -77,5 +72,10 @@
       <JFXButton mnemonicParsing="false" onMouseClicked="#deleteCluster" text="Delete" GridPane.columnIndex="4" GridPane.rowIndex="10" />
       <Label prefHeight="17.0" prefWidth="148.0" text="Jks truststore password" GridPane.columnIndex="2" GridPane.rowIndex="7" />
       <TextField fx:id="jksPwd" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+      <Label text="Ex: PLAIN" GridPane.columnIndex="5" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
           </children>
     </GridPane>

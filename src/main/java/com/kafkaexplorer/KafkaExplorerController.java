@@ -29,6 +29,7 @@ import java.util.UUID;
 
 public class KafkaExplorerController implements Initializable {
 
+    public ProgressIndicator progBar2;
     @FXML
     private TreeView<String> kafkaTree;
 
