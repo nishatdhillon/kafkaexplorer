@@ -20,6 +20,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.kafka.clients.admin.Config;
+import org.apache.kafka.common.KafkaFuture;
+import org.apache.kafka.common.PartitionInfo;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -79,17 +82,50 @@ public class ClusterConfigController implements Initializable {
 
     public void populateScreen(Cluster cluster, TreeView<String> clusterTreeView) {
         this.cluster = cluster;
-        jks.setText(cluster.getTrustStoreJKS());
-        jksPwd.setText(cluster.getTrustStoreJKSPwd());
-        bootstrap.setText(cluster.getHostname());
-        name.setText(cluster.getName());
-        saslMechanism.setText(cluster.getMechanism());
-        securityType.setText(cluster.getProtocol());
-        //todo mask pwd on screen
-        //jaasConf.setText(cluster.getJaasConfig().substring(0, cluster.getJaasConfig().indexOf("password=")) + "password='***masked***';");
-        jaasConf.setText(cluster.getJaasConfig());
-        consumerGroup.setText(cluster.getConsumerGroup());
-        kafkaTreeRef = clusterTreeView;
+
+        Task<Integer> task = new Task<Integer>() {
+            @Override
+            protected Integer call() throws Exception {
+
+                jks.setText(cluster.getTrustStoreJKS());
+                jksPwd.setText(cluster.getTrustStoreJKSPwd());
+                bootstrap.setText(cluster.getHostname());
+                name.setText(cluster.getName());
+                saslMechanism.setText(cluster.getMechanism());
+                securityType.setText(cluster.getProtocol());
+                //todo mask pwd on screen
+                //jaasConf.setText(cluster.getJaasConfig().substring(0, cluster.getJaasConfig().indexOf("password=")) + "password='***masked***';");
+                jaasConf.setText(cluster.getJaasConfig());
+                consumerGroup.setText(cluster.getConsumerGroup());
+                kafkaTreeRef = clusterTreeView;
+
+                return 0;
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+            }
+
+            @Override
+            protected void cancelled() {
+                super.cancelled();
+            }
+
+            @Override
+            protected void failed() {
+                super.failed();
+                //show an alert Dialog
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setHeaderText("Error!");
+                a.setContentText(this.getException().getMessage());
+                a.show();
+            }
+        };
+
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
     }
 
     public void connectToKafka(MouseEvent mouseEvent) throws IOException {

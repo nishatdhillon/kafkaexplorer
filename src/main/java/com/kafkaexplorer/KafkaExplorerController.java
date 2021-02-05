@@ -89,16 +89,23 @@ public class KafkaExplorerController implements Initializable {
 
                 } //If selectedItem is a topic, display topic browser screen
                 else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics") {
+
                     FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("/topicBrowser.fxml"));
                     VBox mainRoot = topicBrowserLoader.load();
+
+                    //Display Progress bar
+                    progBar2.setVisible(true);
 
                     TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
 
                     //Build cluster object from cluster name
                     Cluster cluster = new ConfigStore().getClusterByName(selectedItem.getParent().getParent().getValue().toString());
 
+
+                    //Switch to Asyn
+
                     topicBrowserController.populateScreen(cluster, selectedItem.getValue().toString(), kafkaTree);
-                    //mainContent.getChildren().setAll(mainRoot);
+                    //delete: mainContent.getChildren().setAll(mainRoot);
 
                     if (mainContent.getItems().size() > 1)
                         mainContent.getItems().remove(1);

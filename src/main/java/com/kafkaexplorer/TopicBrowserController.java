@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import org.apache.kafka.clients.admin.Config;
 import org.apache.kafka.clients.admin.ConfigEntry;
 import org.apache.kafka.common.KafkaFuture;
@@ -34,6 +35,7 @@ public class TopicBrowserController implements Initializable {
     public Button startButton;
     public Button stopButton;
     public TableView topicConfigTable;
+    public VBox rootNode;
     private TreeView<String> kafkaTreeRef;
     private Cluster cluster;
 
@@ -92,13 +94,48 @@ public class TopicBrowserController implements Initializable {
 
         stopButton.setDisable(true);
 
-        KafkaLib kafkaConnector = new KafkaLib();
-        List<PartitionInfo> partitionInfo = kafkaConnector.getTopicPartitionInfo(cluster, topicName);
-        displayPartitionInfo(partitionInfo);
 
-        KafkaFuture<Config> configFuture = kafkaConnector.getTopicInfo(cluster, topicName);
-        displayTopicInfo(configFuture);
+        Task<Integer> task = new Task<Integer>() {
+            @Override
+            protected Integer call() throws Exception {
 
+                KafkaLib kafkaConnector = new KafkaLib();
+                List<PartitionInfo> partitionInfo = kafkaConnector.getTopicPartitionInfo(cluster, topicName);
+                displayPartitionInfo(partitionInfo);
+
+                KafkaFuture<Config> configFuture = kafkaConnector.getTopicInfo(cluster, topicName);
+                displayTopicInfo(configFuture);
+
+                return 0;
+            }
+
+            @Override
+            protected void succeeded() {
+                ((ProgressIndicator)rootNode.getScene().lookup("#progBar2")).setVisible(false);
+                super.succeeded();
+            }
+
+            @Override
+            protected void cancelled() {
+                ((ProgressIndicator)rootNode.getScene().lookup("#progBar2")).setVisible(false);
+                super.cancelled();
+            }
+
+            @Override
+            protected void failed() {
+                ((ProgressIndicator)rootNode.getScene().lookup("#progBar2")).setVisible(false);
+                super.failed();
+                //show an alert Dialog
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setHeaderText("Error!");
+                a.setContentText(this.getException().getMessage());
+                a.show();
+            }
+        };
+
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
 
     }
 
