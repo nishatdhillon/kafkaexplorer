@@ -18,6 +18,8 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CompletionException;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 public class KafkaLib {
 
@@ -201,5 +203,20 @@ public class KafkaLib {
             KafkaFuture<Config> configFuture = adminClient.describeConfigs(Collections.singleton(resource)).values().get(resource);
 
         return configFuture;
+    }
+
+    public ArrayList<String> listConsumerGroups(Cluster cluster) throws ExecutionException, InterruptedException {
+
+        Map<String, List<PartitionInfo>> topics;
+        ArrayList<String> onlyTopicsName = new ArrayList<String>();
+
+        this.setProps(cluster);
+        AdminClient kafkaClient = AdminClient.create(this.getProps());
+
+        List<String> groupIds = kafkaClient.listConsumerGroups().all().get().stream().map(s -> s.groupId()).collect(Collectors.toList());
+
+        Collections.sort(groupIds);
+
+        return (ArrayList<String>) groupIds;
     }
 }

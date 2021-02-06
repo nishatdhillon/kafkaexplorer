@@ -143,15 +143,14 @@ public class ClusterConfigController implements Initializable {
 
 
 
-                //kafkaTree
+                //Build and expand kafkaTree
                 for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
-
+                    //Locate cluster to update
                     if (child.getValue().equals(name.getText())) {
-                        //remove any existing topics
+                        //remove any existing topics and consumers children
                         child.getChildren().clear();
 
                         //Create a SubTreeItem maned "topics"
-
                         child.getChildren().add(new TreeItem("topics"));
                         TreeItem topicsChildren = (TreeItem) child.getChildren().get(0);
 
@@ -188,6 +187,21 @@ public class ClusterConfigController implements Initializable {
                         }
                         child.setExpanded(true);
                         topicsChildren.setExpanded(true);
+
+                        //Create a SubTreeItem maned "consumer groups"
+                        TreeItem consumerNode = new TreeItem("consumer-groups");
+
+                        //get consumer groups list
+                        ArrayList<String> consumers = kafkaConnector.listConsumerGroups(cluster);
+                        for (String consumerGroupName : consumers) {
+                            TreeItem consumerItem = new TreeItem(consumerGroupName);
+                            consumerNode.getChildren().add(consumerItem);
+                        }
+                        consumerNode.setExpanded(true);
+                        child.getChildren().add(consumerNode);
+
+
+
                     } else {
                         child.setExpanded(false);
                     }
