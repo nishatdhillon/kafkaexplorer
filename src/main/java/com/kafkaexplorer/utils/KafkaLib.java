@@ -5,13 +5,11 @@ import com.kafkaexplorer.model.Cluster;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import org.apache.kafka.clients.admin.*;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.config.ConfigResource;
 
 import java.text.Format;
@@ -218,5 +216,22 @@ public class KafkaLib {
         Collections.sort(groupIds);
 
         return (ArrayList<String>) groupIds;
+    }
+
+    public  KafkaFuture<Map<String, ConsumerGroupDescription>> getConsumerGroupInfo(Cluster cluster, String groupName) throws ExecutionException, InterruptedException {
+
+        Map<String, List<PartitionInfo>> topics;
+        ArrayList<String> onlyTopicsName = new ArrayList<String>();
+
+        this.setProps(cluster);
+        AdminClient kafkaClient = AdminClient.create(this.getProps());
+
+        ArrayList<String> groupList = new ArrayList<String>();
+        groupList.add(groupName);
+
+        DescribeConsumerGroupsResult consumerInfo = kafkaClient.describeConsumerGroups(groupList);
+
+        return consumerInfo.all();
+
     }
 }

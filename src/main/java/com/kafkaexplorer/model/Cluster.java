@@ -18,7 +18,8 @@ public class Cluster {
     private String trustStoreJKSPwd;
     private List<FilterTopic> filterTopics = new ArrayList<FilterTopic>();
 
-    public Cluster() {}
+    public Cluster() {
+    }
 
     public Cluster(Cluster cluster) {
         this.id = cluster.getId();
@@ -38,7 +39,11 @@ public class Cluster {
     }
 
     public String getConsumerGroup() {
-        return consumerGroup;
+
+        if (consumerGroup == null)
+            return "";
+        else
+            return consumerGroup;
     }
 
     public void setConsumerGroup(String consumerGroup) {
@@ -46,11 +51,19 @@ public class Cluster {
     }
 
     public String getName() {
+
+        if (name == null)
+            return "";
+        else
         return name;
     }
 
     public String getProtocol() {
-        return protocol;
+
+        if (protocol == null)
+            return "";
+        else
+            return protocol;
     }
 
     public void setProtocol(String protocol) {
@@ -58,7 +71,11 @@ public class Cluster {
     }
 
     public String getMechanism() {
-        return mechanism;
+
+        if (mechanism == null)
+            return "";
+        else
+            return mechanism;
     }
 
     public void setMechanism(String mechanism) {
@@ -66,7 +83,11 @@ public class Cluster {
     }
 
     public String getJaasConfig() {
-        return jaasConfig;
+
+        if (jaasConfig == null)
+            return "";
+        else
+            return jaasConfig;
     }
 
     public void setJaasConfig(String jaasConfig) {

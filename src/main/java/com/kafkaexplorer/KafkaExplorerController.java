@@ -98,14 +98,31 @@ public class KafkaExplorerController implements Initializable {
 
                     TopicBrowserController topicBrowserController = topicBrowserLoader.getController();
 
-                    //Build cluster object from cluster name
+                    //Get cluster info from cluster name
                     Cluster cluster = new ConfigStore().getClusterByName(selectedItem.getParent().getParent().getValue().toString());
-
-
-                    //Switch to Asyn
 
                     topicBrowserController.populateScreen(cluster, selectedItem.getValue().toString(), kafkaTree);
                     //delete: mainContent.getChildren().setAll(mainRoot);
+
+                    if (mainContent.getItems().size() > 1)
+                        mainContent.getItems().remove(1);
+
+                    mainContent.getItems().add(mainRoot);
+                } //If selectedItem is a consumer group, display consumer group screen
+                else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "consumer-groups") {
+
+                    FXMLLoader consumerGroupBrowserLoader = new FXMLLoader(getClass().getResource("/consumerBrowser.fxml"));
+                    VBox mainRoot = consumerGroupBrowserLoader.load();
+
+                    //Display Progress bar
+                    progBar2.setVisible(true);
+
+                    ConsumerGroupController consumerGroupBrowserController = consumerGroupBrowserLoader.getController();
+
+                    //Get cluster info from cluster name
+                    Cluster cluster = new ConfigStore().getClusterByName(selectedItem.getParent().getParent().getValue().toString());
+
+                    consumerGroupBrowserController.populateScreen(cluster, selectedItem.getValue().toString(), kafkaTree);
 
                     if (mainContent.getItems().size() > 1)
                         mainContent.getItems().remove(1);
