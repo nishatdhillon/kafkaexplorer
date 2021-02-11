@@ -11,7 +11,9 @@ import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.config.ConfigResource;
+import org.apache.kafka.common.errors.SerializationException;
 
+import java.nio.ByteBuffer;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 
 public class KafkaLib {
 
+    private static final byte MAGIC_BYTE = 0x0;
     public boolean continueBrowsing;
     private Properties props;
 
@@ -145,7 +148,17 @@ public class KafkaLib {
                     Format format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     item1.put("Created", format.format(date).toString());
 
-                    item1.put("Message", record.value() );
+                    byte[] payload = record.value().getBytes();
+
+                    int schemaId = -1;
+
+                        ByteBuffer buffer = ByteBuffer.wrap(payload);
+                        if (buffer.get() != MAGIC_BYTE) {
+                            item1.put("Message", record.value() );
+                        } else {
+                            schemaId = buffer.getInt();
+                            item1.put("Message", "[AVRO schemaId:" + schemaId + "] " + record.value().toString().substring(6));
+                        }
 
                     messagesTable.getItems().add(item1);
                     messagesTable.sort();
