@@ -229,7 +229,6 @@
                             <macConfig>
                                 <generatePkg>false</generatePkg>
                                 <icnsFile>img/Kafkaexplorer.icns</icnsFile>
-                                <DeveloperId>stephane.ris@icloud.com</DeveloperId>
                                 <Entitlements>config/Entitlements.plist</Entitlements>
                             </macConfig>
 
