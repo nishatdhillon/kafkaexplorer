@@ -34,11 +34,19 @@
 .tree-view .tree-cell {
     -fx-background-color: -fx-body-color ;
     -fx-text-fill: #AFB1B3 ;
-
+    -fx-pref-height: 30px;
+    -fx-font-size: 12px;
+    -fx-padding: 0,0,0,0;
 }
+
+
 .tree-cell:expanded {
     -fx-background-color: #404040 ;
 
+}
+
+.tree-disclosure-node {
+    -fx-padding: 12 8 0 10;
 }
 
 .text-input {

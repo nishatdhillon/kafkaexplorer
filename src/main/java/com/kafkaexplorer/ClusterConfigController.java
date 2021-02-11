@@ -181,6 +181,7 @@ public class ClusterConfigController implements Initializable {
 
                             if (displayThisTopic) {
                                 TreeItem topicItem = new TreeItem(topicName);
+
                                 topicsChildren.getChildren().add(topicItem);
                             }
 
