@@ -64,6 +64,18 @@ public class TopicBrowserController implements Initializable {
         createdColumn.setSortType(TableColumn.SortType.DESCENDING);
         createdColumn.setMinWidth(125);
 
+        TableColumn<Map, Object> srTypeColumn = new TableColumn<>("Schema Type");
+        srTypeColumn.setCellValueFactory(new MapValueFactory<>("Schema Type"));
+        srTypeColumn.setMinWidth(50);
+
+        TableColumn<Map, Object> srIdColumn = new TableColumn<>("Schema Id");
+        srIdColumn.setCellValueFactory(new MapValueFactory<>("Schema Id"));
+        srIdColumn.setMinWidth(50);
+
+        TableColumn<Map, Object> srSubjectColumn = new TableColumn<>("Schema Subject");
+        srSubjectColumn.setCellValueFactory(new MapValueFactory<>("Schema Subject"));
+        srSubjectColumn.setMinWidth(100);
+
         TableColumn<Map, Object> messageColumn = new TableColumn<>("Message");
         messageColumn.setCellValueFactory(new MapValueFactory<>("Message"));
         messageColumn.setMinWidth(800);
@@ -71,6 +83,10 @@ public class TopicBrowserController implements Initializable {
         messagesTable.getColumns().add(partitionColumn);
         messagesTable.getColumns().add(offsetColumn);
         messagesTable.getColumns().add(createdColumn);
+        messagesTable.getColumns().add(srTypeColumn);
+        messagesTable.getColumns().add(srIdColumn);
+        messagesTable.getColumns().add(srSubjectColumn);
+
         messagesTable.getColumns().add(messageColumn);
 
         messagesTable.getSortOrder().add(createdColumn);
