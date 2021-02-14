@@ -49,6 +49,9 @@ public class ClusterConfigController implements Initializable {
     public TextField saslMechanism;
     public TextField consumerGroup;
     public GridPane rootGridPane;
+    public TextField srUrl;
+    public TextField srUser;
+    public TextField srPwd;
     private Cluster cluster;
     private TreeView<String> kafkaTreeRef;
 
@@ -97,6 +100,10 @@ public class ClusterConfigController implements Initializable {
                 //jaasConf.setText(cluster.getJaasConfig().substring(0, cluster.getJaasConfig().indexOf("password=")) + "password='***masked***';");
                 jaasConf.setText(cluster.getJaasConfig());
                 consumerGroup.setText(cluster.getConsumerGroup());
+                srUrl.setText(cluster.getSrUrl());
+                srUser.setText(cluster.getSrUser());
+                srPwd.setText(cluster.getSrPwd());
+
                 kafkaTreeRef = clusterTreeView;
 
                 return 0;
@@ -251,6 +258,10 @@ public class ClusterConfigController implements Initializable {
         cluster.setProtocol(securityType.getText());
         cluster.setJaasConfig(jaasConf.getText());
         cluster.setConsumerGroup(consumerGroup.getText());
+
+        cluster.setSrUrl(srUrl.getText());
+        cluster.setSrUser(srUser.getText());
+        cluster.setSrPwd(srPwd.getText());
 
         new ConfigStore().saveCluster(cluster);
 
