@@ -17,6 +17,9 @@ public class Cluster {
     private String trustStoreJKS;
     private String trustStoreJKSPwd;
     private List<FilterTopic> filterTopics = new ArrayList<FilterTopic>();
+    private String srUrl;
+    private String srUser;
+    private String srPwd;
 
     public Cluster() {
     }
@@ -32,6 +35,21 @@ public class Cluster {
         this.filterTopics = cluster.getFilterTopics();
         this.trustStoreJKS = cluster.getTrustStoreJKS();
         this.trustStoreJKSPwd = cluster.getTrustStoreJKSPwd();
+        this.srPwd = cluster.getSrPwd();
+        this.srUser = cluster.getSrUser();
+        this.srUrl = cluster.getSrUrl();
+    }
+
+    public String getSrUrl() {
+        return this.srUrl;
+    }
+
+    public String getSrUser() {
+        return this.srUser;
+    }
+
+    public String getSrPwd() {
+        return this.srPwd;
     }
 
     public void setName(String name) {
@@ -151,5 +169,17 @@ public class Cluster {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setSrUrl(String srUrl) {
+        this.srUrl = srUrl;
+    }
+
+    public void setSrUser(String srUser) {
+        this.srUser = srUser;
+    }
+
+    public void setSrPwd(String srPwd) {
+        this.srPwd = srPwd;
     }
 }

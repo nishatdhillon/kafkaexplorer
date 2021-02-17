@@ -2,8 +2,23 @@ package com.kafkaexplorer.utils;
 
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
+import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient;
+import io.confluent.kafka.schemaregistry.client.SchemaRegistryClient;
+import io.confluent.kafka.schemaregistry.client.rest.entities.Schema;
+import io.confluent.kafka.schemaregistry.client.rest.entities.SchemaString;
+import io.confluent.kafka.schemaregistry.client.rest.entities.SubjectVersion;
+import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
+import io.confluent.kafka.schemaregistry.client.security.basicauth.BasicAuthCredentialProvider;
+import io.confluent.kafka.schemaregistry.client.security.basicauth.BasicAuthCredentialProviderFactory;
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
+import io.confluent.kafka.schemaregistry.avro.AvroSchema;
+import org.apache.avro.generic.GenericData;
+import org.apache.avro.generic.GenericDatumReader;
+import org.apache.avro.generic.GenericDatumWriter;
+import org.apache.avro.io.*;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.*;
@@ -12,14 +27,21 @@ import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.config.ConfigResource;
 import org.apache.kafka.common.errors.SerializationException;
+import io.confluent.kafka.schemaregistry.client.rest.RestService;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+
 
 public class KafkaLib {
 
@@ -64,6 +86,11 @@ public class KafkaLib {
         if (cluster.getTrustStoreJKS() != "") {
             this.props.put("ssl.truststore.location", cluster.getTrustStoreJKS());
             this.props.put("ssl.truststore.password", cluster.getTrustStoreJKSPwd());
+
+            //Set SSL at JVM level to be used by the Schema Registry SSL Rest Clien
+            System.setProperty("javax.net.ssl.trustStore",cluster.getTrustStoreJKS());
+            System.setProperty("javax.net.ssl.trustStorePassword",cluster.getTrustStoreJKSPwd());
+
         }
 
     }
@@ -128,8 +155,23 @@ public class KafkaLib {
         consumer.poll(0);  // without this, the assignment will be empty.
         //consumer.assignment().forEach(t -> {
         //    MyLogger.logDebug("Set " + t.toString() + " to offset 0");
-            consumer.seekToBeginning( consumer.assignment());
+        consumer.seekToBeginning(consumer.assignment());
         //});
+
+
+        RestService restService = new RestService(cluster.getSrUrl());
+        CachedSchemaRegistryClient schemaRegistryClient = new CachedSchemaRegistryClient(restService, 128);
+
+        Map<String, String> headers = new HashMap<String, String>();
+
+        try {
+            headers.put("Authorization", "Basic " + Base64.getEncoder().encodeToString((cluster.getSrUser() + ":" + cluster.getSrPwd()).getBytes("UTF-8")));
+            restService.setHttpHeaders(headers);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         try {
@@ -141,39 +183,62 @@ public class KafkaLib {
                     item1.put("Partition", record.partition());
 
                     //for (Header header : record.headers()) {
-                     //    String attributeName = header.key();
-                     //    String attributeValue = header.value().toString();
+                    //    String attributeName = header.key();
+                    //    String attributeValue = header.value().toString();
                     //}
                     Date date = new Date(record.timestamp());
                     Format format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     item1.put("Created", format.format(date).toString());
 
+
                     byte[] payload = record.value().getBytes();
 
                     int schemaId = -1;
 
-                        ByteBuffer buffer = ByteBuffer.wrap(payload);
-                        if (buffer.get() != MAGIC_BYTE) {
-                            item1.put("Message", record.value() );
-                        } else {
-                            schemaId = buffer.getInt();
-                            item1.put("Message", "[AVRO schemaId:" + schemaId + "] " + record.value().toString().substring(6));
-                        }
+                    ByteBuffer buffer = ByteBuffer.wrap(payload);
+                    if (buffer.get() != MAGIC_BYTE) {
+                        item1.put("Schema Id", "N.A");
+                        item1.put("Schema Type", "N.A");
+                        item1.put("Message", record.value());
+                    } else { // Schema Id found at the beginning of the message
+                        schemaId = buffer.getInt();
+                        item1.put("Schema Id", schemaId);
+
+                        item1.put("Schema Type", "AVRO");
+
+                        // SchemaString
+                        // SchemaString schemaString = restService.getId(schemaId);
+                        //Get the subject from SchemaId
+                        List<String> schemaSubjects = restService.getAllSubjectsById(schemaId);
+
+                        String subject = schemaSubjects.get(0);
+                        //Get all versions off the subject
+                        //List<Integer> versions = restService.getAllVersions(subject);
+
+                        //get Version Object from version ID
+                        Schema schema = restService.getVersion(subject, schemaId);
+
+                        item1.put("Schema Subject", subject + "(v" + schema.getVersion() + ")");
+
+                        KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer(schemaRegistryClient);
+
+                        GenericData.Record ir = (GenericData.Record) deserializer.deserialize("5736-npr-dev-user-trade-events", payload);
+                        //item1.put("Message", record.value().toString().substring(6));
+                        item1.put("Message", ir.toString());
+                    }
 
                     messagesTable.getItems().add(item1);
                     messagesTable.sort();
                 }
 
             }
-        }
-        finally {
-            consumer.close();
-        }
 
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void produceMessage(Cluster cluster, String topicName, String record) {
+        public void produceMessage(Cluster cluster, String topicName, String record) {
 
         this.setProps(cluster);
 
@@ -247,4 +312,8 @@ public class KafkaLib {
         return consumerInfo.all();
 
     }
+
+
+
+
 }
