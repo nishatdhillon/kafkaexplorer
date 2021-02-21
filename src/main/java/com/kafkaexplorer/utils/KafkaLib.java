@@ -212,19 +212,21 @@ public class KafkaLib {
                         // SchemaString schemaString = restService.getId(schemaId);
                         //Get the subject from SchemaId
                         List<String> schemaSubjects = restService.getAllSubjectsById(schemaId);
+                        List<SubjectVersion> schemaSubjectsVersions = restService.getAllVersionsById(schemaId);
 
-                        String subject = schemaSubjects.get(0);
+                        String subject = schemaSubjectsVersions.get(0).getSubject();
+                        Integer version = schemaSubjectsVersions.get(0).getVersion();
+
                         //Get all versions off the subject
                         //List<Integer> versions = restService.getAllVersions(subject);
 
                         //get Version Object from version ID
-                        Schema schema = restService.getVersion(subject, schemaId);
 
-                        item1.put("Schema Subject", subject + "(v" + schema.getVersion() + ")");
+                        item1.put("Schema Subject", subject + "(v" + version + ")");
 
                         KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer(schemaRegistryClient);
 
-                        GenericData.Record ir = (GenericData.Record) deserializer.deserialize("5736-npr-dev-user-trade-events", payload);
+                        GenericData.Record ir = (GenericData.Record) deserializer.deserialize(subject, payload);
                         //item1.put("Message", record.value().toString().substring(6));
                         item1.put("Message", ir.toString());
                     }
