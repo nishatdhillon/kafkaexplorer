@@ -12,6 +12,7 @@ import io.confluent.kafka.schemaregistry.client.security.basicauth.BasicAuthCred
 import io.confluent.kafka.schemaregistry.client.security.basicauth.BasicAuthCredentialProviderFactory;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import io.confluent.kafka.schemaregistry.avro.AvroSchema;
 import org.apache.avro.generic.GenericData;
@@ -72,7 +73,7 @@ public class KafkaLib {
         //this.props.put("session.timeout.ms", 5000);
         this.props.put("auto.commit.interval.ms", "1000");
 
-        this.props.put("group.id", cluster.getConsumerGroup() + "." + System.getProperty("user.name"));
+        this.props.put("group.id", cluster.getConsumerGroup());
         this.props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         this.props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
@@ -142,7 +143,7 @@ public class KafkaLib {
     }
 
 
-    public void browseTopic(Cluster cluster, String topicName, TableView messagesTable) {
+    public void browseTopic(Cluster cluster, String topicName, TableView messagesTable, Button startButton, Button stopButton) {
 
         this.setProps(cluster);
 
@@ -236,6 +237,9 @@ public class KafkaLib {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            consumer.close();
+            startButton.setDisable(false);
         }
     }
 

@@ -193,8 +193,7 @@ public class ClusterConfigController implements Initializable {
                             }
 
                         }
-                        child.setExpanded(true);
-                        topicsChildren.setExpanded(true);
+
 
                         //Create a SubTreeItem maned "consumer groups"
                         TreeItem consumerNode = new TreeItem("consumer-groups");
@@ -208,6 +207,8 @@ public class ClusterConfigController implements Initializable {
                         consumerNode.setExpanded(true);
                         child.getChildren().add(consumerNode);
 
+                        child.setExpanded(true);
+                        topicsChildren.setExpanded(true);
 
 
                     } else {

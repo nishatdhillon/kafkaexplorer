@@ -262,7 +262,7 @@ public class TopicBrowserController implements Initializable {
         Task<Integer> task = new Task<Integer>() {
             @Override
             protected Integer call() throws Exception {
-                kafkaConnector.browseTopic(cluster, topic.getText(), messagesTable);
+                kafkaConnector.browseTopic(cluster, topic.getText(), messagesTable,startButton, stopButton );
                 return 0;
             }
 
@@ -296,7 +296,6 @@ public class TopicBrowserController implements Initializable {
     public void stopBrowsing(MouseEvent mouseEvent) {
         //todo Cancel the browsing task/thread instead of using boolean
         kafkaConnector.continueBrowsing = false;
-        startButton.setDisable(false);
         stopButton.setDisable(true);
     }
 
