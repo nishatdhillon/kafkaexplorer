@@ -41,7 +41,10 @@ public class Cluster {
     }
 
     public String getSrUrl() {
-        return this.srUrl;
+        if (this.srUrl == null)
+            return "";
+        else
+            return this.srUrl;
     }
 
     public String getSrUser() {

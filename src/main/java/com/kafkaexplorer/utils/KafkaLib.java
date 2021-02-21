@@ -72,7 +72,7 @@ public class KafkaLib {
         //this.props.put("session.timeout.ms", 5000);
         this.props.put("auto.commit.interval.ms", "1000");
 
-        this.props.put("group.id", cluster.getConsumerGroup());
+        this.props.put("group.id", cluster.getConsumerGroup() + "." + System.getProperty("user.name"));
         this.props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         this.props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
@@ -200,6 +200,7 @@ public class KafkaLib {
                         item1.put("Schema Id", "N.A");
                         item1.put("Schema Type", "N.A");
                         item1.put("Message", record.value());
+                        item1.put("Schema Subject", "N.A");
                     } else { // Schema Id found at the beginning of the message
                         schemaId = buffer.getInt();
                         item1.put("Schema Id", schemaId);
