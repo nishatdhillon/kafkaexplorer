@@ -11,6 +11,7 @@ import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientExcept
 import io.confluent.kafka.schemaregistry.client.security.basicauth.BasicAuthCredentialProvider;
 import io.confluent.kafka.schemaregistry.client.security.basicauth.BasicAuthCredentialProviderFactory;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaJsonDeserializer;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -33,6 +34,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -206,10 +209,8 @@ public class KafkaLib {
                         schemaId = buffer.getInt();
                         item1.put("Schema Id", schemaId);
 
-                        item1.put("Schema Type", "AVRO");
-
                         // SchemaString
-                        // SchemaString schemaString = restService.getId(schemaId);
+                        SchemaString schemaString = restService.getId(schemaId);
                         //Get the subject from SchemaId
                         List<String> schemaSubjects = restService.getAllSubjectsById(schemaId);
                         List<SubjectVersion> schemaSubjectsVersions = restService.getAllVersionsById(schemaId);
@@ -224,11 +225,19 @@ public class KafkaLib {
 
                         item1.put("Schema Subject", subject + "(v" + version + ")");
 
-                        KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer(schemaRegistryClient);
+                        String schemaType = schemaString.getSchemaType();
 
-                        GenericData.Record ir = (GenericData.Record) deserializer.deserialize(subject, payload);
-                        //item1.put("Message", record.value().toString().substring(6));
-                        item1.put("Message", ir.toString());
+                        item1.put("Schema Type", schemaType);
+
+                        if (schemaType.equalsIgnoreCase("JSON")){
+                            item1.put("Message", record.value().substring(5));
+
+                        }else if (schemaType.equalsIgnoreCase("AVRO")){
+                            KafkaAvroDeserializer avroDeserializer = new KafkaAvroDeserializer(schemaRegistryClient);
+                            GenericData.Record ir = (GenericData.Record) avroDeserializer.deserialize(subject, payload);
+                            item1.put("Message", ir.toString());
+
+                        }
                     }
 
                     messagesTable.getItems().add(item1);
@@ -238,7 +247,10 @@ public class KafkaLib {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            MyLogger.logDebug("Message Type not supported: " + errors.toString());
+
         } finally {
             consumer.close();
             startButton.setDisable(false);
