@@ -1,5 +1,7 @@
 package com.kafkaexplorer;
 
+import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.JFXToggleNode;
 import com.kafkaexplorer.utils.ConfigStore;
 import com.kafkaexplorer.utils.CustomFileChooser;
 import com.kafkaexplorer.utils.KafkaLib;
@@ -10,12 +12,14 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -158,7 +162,21 @@ public class ClusterConfigController implements Initializable {
                         child.getChildren().clear();
 
                         //Create a SubTreeItem maned "topics"
-                        child.getChildren().add(new TreeItem("topics"));
+
+                        HBox cellBox = new HBox(2);
+
+                        TreeItem topicsRoot = new TreeItem("");
+                        JFXToggleButton toggleButton1 = new JFXToggleButton();
+                        toggleButton1.setText("hide internal)");
+                        toggleButton1.setSelected(true);
+
+                        Label label = new Label("topics (");
+                        cellBox.setAlignment(Pos.CENTER_LEFT);
+                        cellBox.getChildren().addAll(label, toggleButton1);
+
+                        topicsRoot.setGraphic(cellBox);
+
+                        child.getChildren().add(topicsRoot);
                         TreeItem topicsChildren = (TreeItem) child.getChildren().get(0);
 
                         //get topic list

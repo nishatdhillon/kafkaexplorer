@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -57,9 +58,13 @@ public class KafkaExplorerController implements Initializable {
             // Get selected Node
             Node node = mouseEvent.getPickResult().getIntersectedNode();
 
+
+
+
             //Ensure that user clicked on a TreeCell
             if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null)) {
                 TreeItem selectedItem = (TreeItem) kafkaTree.getSelectionModel().getSelectedItem();
+
                 //selectedItem is a cluster, display cluster config
                 if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "Kafka Clusters") {
                     FXMLLoader clusterConfigLoader = new FXMLLoader(getClass().getResource("/clusterConfig.fxml"));
@@ -88,7 +93,7 @@ public class KafkaExplorerController implements Initializable {
                     }
 
                 } //If selectedItem is a topic, display topic browser screen
-                else if (selectedItem.getParent() != null && selectedItem.getParent().getValue() == "topics") {
+                else if (selectedItem.getParent() != null && selectedItem.getParent().getGraphic() instanceof HBox) {
 
                     FXMLLoader topicBrowserLoader = new FXMLLoader(getClass().getResource("/topicBrowser.fxml"));
                     VBox mainRoot = topicBrowserLoader.load();

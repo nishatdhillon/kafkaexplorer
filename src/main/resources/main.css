@@ -109,3 +109,12 @@
     -fx-background-insets: 0 11px 0 0;
     -fx-padding: 0 0 5px 0;
 }
+
+
+.jfx-toggle-button {
+    -fx-toggle-color: #6e5fdd;
+    -fx-padding: -14 0 -14 0;
+    -fx-text-fill: #AFB1B3 ;
+    -fx-font-size: 12px;
+    -jfx-size: 7px;
+}
