@@ -1,5 +1,6 @@
 package com.kafkaexplorer;
 
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.JFXToggleNode;
 import com.jfoenix.controls.JFXTreeCell;
@@ -24,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -166,20 +168,24 @@ public class ClusterConfigController implements Initializable {
                         child.getChildren().clear();
 
                         //Create a SubTreeItem maned "topics"
-
-                        HBox cellBox = new HBox(2);
-
                         TreeItem topicsRoot = new TreeItem("");
+                        VBox vBox = new VBox(2);
+
+                        HBox hBox = new HBox(2);
+                        //show-hide internal topics button
                         JFXToggleButton toggleButton1 = new JFXToggleButton();
+                        //filter input
+                        JFXTextField searchField = new JFXTextField();
+
+
                         toggleButton1.setText("hide internal)");
                         toggleButton1.setSelected(true);
                         toggleButton1.setOnAction(new EventHandler<ActionEvent>() {
 
                             @Override
                             public void handle(ActionEvent event) {
-                                //TODO
-                                //empty topics list for this cluster
 
+                                //empty topics list for this cluster
                                 JFXToggleButton button = (JFXToggleButton)event.getSource();
                                 TreeItem treeItem = (TreeItem)((JFXTreeCell)((HBox)button.getParent()).getParent()).getTreeItem();
                                 treeItem.getChildren().clear();
@@ -229,7 +235,9 @@ public class ClusterConfigController implements Initializable {
                         cellBox.setAlignment(Pos.CENTER_LEFT);
                         cellBox.getChildren().addAll(label, toggleButton1);
 
-                        topicsRoot.setGraphic(cellBox);
+                        vBox.getChildren().addAll(hBox, searchField);
+
+                        topicsRoot.setGraphic(vBox);
 
                         child.getChildren().add(topicsRoot);
                         TreeItem topicsChildren = (TreeItem) child.getChildren().get(0);
