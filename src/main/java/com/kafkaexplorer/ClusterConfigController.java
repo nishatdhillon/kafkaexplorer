@@ -2,6 +2,7 @@ package com.kafkaexplorer;
 
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.controls.JFXToggleNode;
+import com.jfoenix.controls.JFXTreeCell;
 import com.kafkaexplorer.utils.ConfigStore;
 import com.kafkaexplorer.utils.CustomFileChooser;
 import com.kafkaexplorer.utils.KafkaLib;
@@ -29,6 +30,7 @@ import javafx.stage.StageStyle;
 import org.apache.kafka.clients.admin.Config;
 import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
+import sun.reflect.generics.tree.Tree;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -178,9 +180,45 @@ public class ClusterConfigController implements Initializable {
                                 //TODO
                                 //empty topics list for this cluster
 
-                               // if selected (hide internal topics)
+                                JFXToggleButton button = (JFXToggleButton)event.getSource();
+                                TreeItem treeItem = (TreeItem)((JFXTreeCell)((HBox)button.getParent()).getParent()).getTreeItem();
+                                treeItem.getChildren().clear();
 
-                                // if not selected (show all topics )
+                                // if selected (hide internal topics)
+                                if (button.isSelected()) {
+                                    //get topic list
+                                    ArrayList<String> topics = kafkaConnector.listTopics(cluster);
+
+                                    for (String topicName : topics) {
+
+                                        //by default, hide internal topics (starting by _)
+                                        if (!topicName.startsWith("_")) {
+
+                                            TreeItem topicItem = new TreeItem(topicName);
+
+                                            treeItem.getChildren().add(topicItem);
+                                        }
+
+                                    }
+
+                                }else
+                                {
+                                    //if not selected (show all topics )
+                                    //get topic list
+                                    ArrayList<String> topics = kafkaConnector.listTopics(cluster);
+
+                                    for (String topicName : topics) {
+
+                                        //by default, hide internal topics (starting by _)
+
+                                            TreeItem topicItem = new TreeItem(topicName);
+
+                                            treeItem.getChildren().add(topicItem);
+
+                                    }
+
+                                }
+
 
 
                             }
