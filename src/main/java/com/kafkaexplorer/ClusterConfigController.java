@@ -9,6 +9,8 @@ import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
 import com.kafkaexplorer.utils.UI;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -169,6 +171,21 @@ public class ClusterConfigController implements Initializable {
                         JFXToggleButton toggleButton1 = new JFXToggleButton();
                         toggleButton1.setText("hide internal)");
                         toggleButton1.setSelected(true);
+                        toggleButton1.setOnAction(new EventHandler<ActionEvent>() {
+
+                            @Override
+                            public void handle(ActionEvent event) {
+                                //TODO
+                                //empty topics list for this cluster
+
+                               // if selected (hide internal topics)
+
+                                // if not selected (show all topics )
+
+
+                            }
+
+                        });
 
                         Label label = new Label("topics (");
                         cellBox.setAlignment(Pos.CENTER_LEFT);
@@ -181,30 +198,12 @@ public class ClusterConfigController implements Initializable {
 
                         //get topic list
                         ArrayList<String> topics = kafkaConnector.listTopics(cluster);
-                        Boolean displayAllTopics = false;
-
-                        if (cluster.getFilterTopics().size() == 0)
-                        {
-                            displayAllTopics = true;
-                        }
 
                         for (String topicName : topics) {
-                            Boolean displayThisTopic = false;
 
-                            if (displayAllTopics) {
-                                displayThisTopic = true;
-                            }else {
-                                //Search for bookmarked topics
-                                for (int i=0; i < cluster.getFilterTopics().size(); i++)
-                                {
-                                    if (cluster.getFilterTopics().get(i).getName().equals(topicName)){
-                                        displayThisTopic = true;
-                                    }
+                            //by default, hide internal topics (starting by _)
+                            if (!topicName.startsWith("_")) {
 
-                                }
-                            }
-
-                            if (displayThisTopic) {
                                 TreeItem topicItem = new TreeItem(topicName);
 
                                 topicsChildren.getChildren().add(topicItem);
