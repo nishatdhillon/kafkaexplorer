@@ -118,3 +118,13 @@
     -fx-font-size: 12px;
     -jfx-size: 7px;
 }
+
+
+.jfx-text-field {
+    -fx-font-size: 12px;
+    -jfx-size: 7px;
+    -fx-padding: -1 0 -1 1;
+    -fx-prompt-text-fill: #a1a3b0;
+    -fx-min-width: 60px;
+
+}

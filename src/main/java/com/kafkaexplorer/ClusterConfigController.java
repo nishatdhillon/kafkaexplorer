@@ -12,6 +12,7 @@ import com.kafkaexplorer.model.Cluster;
 import com.kafkaexplorer.utils.UI;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -169,19 +170,59 @@ public class ClusterConfigController implements Initializable {
 
                         //Create a SubTreeItem maned "topics"
                         TreeItem topicsRoot = new TreeItem("");
-                        VBox vBox = new VBox(2);
 
-                        HBox hBox = new HBox(2);
+                        HBox hBox = new HBox(3);
                         //show-hide internal topics button
                         JFXToggleButton toggleButton1 = new JFXToggleButton();
+                        toggleButton1.setId("hideInternal");
                         //filter input
                         JFXTextField searchField = new JFXTextField();
+                        searchField.setMaxWidth(50);
+                        searchField.setPromptText("filter...");
 
+                        searchField.setOnKeyTyped   (new EventHandler() {
+                            @Override
+                            public void handle(Event event) {
+
+                                //empty topics list for this cluster
+                                JFXTextField searchField = (JFXTextField)event.getSource();
+                                TreeItem treeItem = (TreeItem)((JFXTreeCell)((HBox)searchField.getParent()).getParent()).getTreeItem();
+                                treeItem.getChildren().clear();
+
+                                //filter based on search input
+                                ArrayList<String> topics = kafkaConnector.listTopics(cluster);
+
+                                JFXToggleButton tb = (JFXToggleButton) rootGridPane.getScene().lookup("#hideInternal");
+
+                                boolean displayInternal = false;
+                                if (!tb.isSelected()){
+                                    displayInternal = true;
+                                }
+
+                                boolean displayAllTopics = false;
+                                if (searchField.getText().isEmpty()){
+                                    displayAllTopics = true;
+                                }
+
+                                for (String topicName : topics) {
+
+                                    //by default, hide internal topics (starting by _)
+                                    if (displayAllTopics || topicName.contains(searchField.getText())) {
+                                        if (displayInternal || (!displayInternal && !topicName.startsWith("_")) ) {
+
+                                            TreeItem topicItem = new TreeItem(topicName);
+                                            treeItem.getChildren().add(topicItem);
+                                        }
+                                    }
+
+                                }
+
+                            }
+                        });
 
                         toggleButton1.setText("hide internal)");
                         toggleButton1.setSelected(true);
                         toggleButton1.setOnAction(new EventHandler<ActionEvent>() {
-
                             @Override
                             public void handle(ActionEvent event) {
 
@@ -220,24 +261,19 @@ public class ClusterConfigController implements Initializable {
                                             TreeItem topicItem = new TreeItem(topicName);
 
                                             treeItem.getChildren().add(topicItem);
-
                                     }
-
                                 }
-
-
-
                             }
 
                         });
 
-                        Label label = new Label("topics (");
-                        cellBox.setAlignment(Pos.CENTER_LEFT);
-                        cellBox.getChildren().addAll(label, toggleButton1);
+                        Label label = new Label("topics");
+                        Label middleLabel = new Label("(");
+                        hBox.setAlignment(Pos.CENTER_LEFT);
 
-                        vBox.getChildren().addAll(hBox, searchField);
+                        hBox.getChildren().addAll(label,searchField, middleLabel, toggleButton1);
 
-                        topicsRoot.setGraphic(vBox);
+                        topicsRoot.setGraphic(hBox);
 
                         child.getChildren().add(topicsRoot);
                         TreeItem topicsChildren = (TreeItem) child.getChildren().get(0);
