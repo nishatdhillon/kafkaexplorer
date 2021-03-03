@@ -2,10 +2,8 @@ package com.kafkaexplorer;
 
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
-import com.jfoenix.controls.JFXToggleNode;
 import com.jfoenix.controls.JFXTreeCell;
 import com.kafkaexplorer.utils.ConfigStore;
-import com.kafkaexplorer.utils.CustomFileChooser;
 import com.kafkaexplorer.utils.KafkaLib;
 import com.kafkaexplorer.logger.MyLogger;
 import com.kafkaexplorer.model.Cluster;
@@ -15,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -26,14 +23,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.apache.kafka.clients.admin.Config;
-import org.apache.kafka.common.KafkaFuture;
-import org.apache.kafka.common.PartitionInfo;
-import sun.reflect.generics.tree.Tree;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -156,11 +147,6 @@ public class ClusterConfigController implements Initializable {
 
                 ((ProgressIndicator)rootGridPane.getScene().lookup("#progBar2")).setVisible(true);
 
-                KafkaLib kafkaConnector = new KafkaLib();
-                kafkaConnector.connect(cluster);
-
-
-
                 //Build and expand kafkaTree
                 for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
                     //Locate cluster to update
@@ -184,39 +170,16 @@ public class ClusterConfigController implements Initializable {
                             @Override
                             public void handle(Event event) {
 
-                                //empty topics list for this cluster
                                 JFXTextField searchField = (JFXTextField)event.getSource();
                                 TreeItem treeItem = (TreeItem)((JFXTreeCell)((HBox)searchField.getParent()).getParent()).getTreeItem();
-                                treeItem.getChildren().clear();
-
-                                //filter based on search input
-                                ArrayList<String> topics = kafkaConnector.listTopics(cluster);
-
-                                JFXToggleButton tb = (JFXToggleButton) rootGridPane.getScene().lookup("#hideInternal");
+                                JFXToggleButton tb = (JFXToggleButton) searchField.getScene().lookup("#hideInternal");
 
                                 boolean displayInternal = false;
                                 if (!tb.isSelected()){
                                     displayInternal = true;
                                 }
 
-                                boolean displayAllTopics = false;
-                                if (searchField.getText().isEmpty()){
-                                    displayAllTopics = true;
-                                }
-
-                                for (String topicName : topics) {
-
-                                    //by default, hide internal topics (starting by _)
-                                    if (displayAllTopics || topicName.contains(searchField.getText())) {
-                                        if (displayInternal || (!displayInternal && !topicName.startsWith("_")) ) {
-
-                                            TreeItem topicItem = new TreeItem(topicName);
-                                            treeItem.getChildren().add(topicItem);
-                                        }
-                                    }
-
-                                }
-
+                                filterUITopics(treeItem, searchField.getText(), displayInternal);
                             }
                         });
 
@@ -225,44 +188,12 @@ public class ClusterConfigController implements Initializable {
                         toggleButton1.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-
                                 //empty topics list for this cluster
                                 JFXToggleButton button = (JFXToggleButton)event.getSource();
                                 TreeItem treeItem = (TreeItem)((JFXTreeCell)((HBox)button.getParent()).getParent()).getTreeItem();
                                 treeItem.getChildren().clear();
 
-                                // if selected (hide internal topics)
-                                if (button.isSelected()) {
-                                    //get topic list
-                                    ArrayList<String> topics = kafkaConnector.listTopics(cluster);
-
-                                    for (String topicName : topics) {
-
-                                        //by default, hide internal topics (starting by _)
-                                        if (!topicName.startsWith("_")) {
-
-                                            TreeItem topicItem = new TreeItem(topicName);
-
-                                            treeItem.getChildren().add(topicItem);
-                                        }
-
-                                    }
-
-                                }else
-                                {
-                                    //if not selected (show all topics )
-                                    //get topic list
-                                    ArrayList<String> topics = kafkaConnector.listTopics(cluster);
-
-                                    for (String topicName : topics) {
-
-                                        //by default, hide internal topics (starting by _)
-
-                                            TreeItem topicItem = new TreeItem(topicName);
-
-                                            treeItem.getChildren().add(topicItem);
-                                    }
-                                }
+                                filterUITopics(treeItem, searchField.getText(), !button.isSelected());
                             }
 
                         });
@@ -278,33 +209,19 @@ public class ClusterConfigController implements Initializable {
                         child.getChildren().add(topicsRoot);
                         TreeItem topicsChildren = (TreeItem) child.getChildren().get(0);
 
-                        //get topic list
-                        ArrayList<String> topics = kafkaConnector.listTopics(cluster);
-
-                        for (String topicName : topics) {
-
-                            //by default, hide internal topics (starting by _)
-                            if (!topicName.startsWith("_")) {
-
-                                TreeItem topicItem = new TreeItem(topicName);
-
-                                topicsChildren.getChildren().add(topicItem);
-                            }
-
-                        }
-
+                        filterUITopics(topicsChildren, "", false);
 
                         //Create a SubTreeItem maned "consumer groups"
                         TreeItem consumerNode = new TreeItem("consumer-groups");
 
                         //get consumer groups list
-                        ArrayList<String> consumers = kafkaConnector.listConsumerGroups(cluster);
-                        for (String consumerGroupName : consumers) {
-                            TreeItem consumerItem = new TreeItem(consumerGroupName);
-                            consumerNode.getChildren().add(consumerItem);
-                        }
-                        consumerNode.setExpanded(true);
-                        child.getChildren().add(consumerNode);
+                        //ArrayList<String> consumers = kafkaConnector.listConsumerGroups(cluster);
+                        //for (String consumerGroupName : consumers) {
+                        //    TreeItem consumerItem = new TreeItem(consumerGroupName);
+                        //    consumerNode.getChildren().add(consumerItem);
+                        //}
+                        //consumerNode.setExpanded(true);
+                        //child.getChildren().add(consumerNode);
 
                         child.setExpanded(true);
                         topicsChildren.setExpanded(true);
@@ -344,9 +261,7 @@ public class ClusterConfigController implements Initializable {
         });
 
         new Thread(task).start();
-
     }
-
 
     public void saveCluster(MouseEvent mouseEvent) throws IOException {
 
@@ -370,6 +285,49 @@ public class ClusterConfigController implements Initializable {
 
     }
 
+    private void filterUITopics(TreeItem treeItem, String searchText, boolean displayInternal){
+
+        //empty topics list for this cluster
+        treeItem.getChildren().clear();
+
+        boolean displayAllTopics = false;
+        if (searchText.isEmpty()){
+            displayAllTopics = true;
+        }
+
+        KafkaLib kafkaConnector = new KafkaLib();
+        try {
+            kafkaConnector.connect(cluster);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<String> topics = kafkaConnector.listTopics(cluster);
+
+        // if selected (hide internal topics)
+        if (!displayInternal) {
+            for (String topicName : topics) {
+                //by default, hide internal topics (starting by _)
+                if (!topicName.startsWith("_") && (displayAllTopics || topicName.contains(searchText))) {
+
+                    TreeItem topicItem = new TreeItem(topicName);
+
+                    treeItem.getChildren().add(topicItem);
+                }
+
+            }
+
+        }else
+        {
+            //if not selected (show all topics )
+            for (String topicName : topics) {
+                if (displayAllTopics || topicName.contains(searchText)) {
+                    TreeItem topicItem = new TreeItem(topicName);
+                    treeItem.getChildren().add(topicItem);
+                }
+            }
+        }
+    }
 
     private void setClusterIconToGreen(String clusterName, boolean isGreen) {
 
@@ -385,7 +343,6 @@ public class ClusterConfigController implements Initializable {
                     child.setGraphic(clusterIconGrey);
             }
         }
-
     }
 
     public void deleteCluster(MouseEvent mouseEvent) {

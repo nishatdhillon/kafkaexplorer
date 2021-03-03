@@ -59,9 +59,9 @@
 
 .tree-cell:selected {
     -fx-font-weight: bold ;
-    -fx-background-color: #404040 ;
+    -fx-background-color: #5190C9 ;
     -fx-border-width: 0.5px;
-    -fx-border-color: #6e5fdd;
+    -fx-border-color: #5190C9;
 }
 
 .tree-cell {
@@ -69,7 +69,7 @@
 }
 
 .tree-cell .selection-bar {
-    -fx-background-color: #6e5fdd;
+    -fx-background-color: #5190C9;
 }
 
 .tree-cell .tree-disclosure-node .arrow {
