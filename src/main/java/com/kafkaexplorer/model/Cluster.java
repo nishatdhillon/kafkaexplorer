@@ -20,6 +20,7 @@ public class Cluster {
     private String srUrl;
     private String srUser;
     private String srPwd;
+    private ArrayList<String> topicList;
 
     public Cluster() {
     }
@@ -184,5 +185,13 @@ public class Cluster {
 
     public void setSrPwd(String srPwd) {
         this.srPwd = srPwd;
+    }
+
+    public void setTopicList(ArrayList<String> topics) {
+        this.topicList = topics;
+    }
+
+    public ArrayList<String> getTopicList() {
+        return this.topicList;
     }
 }

@@ -140,12 +140,23 @@ public class ClusterConfigController implements Initializable {
     public void connectToKafka(MouseEvent mouseEvent) throws IOException {
         //connect to kafka cluster and list all topics
 
-
         Task task = new Task<Void>() {
             @Override
             public Void call() throws Exception {
 
                 ((ProgressIndicator)rootGridPane.getScene().lookup("#progBar2")).setVisible(true);
+
+                //Get and store topics list
+
+                KafkaLib kafkaConnector = new KafkaLib();
+                try {
+                    kafkaConnector.connect(cluster);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                ArrayList<String> topics = kafkaConnector.listTopics(cluster);
+                cluster.setTopicList(topics);
+
 
                 //Build and expand kafkaTree
                 for (TreeItem child : kafkaTreeRef.getRoot().getChildren()) {
@@ -295,14 +306,8 @@ public class ClusterConfigController implements Initializable {
             displayAllTopics = true;
         }
 
-        KafkaLib kafkaConnector = new KafkaLib();
-        try {
-            kafkaConnector.connect(cluster);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        ArrayList<String> topics = kafkaConnector.listTopics(cluster);
+        ArrayList<String> topics = cluster.getTopicList();
 
         // if selected (hide internal topics)
         if (!displayInternal) {
