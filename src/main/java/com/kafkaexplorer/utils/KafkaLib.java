@@ -200,7 +200,8 @@ public class KafkaLib {
                     int schemaId = -1;
 
                     ByteBuffer buffer = ByteBuffer.wrap(payload);
-                    if (buffer.get() != MAGIC_BYTE) {
+
+                    if (( buffer == null || buffer.remaining() == 0) || (buffer.get() != MAGIC_BYTE)) {
                         item1.put("Schema Id", "N.A");
                         item1.put("Schema Type", "N.A");
                         item1.put("Message", record.value());
@@ -217,12 +218,6 @@ public class KafkaLib {
 
                         String subject = schemaSubjectsVersions.get(0).getSubject();
                         Integer version = schemaSubjectsVersions.get(0).getVersion();
-
-                        //Get all versions off the subject
-                        //List<Integer> versions = restService.getAllVersions(subject);
-
-                        //get Version Object from version ID
-
                         item1.put("Schema Subject", subject + "(v" + version + ")");
 
                         String schemaType = schemaString.getSchemaType();
@@ -236,7 +231,6 @@ public class KafkaLib {
                             KafkaAvroDeserializer avroDeserializer = new KafkaAvroDeserializer(schemaRegistryClient);
                             GenericData.Record ir = (GenericData.Record) avroDeserializer.deserialize(subject, payload);
                             item1.put("Message", ir.toString());
-
                         }
                     }
 
