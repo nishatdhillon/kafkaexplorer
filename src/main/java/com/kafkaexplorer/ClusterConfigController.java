@@ -41,7 +41,6 @@ public class ClusterConfigController implements Initializable {
 
     @FXML
     public TextField securityType;
-    public TextField jaasConf;
     public TextField jks;
     public TextField  jksPwd;
     public StackPane stack;
@@ -54,6 +53,8 @@ public class ClusterConfigController implements Initializable {
     public TextField srUrl;
     public TextField srUser;
     public TextField srPwd;
+    public JFXTextField apiKey;
+    public JFXTextField apiSecret;
     private Cluster cluster;
     private TreeView<String> kafkaTreeRef;
 
@@ -98,9 +99,9 @@ public class ClusterConfigController implements Initializable {
                 name.setText(cluster.getName());
                 saslMechanism.setText(cluster.getMechanism());
                 securityType.setText(cluster.getProtocol());
-                //todo mask pwd on screen
-                //jaasConf.setText(cluster.getJaasConfig().substring(0, cluster.getJaasConfig().indexOf("password=")) + "password='***masked***';");
-                jaasConf.setText(cluster.getJaasConfig());
+                apiKey.setText(cluster.getApiKey());
+                apiSecret.setText(cluster.getApiSecret());
+
                 consumerGroup.setText(cluster.getConsumerGroup());
                 srUrl.setText(cluster.getSrUrl());
                 srUser.setText(cluster.getSrUser());
@@ -282,7 +283,7 @@ public class ClusterConfigController implements Initializable {
         cluster.setName(name.getText());
         cluster.setMechanism(saslMechanism.getText());
         cluster.setProtocol(securityType.getText());
-        cluster.setJaasConfig(jaasConf.getText());
+        cluster.setJaasConfig(apiKey.getText(), apiSecret.getText());
         cluster.setConsumerGroup(consumerGroup.getText());
 
         cluster.setSrUrl(srUrl.getText());

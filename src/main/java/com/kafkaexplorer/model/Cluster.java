@@ -1,5 +1,6 @@
 package com.kafkaexplorer.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kafkaexplorer.logger.MyLogger;
 
 import java.util.ArrayList;
@@ -21,6 +22,10 @@ public class Cluster {
     private String srUser;
     private String srPwd;
     private ArrayList<String> topicList;
+    @JsonIgnore
+    private String apiKey;
+    @JsonIgnore
+    private String apiSecret;
 
     public Cluster() {
     }
@@ -112,8 +117,8 @@ public class Cluster {
             return jaasConfig;
     }
 
-    public void setJaasConfig(String jaasConfig) {
-        this.jaasConfig = jaasConfig;
+    public void setJaasConfig(String apiKey, String apiSecret) {
+        this.jaasConfig = "org.apache.kafka.common.security.plain.PlainLoginModule required username='" + apiKey + "' password='" + apiSecret + "';";
     }
 
     public String getHostname() {
@@ -193,5 +198,23 @@ public class Cluster {
 
     public ArrayList<String> getTopicList() {
         return this.topicList;
+    }
+
+    public String getApiKey() {
+        String apiKey = "";
+        if (jaasConfig != null && !jaasConfig.isEmpty()){
+            apiKey = jaasConfig.substring(75, 91);
+        }
+        return apiKey;
+    }
+
+    public String getApiSecret() {
+        String apiSecret = "";
+        if (jaasConfig != null && !jaasConfig.isEmpty()){
+            apiSecret = jaasConfig.substring(103, 167);
+        }
+
+        return apiSecret;
+
     }
 }
