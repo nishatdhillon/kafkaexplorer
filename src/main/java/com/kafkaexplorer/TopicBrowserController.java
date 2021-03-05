@@ -1,5 +1,6 @@
 package com.kafkaexplorer;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.kafkaexplorer.utils.KafkaLib;
 import com.kafkaexplorer.model.Cluster;
 import javafx.collections.FXCollections;
@@ -29,7 +30,7 @@ public class TopicBrowserController implements Initializable {
     @FXML
     public TextField topic;
     public TableView partitionTable;
-    public ChoiceBox browsingType;
+    public JFXComboBox browsingType;
     public TableView messagesTable;
     public TextField produceMsg;
     public Button startButton;
@@ -45,7 +46,8 @@ public class TopicBrowserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        browsingType.getItems().addAll("from-beginning"); //add "latest" later
+        browsingType.getItems().addAll("from-beginning");
+        browsingType.getItems().addAll("latest");
         browsingType.setValue("from-beginning");
 
         //init message browser table

@@ -7,7 +7,7 @@
 
 .split-pane {
     -fx-background-color: -fx-body-color;
-    -fx-text-fill: #AFB1B3 ;
+    -fx-text-fill: #f8f8f2 ;
 }
 
 .split-pane > .split-pane-divider {
@@ -33,7 +33,7 @@
 }
 .tree-view .tree-cell {
     -fx-background-color: -fx-body-color ;
-    -fx-text-fill: #AFB1B3 ;
+    -fx-text-fill: #f8f8f2 ;
     -fx-pref-height: 30px;
     -fx-font-size: 12px;
     -fx-padding: 0,0,0,0;
@@ -54,7 +54,7 @@
     -fx-background-color: #45494A;
 }
 .label{
-    -fx-text-fill: #AFB1B3 ;
+    -fx-text-fill: #f8f8f2 ;
 }
 
 .tree-cell:selected {
@@ -114,7 +114,7 @@
 .jfx-toggle-button {
     -fx-toggle-color: #6e5fdd;
     -fx-padding: -14 0 -14 0;
-    -fx-text-fill: #AFB1B3 ;
+    -fx-text-fill: #f8f8f2 ;
     -fx-font-size: 12px;
     -jfx-size: 7px;
 }
@@ -129,10 +129,14 @@
 
 }
 
-. jfx-radio-button {
+.jfx-radio-button {
     -fx-background-color: #3C3F41;
-    -fx-text-fill: #AFB1B3 ;
+    -fx-text-fill: #f8f8f2 ;
+}
 
+.jfx-radio-button:selected .radio .dot {
+    -fx-background-color: #bd93f9;
+    -fx-background-insets: 0;
 }
 
 .separator *.line {
@@ -140,3 +144,29 @@
     -fx-border-width: 0 0 1 0; /* its make really one-pixel-border */
     -fx-border-color: #a1a3b0;
 }
+
+
+.jfx-combo-box {
+    -fx-text-fill: #f8f8f2;
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, #4C5052;
+    -fx-border-color: #a1a3b0;
+    -fx-border-width: 0.5px;
+}
+
+.jfx-combo-box .label {
+    -fx-background-color: #3C3F41;
+    -fx-text-fill: #f8f8f2;
+}
+
+.jfx-combo-box .arrow {
+    -fx-background-color: #f8f8f2;
+}
+
+.jfx-combo-box .cell {
+    -fx-text-fill: #f8f8f2;
+    -fx-background-color:  #3C3F41;
+}
+
+.combo-box .cell:hover {
+      -fx-background-color: #4B6EAF
+  }

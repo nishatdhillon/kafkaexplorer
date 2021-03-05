@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXRadioButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox fx:id="rootNode" maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
+<VBox fx:id="rootNode" maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
    <children>
       <GridPane VBox.vgrow="NEVER">
               <columnConstraints>
@@ -59,7 +49,6 @@
                   <Insets left="220.0" />
                </GridPane.margin>
             </JFXButton>
-            <ChoiceBox fx:id="browsingType" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
             <Label layoutX="28.0" layoutY="372.0" prefHeight="17.0" prefWidth="99.0" text="Produce Message" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
             <JFXTextField fx:id="produceMsg" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="8" />
             <JFXButton mnemonicParsing="false" onMouseClicked="#produceMessage" text="Produce" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="8">
@@ -113,6 +102,7 @@
             </Separator>
             <Label prefHeight="17.0" prefWidth="99.0" text="Enter Message" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <JFXComboBox fx:id="browsingType" prefHeight="25.0" prefWidth="163.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
               </children>
           </GridPane>
       <TableView fx:id="messagesTable" editable="true" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
