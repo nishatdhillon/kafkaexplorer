@@ -42,7 +42,8 @@ public class ConfigStore {
                 clusters[i].getHostname();
                 clusters[i].getProtocol();
                 clusters[i].getMechanism();
-                clusters[i].getJaasConfig();
+                clusters[i].getApiKey();
+                clusters[i].getApiSecret();
             }
 
         } catch (IOException e) {

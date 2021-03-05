@@ -1,6 +1,7 @@
 package com.kafkaexplorer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.kafkaexplorer.logger.MyLogger;
 
 import java.util.ArrayList;
@@ -13,7 +14,10 @@ public class Cluster {
     private String hostname;
     private String protocol;
     private String mechanism;
+
     private String jaasConfig;
+    private String apiKey;
+    private String apiSecret;
     private String consumerGroup;
     private String trustStoreJKS;
     private String trustStoreJKSPwd;
@@ -22,10 +26,6 @@ public class Cluster {
     private String srUser;
     private String srPwd;
     private ArrayList<String> topicList;
-    @JsonIgnore
-    private String apiKey;
-    @JsonIgnore
-    private String apiSecret;
 
     public Cluster() {
     }
@@ -36,7 +36,8 @@ public class Cluster {
         this.hostname = cluster.getHostname();
         this.protocol = cluster.getProtocol();
         this.mechanism = cluster.getMechanism();
-        this.jaasConfig = cluster.getJaasConfig();
+        this.apiKey = cluster.getApiKey();
+        this.apiSecret = cluster.getApiSecret();
         this.consumerGroup = cluster.getConsumerGroup();
         this.filterTopics = cluster.getFilterTopics();
         this.trustStoreJKS = cluster.getTrustStoreJKS();
@@ -109,18 +110,6 @@ public class Cluster {
         this.mechanism = mechanism;
     }
 
-    public String getJaasConfig() {
-
-        if (jaasConfig == null)
-            return "";
-        else
-            return jaasConfig;
-    }
-
-    public void setJaasConfig(String apiKey, String apiSecret) {
-        this.jaasConfig = "org.apache.kafka.common.security.plain.PlainLoginModule required username='" + apiKey + "' password='" + apiSecret + "';";
-    }
-
     public String getHostname() {
         return hostname;
     }
@@ -169,7 +158,6 @@ public class Cluster {
         MyLogger.logDebug(this.hostname);
         MyLogger.logDebug(this.protocol);
         MyLogger.logDebug(this.mechanism);
-        MyLogger.logDebug(this.jaasConfig);
     }
 
     public String getId() {
@@ -201,20 +189,38 @@ public class Cluster {
     }
 
     public String getApiKey() {
-        String apiKey = "";
-        if (jaasConfig != null && !jaasConfig.isEmpty()){
-            apiKey = jaasConfig.substring(75, 91);
-        }
-        return apiKey;
+        if (this.apiKey == null)
+            this.apiKey = "";
+
+        return this.apiKey;
     }
 
     public String getApiSecret() {
-        String apiSecret = "";
-        if (jaasConfig != null && !jaasConfig.isEmpty()){
-            apiSecret = jaasConfig.substring(103, 167);
-        }
+        if (this.apiSecret == null)
+            this.apiSecret = "";
 
-        return apiSecret;
+        return this.apiSecret;
 
     }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    public void setApiSecret(String apiSecret) {
+        this.apiSecret = apiSecret;
+    }
+
+
+    @JsonIgnore
+    public String getJaasConfig() {
+        return jaasConfig;
+    }
+
+    @JsonIgnore
+    public void setJaasConfig(String jaasConfig) {
+        this.jaasConfig = jaasConfig;
+    }
+
+
 }

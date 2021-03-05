@@ -283,7 +283,8 @@ public class ClusterConfigController implements Initializable {
         cluster.setName(name.getText());
         cluster.setMechanism(saslMechanism.getText());
         cluster.setProtocol(securityType.getText());
-        cluster.setJaasConfig(apiKey.getText(), apiSecret.getText());
+        cluster.setApiKey(apiKey.getText());
+        cluster.setApiSecret(apiSecret.getText());
         cluster.setConsumerGroup(consumerGroup.getText());
 
         cluster.setSrUrl(srUrl.getText());

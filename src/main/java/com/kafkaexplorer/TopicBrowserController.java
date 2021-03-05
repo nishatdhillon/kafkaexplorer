@@ -48,7 +48,7 @@ public class TopicBrowserController implements Initializable {
 
         browsingType.getItems().addAll("from-beginning");
         browsingType.getItems().addAll("latest");
-        browsingType.setValue("from-beginning");
+        browsingType.setValue("latest");
 
         //init message browser table
         TableColumn<Map, Object> partitionColumn = new TableColumn<>("Part.");

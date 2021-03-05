@@ -68,7 +68,7 @@ public class KafkaLib {
         //consumer config
         this.props.put("bootstrap.servers", cluster.getHostname());
         this.props.put("security.protocol", cluster.getProtocol());
-        this.props.put("sasl.jaas.config", cluster.getJaasConfig());
+        this.props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username='" + cluster.getApiKey() + "' password='" + cluster.getApiSecret() + "';");
         this.props.put("sasl.mechanism", cluster.getMechanism());
 
         this.props.put("default.api.timeout.ms", 5000);
