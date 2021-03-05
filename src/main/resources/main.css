@@ -122,35 +122,21 @@
 
 .jfx-text-field {
     -fx-font-size: 12px;
-    -jfx-size: 7px;
-    -fx-padding: -1 0 -1 1;
+    -fx-padding: -2 0 -2 1;
     -fx-prompt-text-fill: #a1a3b0;
     -fx-min-width: 60px;
+    -fx-pref-height: 20px;
 
-}
-
-.titled-pane {
-    -fx-background-color: #3C3F41;
-    -fx-border-width: 0px;
-    -fx-text-fill: #AFB1B3 ;
-}
-
-.titled-pane .title{
-    -fx-background-color: #3C3F41;
-    -fx-text-fill: #AFB1B3 ;
-    -fx-border-style: solid ;
-    -fx-border-color: #AFB1B3;
-    -fx-border-width: 0px 0px 1px 0px;
-}
-
-.titled-pane .content {
-    -fx-background-color: #3C3F41;
-    -fx-border-width: 0px;
-    -fx-text-fill: #AFB1B3 ;
 }
 
 . jfx-radio-button {
     -fx-background-color: #3C3F41;
     -fx-text-fill: #AFB1B3 ;
 
+}
+
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0; /* its make really one-pixel-border */
+    -fx-border-color: #a1a3b0;
 }
