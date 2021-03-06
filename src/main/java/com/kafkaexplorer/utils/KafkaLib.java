@@ -212,8 +212,13 @@ public class KafkaLib {
                         schemaId = buffer.getInt();
                         item1.put("Schema Id", schemaId);
 
+                        boolean schemaReceived = false;
                         // SchemaString
-                        SchemaString schemaString = restService.getId(schemaId);
+                        try{
+                            SchemaString schemaString = restService.getId(schemaId);
+                            schemaReceived = true;
+
+
                         //Get the subject from SchemaId
                         List<String> schemaSubjects = restService.getAllSubjectsById(schemaId);
                         List<SubjectVersion> schemaSubjectsVersions = restService.getAllVersionsById(schemaId);
@@ -234,6 +239,14 @@ public class KafkaLib {
                             GenericData.Record ir = (GenericData.Record) avroDeserializer.deserialize(subject, payload);
                             item1.put("Message", ir.toString());
                         }
+
+                        }catch (RestClientException exception){
+                            item1.put("Schema Id", "Error");
+                            item1.put("Schema Type", "Error");
+                            item1.put("Message", record.value());
+                            item1.put("Schema Subject", "Error");
+                        }
+
                     }
 
                     messagesTable.getItems().add(item1);
