@@ -25,7 +25,7 @@ Working on **Windows** and **MacOs**. Based on [JavaFx](https://en.wikipedia.org
   - See partitions information (leader, replicas, inSynReplica)
   - See properties (like retention.ms and retention.bytes)
 
-- Consume topic messages from the beginning (display partition, offset, schema, message)
+- Consume messages "from the beginning" or "latest". For each message, see: partition, offset, schema Id, schema subject and message content.
 
 - Produce String messages into topics
 
