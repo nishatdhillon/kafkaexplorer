@@ -258,13 +258,16 @@ public class TopicBrowserController implements Initializable {
         messagesTable.getItems().clear();
         startButton.setDisable(true);
         stopButton.setDisable(false);
-
         kafkaConnector.continueBrowsing = true;
+
+        //Get dropdown value (from beginning OR latest)
+        String browseFrom = "";
+
         //Create a thread for browsing topic, to not block the UI
         Task<Integer> task = new Task<Integer>() {
             @Override
             protected Integer call() throws Exception {
-                kafkaConnector.browseTopic(cluster, topic.getText(), messagesTable,startButton, stopButton );
+                kafkaConnector.browseTopic(cluster, topic.getText(), browsingType.getValue().toString(), messagesTable,startButton, stopButton );
                 return 0;
             }
 

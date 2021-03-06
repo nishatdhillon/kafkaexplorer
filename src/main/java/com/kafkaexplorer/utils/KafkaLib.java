@@ -146,7 +146,7 @@ public class KafkaLib {
     }
 
 
-    public void browseTopic(Cluster cluster, String topicName, TableView messagesTable, Button startButton, Button stopButton) {
+    public void browseTopic(Cluster cluster, String topicName, String browseFrom, TableView messagesTable, Button startButton, Button stopButton) {
 
         this.setProps(cluster);
 
@@ -159,7 +159,9 @@ public class KafkaLib {
         consumer.poll(0);  // without this, the assignment will be empty.
         //consumer.assignment().forEach(t -> {
         //    MyLogger.logDebug("Set " + t.toString() + " to offset 0");
-        consumer.seekToBeginning(consumer.assignment());
+        if (browseFrom.equals("from-beginning")) {
+            consumer.seekToBeginning(consumer.assignment());
+        }
         //});
 
 
