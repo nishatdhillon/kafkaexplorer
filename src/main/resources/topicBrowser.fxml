@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rootNode" maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
+<VBox fx:id="rootNode" maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kafkaexplorer.TopicBrowserController">
    <children>
       <GridPane VBox.vgrow="NEVER">
               <columnConstraints>
@@ -66,7 +76,7 @@
       </TableView>
             <HBox prefHeight="42.0" prefWidth="258.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <children>
-                  <JFXRadioButton prefHeight="17.0" prefWidth="64.0" selected="true" text="None">
+                  <JFXRadioButton fx:id="radioNone" prefHeight="17.0" prefWidth="64.0" selected="true" text="None">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
@@ -74,17 +84,17 @@
                         <ToggleGroup fx:id="schemaType" />
                      </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton prefHeight="17.0" prefWidth="60.0" text="Avro" toggleGroup="$schemaType">
+                  <JFXRadioButton fx:id="radioAvro" prefHeight="17.0" prefWidth="60.0" text="Avro" toggleGroup="$schemaType">
                      <HBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </JFXRadioButton>
-                  <JFXRadioButton prefHeight="17.0" prefWidth="180.0" text="Json Schema      Schema Id" toggleGroup="$schemaType">
+                  <JFXRadioButton fx:id="radioJson" prefHeight="17.0" prefWidth="180.0" text="Json Schema      Schema Id" toggleGroup="$schemaType">
                      <HBox.margin>
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </JFXRadioButton>
-                  <JFXTextField prefHeight="25.0" prefWidth="48.0">
+                  <JFXTextField fx:id="schemaId" prefHeight="25.0" prefWidth="48.0">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

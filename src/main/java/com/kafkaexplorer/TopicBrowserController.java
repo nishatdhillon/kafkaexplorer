@@ -1,6 +1,7 @@
 package com.kafkaexplorer;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import com.kafkaexplorer.utils.KafkaLib;
 import com.kafkaexplorer.model.Cluster;
 import javafx.collections.FXCollections;
@@ -37,6 +38,8 @@ public class TopicBrowserController implements Initializable {
     public Button stopButton;
     public TableView topicConfigTable;
     public VBox rootNode;
+    public JFXTextField schemaId;
+    public ToggleGroup schemaType;
     private TreeView<String> kafkaTreeRef;
     private Cluster cluster;
 
@@ -306,9 +309,27 @@ public class TopicBrowserController implements Initializable {
 
     public void produceMessage(MouseEvent mouseEvent) {
 
-        kafkaConnector.produceMessage(cluster, topic.getText(), produceMsg.getText());
+
+        Integer schId = 0;
 
 
+        RadioButton selectedRadioButton = (RadioButton) schemaType.getSelectedToggle();
+
+
+        if (selectedRadioButton.getText().equalsIgnoreCase("Avro") || selectedRadioButton.getText().equalsIgnoreCase("Json Schema      Schema Id")){
+            if (this.schemaId.getText() != null && !this.schemaId.getText().isEmpty())
+                schId = Integer.parseInt(this.schemaId.getText());
+            else
+                schId = -1;
+        }
+
+        if (schId != -1) {
+            kafkaConnector.produceMessage(cluster, topic.getText(), produceMsg.getText(), schId);
+        }
+        else {
+            //todo: Message please provide schemaID
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> please provide schemaID");
+        }
     }
 
     public void clearMsgTable(MouseEvent mouseEvent) {

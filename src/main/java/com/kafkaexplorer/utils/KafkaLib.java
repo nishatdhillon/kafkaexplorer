@@ -266,11 +266,13 @@ public class KafkaLib {
         }
     }
 
-        public void produceMessage(Cluster cluster, String topicName, String record) {
+        public void produceMessage(Cluster cluster, String topicName, String record, Integer schemaId) {
 
         this.setProps(cluster);
 
         Producer<String, String> producer = new KafkaProducer<String, String>( this.getProps());
+
+        System.out.println("SchemaId" + schemaId);
 
         //Handle an exception from the callback
      try {
