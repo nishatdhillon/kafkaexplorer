@@ -1,5 +1,6 @@
 package com.kafkaexplorer;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.kafkaexplorer.utils.KafkaLib;
@@ -13,12 +14,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.apache.kafka.clients.admin.Config;
 import org.apache.kafka.clients.admin.ConfigEntry;
 import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.config.TopicConfig;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -40,6 +46,7 @@ public class TopicBrowserController implements Initializable {
     public VBox rootNode;
     public JFXTextField schemaId;
     public ToggleGroup schemaType;
+    public JFXButton exportData;
     private TreeView<String> kafkaTreeRef;
     private Cluster cluster;
 
@@ -335,6 +342,44 @@ public class TopicBrowserController implements Initializable {
     public void clearMsgTable(MouseEvent mouseEvent) {
 
         messagesTable.getItems().clear();
+
+    }
+
+    public void exportTableToCSV(MouseEvent mouseEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv"));
+        Stage stage = (Stage)  exportData.getScene().getWindow();
+        //Get filename to export data
+        File selectedFile = fileChooser.showSaveDialog(stage);
+
+        //Export data
+        if (selectedFile != null) {
+
+            String csvData = "";
+            ObservableList<Map<String, Object>> items = messagesTable.getItems();
+            for (Map<String, Object> map : items) {
+                for (Map.Entry<String, Object> entry : map.entrySet()) {
+                    String key = entry.getKey();
+                    if (key.equalsIgnoreCase("Message")) {
+                        Object value = entry.getValue();
+                        csvData += "\n" + entry.getValue();
+                    }
+                }
+            }
+
+            try {
+                FileWriter myWriter = new FileWriter(selectedFile.getPath());
+                myWriter.write(csvData);
+                myWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+
+
+        }
 
     }
 }

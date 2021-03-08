@@ -113,6 +113,11 @@
             <Label prefHeight="17.0" prefWidth="99.0" text="Enter Message" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <JFXComboBox fx:id="browsingType" prefHeight="25.0" prefWidth="163.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <JFXButton fx:id="exportData" mnemonicParsing="false" onMouseClicked="#exportTableToCSV" text="Export table in CSV" GridPane.columnIndex="7" GridPane.rowIndex="10">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </JFXButton>
               </children>
           </GridPane>
       <TableView fx:id="messagesTable" editable="true" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
