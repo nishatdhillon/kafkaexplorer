@@ -1,6 +1,9 @@
 package com.kafkaexplorer;
 
-import com.kafkaexplorer.kafkaconnector.KafkaLib;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import com.kafkaexplorer.utils.KafkaLib;
 import com.kafkaexplorer.model.Cluster;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,33 +13,40 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.apache.kafka.clients.admin.Config;
 import org.apache.kafka.clients.admin.ConfigEntry;
-import org.apache.kafka.clients.admin.DescribeTopicsResult;
-import org.apache.kafka.clients.admin.TopicDescription;
 import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.config.TopicConfig;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
 
 public class TopicBrowserController implements Initializable {
 
     @FXML
     public TextField topic;
     public TableView partitionTable;
-    public ChoiceBox browsingType;
+    public JFXComboBox browsingType;
     public TableView messagesTable;
     public TextField produceMsg;
     public Button startButton;
     public Button stopButton;
     public TableView topicConfigTable;
+    public VBox rootNode;
+    public JFXTextField schemaId;
+    public ToggleGroup schemaType;
+    public JFXButton exportData;
     private TreeView<String> kafkaTreeRef;
     private Cluster cluster;
 
@@ -46,8 +56,9 @@ public class TopicBrowserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        browsingType.getItems().addAll("from-beginning"); //add "latest" later
-        browsingType.setValue("from-beginning");
+        browsingType.getItems().addAll("from-beginning");
+        browsingType.getItems().addAll("latest");
+        browsingType.setValue("latest");
 
         //init message browser table
         TableColumn<Map, Object> partitionColumn = new TableColumn<>("Part.");
@@ -65,6 +76,18 @@ public class TopicBrowserController implements Initializable {
         createdColumn.setSortType(TableColumn.SortType.DESCENDING);
         createdColumn.setMinWidth(125);
 
+        TableColumn<Map, Object> srTypeColumn = new TableColumn<>("Schema Type");
+        srTypeColumn.setCellValueFactory(new MapValueFactory<>("Schema Type"));
+        srTypeColumn.setMinWidth(50);
+
+        TableColumn<Map, Object> srIdColumn = new TableColumn<>("Schema Id");
+        srIdColumn.setCellValueFactory(new MapValueFactory<>("Schema Id"));
+        srIdColumn.setMinWidth(50);
+
+        TableColumn<Map, Object> srSubjectColumn = new TableColumn<>("Schema Subject");
+        srSubjectColumn.setCellValueFactory(new MapValueFactory<>("Schema Subject"));
+        srSubjectColumn.setMinWidth(100);
+
         TableColumn<Map, Object> messageColumn = new TableColumn<>("Message");
         messageColumn.setCellValueFactory(new MapValueFactory<>("Message"));
         messageColumn.setMinWidth(800);
@@ -72,6 +95,10 @@ public class TopicBrowserController implements Initializable {
         messagesTable.getColumns().add(partitionColumn);
         messagesTable.getColumns().add(offsetColumn);
         messagesTable.getColumns().add(createdColumn);
+        messagesTable.getColumns().add(srTypeColumn);
+        messagesTable.getColumns().add(srIdColumn);
+        messagesTable.getColumns().add(srSubjectColumn);
+
         messagesTable.getColumns().add(messageColumn);
 
         messagesTable.getSortOrder().add(createdColumn);
@@ -95,13 +122,48 @@ public class TopicBrowserController implements Initializable {
 
         stopButton.setDisable(true);
 
-        KafkaLib kafkaConnector = new KafkaLib();
-        List<PartitionInfo> partitionInfo = kafkaConnector.getTopicPartitionInfo(cluster, topicName);
-        displayPartitionInfo(partitionInfo);
 
-        KafkaFuture<Config> configFuture = kafkaConnector.getTopicInfo(cluster, topicName);
-        displayTopicInfo(configFuture);
+        Task<Integer> task = new Task<Integer>() {
+            @Override
+            protected Integer call() throws Exception {
 
+                KafkaLib kafkaConnector = new KafkaLib();
+                List<PartitionInfo> partitionInfo = kafkaConnector.getTopicPartitionInfo(cluster, topicName);
+                displayPartitionInfo(partitionInfo);
+
+                KafkaFuture<Config> configFuture = kafkaConnector.getTopicInfo(cluster, topicName);
+                displayTopicInfo(configFuture);
+
+                return 0;
+            }
+
+            @Override
+            protected void succeeded() {
+                ((ProgressIndicator)rootNode.getScene().lookup("#progBar2")).setVisible(false);
+                super.succeeded();
+            }
+
+            @Override
+            protected void cancelled() {
+                ((ProgressIndicator)rootNode.getScene().lookup("#progBar2")).setVisible(false);
+                super.cancelled();
+            }
+
+            @Override
+            protected void failed() {
+                ((ProgressIndicator)rootNode.getScene().lookup("#progBar2")).setVisible(false);
+                super.failed();
+                //show an alert Dialog
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setHeaderText("Error!");
+                a.setContentText(this.getException().getMessage());
+                a.show();
+            }
+        };
+
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
 
     }
 
@@ -206,13 +268,16 @@ public class TopicBrowserController implements Initializable {
         messagesTable.getItems().clear();
         startButton.setDisable(true);
         stopButton.setDisable(false);
-
         kafkaConnector.continueBrowsing = true;
+
+        //Get dropdown value (from beginning OR latest)
+        String browseFrom = "";
+
         //Create a thread for browsing topic, to not block the UI
         Task<Integer> task = new Task<Integer>() {
             @Override
             protected Integer call() throws Exception {
-                kafkaConnector.browseTopic(cluster, topic.getText(), messagesTable);
+                kafkaConnector.browseTopic(cluster, topic.getText(), browsingType.getValue().toString(), messagesTable,startButton, stopButton );
                 return 0;
             }
 
@@ -246,20 +311,75 @@ public class TopicBrowserController implements Initializable {
     public void stopBrowsing(MouseEvent mouseEvent) {
         //todo Cancel the browsing task/thread instead of using boolean
         kafkaConnector.continueBrowsing = false;
-        startButton.setDisable(false);
         stopButton.setDisable(true);
     }
 
     public void produceMessage(MouseEvent mouseEvent) {
 
-        kafkaConnector.produceMessage(cluster, topic.getText(), produceMsg.getText());
+
+        Integer schId = 0;
 
 
+        RadioButton selectedRadioButton = (RadioButton) schemaType.getSelectedToggle();
+
+
+        if (selectedRadioButton.getText().equalsIgnoreCase("Avro") || selectedRadioButton.getText().equalsIgnoreCase("Json Schema      Schema Id")){
+            if (this.schemaId.getText() != null && !this.schemaId.getText().isEmpty())
+                schId = Integer.parseInt(this.schemaId.getText());
+            else
+                schId = -1;
+        }
+
+        if (schId != -1) {
+            kafkaConnector.produceMessage(cluster, topic.getText(), produceMsg.getText(), schId);
+        }
+        else {
+            //todo: Message please provide schemaID
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> please provide schemaID");
+        }
     }
 
     public void clearMsgTable(MouseEvent mouseEvent) {
 
         messagesTable.getItems().clear();
+
+    }
+
+    public void exportTableToCSV(MouseEvent mouseEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv"));
+        Stage stage = (Stage)  exportData.getScene().getWindow();
+        //Get filename to export data
+        File selectedFile = fileChooser.showSaveDialog(stage);
+
+        //Export data
+        if (selectedFile != null) {
+
+            String csvData = "";
+            ObservableList<Map<String, Object>> items = messagesTable.getItems();
+            for (Map<String, Object> map : items) {
+                for (Map.Entry<String, Object> entry : map.entrySet()) {
+                    String key = entry.getKey();
+                    if (key.equalsIgnoreCase("Message")) {
+                        Object value = entry.getValue();
+                        csvData += "\n" + entry.getValue();
+                    }
+                }
+            }
+
+            try {
+                FileWriter myWriter = new FileWriter(selectedFile.getPath());
+                myWriter.write(csvData);
+                myWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+
+
+        }
 
     }
 }
